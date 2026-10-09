@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khu Vườn Cảm Xúc</title>
+
+  <!-- Google Fonts: Phông chữ thanh lịch, hỗ trợ tiếng Việt hoàn hảo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================================================
+       1. BẢNG MÀU CHÍNH (THEO 4 TÔNG MÀU TỪ ẢNH ĐẦU TIÊN CỦA BẠN)
+       ======================================================== */
+    :root {
+      --palette-dark-navy: #0d3859;  /* Dải màu 1: Xanh thẫm biển sâu */
+      --palette-ocean-blue: #356d94; /* Dải màu 2: Xanh lam trung tính */
+      --palette-soft-cyan: #66c8d7;  /* Dải màu 3: Xanh ngọc pastel */
+      --palette-neon-mint: #41ffd2;  /* Dải màu 4: Xanh dạ quang ngọc bích */
+      
+      --text-dark: #0f2738;
+      --text-light: #ffffff;
+      --glass-bg: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.6);
+      --card-shadow: 0 20px 40px rgba(13, 56, 89, 0.15);
+      --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* THEME: BAN NGÀY (NẮNG DỊU - ẢNH 3) */
+    body.theme-day {
+      --sky-grad: linear-gradient(180deg, #9be2ec 0%, #c8f5ed 45%, #fff6e0 70%, #f7d294 100%);
+      --grass-far: #489b88;
+      --grass-mid: #388070;
+      --grass-near: #276356;
+      --flower-glow: rgba(255, 220, 120, 0.85);
+      --flower-petal-color: #fffaf0;
+      --god-ray-opacity: 0.65;
+      --hero-title-color: #0d3859;
+      --hero-sub-color: #2b5675;
+      --night-stars-opacity: 0;
+    }
+
+    /* THEME: BAN ĐÊM (ÁNH TRĂNG DẠ QUANG - ẢNH 2) */
+    body.theme-night {
+      --sky-grad: linear-gradient(180deg, #071c2e 0%, var(--palette-dark-navy) 40%, #15456b 75%, #255a7d 100%);
+      --grass-far: #163e5c;
+      --grass-mid: #102e46;
+      --grass-near: #0a1f30;
+      --flower-glow: var(--palette-neon-mint);
+      --flower-petal-color: #eafffa;
+      --god-ray-opacity: 0;
+      --hero-title-color: #ffffff;
+      --hero-sub-color: var(--palette-soft-cyan);
+      --night-stars-opacity: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--sky-grad);
+      color: var(--text-dark);
+      transition: background 1s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ========================================================
+       2. THANH ĐIỀU HƯỚNG & TIỆN ÍCH (HEADER)
+       ======================================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: var(--transition-smooth);
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    /* [VỊ TRÍ CHÈN LOGO] */
+    .logo-slot {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--palette-soft-cyan), var(--palette-neon-mint));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(65, 255, 210, 0.35);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .logo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .logo-slot svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--palette-dark-navy);
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--palette-dark-navy);
+      letter-spacing: -0.3px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--palette-dark-navy);
+      cursor: pointer;
+      border-radius: 20px;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn:hover {
+      background: rgba(102, 200, 215, 0.18);
+      color: var(--palette-ocean-blue);
+      transform: translateY(-1px);
+    }
+
+    /* Tiện ích âm thanh */
+    .audio-btn {
+      background: var(--palette-dark-navy);
+      color: #fff;
+      border: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(13, 56, 89, 0.25);
+      transition: var(--transition-smooth);
+    }
+    .audio-btn:hover {
+      background: var(--palette-ocean-blue);
+      transform: scale(1.08);
+    }
+    .audio-btn.playing {
+      background: var(--palette-neon-mint);
+      color: var(--palette-dark-navy);
+      box-shadow: 0 0 15px var(--palette-neon-mint);
+    }
+    .audio-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* ========================================================
+       3. KHU VỰC ĐỊNH DANH (HERO SECTION)
+       ======================================================== */
+    .hero-section {
+      padding-top: 110px;
+      padding-bottom: 20px;
+      text-align: center;
+      position: relative;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      color: var(--hero-title-color);
+      margin-bottom: 12px;
+      transition: color 0.6s ease;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400;
+      color: var(--hero-sub-color);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.6;
+      padding: 0 20px;
+      transition: color 0.6s ease;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ========================================================
+       4. KHU VƯỜN TƯƠNG TÁC (GARDEN VIEWPORT)
+       ======================================================== */
+    .garden-wrapper {
+      position: relative;
+      flex: 1;
+      min-height: 580px;
+      width: 100%;
+      overflow: hidden;
+      margin-top: -30px;
+    }
+
+    /* Hiệu ứng Tia nắng dịu (God rays - Ảnh 3) */
+    .god-rays {
+      position: absolute;
+      top: -60px;
+      left: 10%;
+      width: 120%;
+      height: 100%;
+      pointer-events: none;
+      opacity: var(--god-ray-opacity);
+      transition: opacity 1s ease;
+      z-index: 5;
+      background: radial-gradient(circle at 75% 15%, rgba(255, 240, 180, 0.8) 0%, transparent 60%),
+                  conic-gradient(from 220deg at 70% 10%, 
+                    transparent 0deg, 
+                    rgba(255, 230, 160, 0.35) 20deg, 
+                    transparent 35deg, 
+                    rgba(255, 235, 170, 0.3) 55deg, 
+                    transparent 75deg);
+      mix-blend-mode: screen;
+      filter: blur(10px);
+    }
+
+    /* Canvas đom đóm & hạt ánh sáng */
+    #atmosphereCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    /* Đồi cỏ mô phỏng chiều sâu (Lớp nền SVG) */
+    .garden-scenery {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .hill-far {
+      fill: var(--grass-far);
+      transition: fill 1s ease;
+    }
+    .hill-mid {
+      fill: var(--grass-mid);
+      transition: fill 1s ease;
+    }
+    .hill-near {
+      fill: var(--grass-near);
+      transition: fill 1s ease;
+    }
+
+    /* LỚP HOA TƯƠNG TÁC (HOTSPOTS) */
+    .flower-hotspots-container {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+    }
+
+    .flower-item {
+      position: absolute;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+    }
+
+    /* Nhãn tên chủ đề (Tooltip) */
+    .flower-label {
+      position: absolute;
+      bottom: 100%;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      background: rgba(13, 56, 89, 0.9);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--palette-neon-mint);
+      opacity: 0;
+      transform: translateY(10px) scale(0.9);
+      transition: var(--transition-smooth);
+      pointer-events: none;
+    }
+
+    .flower-label::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: rgba(13, 56, 89, 0.9);
+    }
+
+    /* Đồ họa Bông hoa */
+    .flower-svg-wrap {
+      width: 64px;
+      height: 76px;
+      transform-origin: bottom center;
+      animation: gentleBreeze 5s ease-in-out infinite alternate;
+      transition: filter 0.4s ease;
+    }
+
+    .flower-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .flower-petal {
+      fill: var(--flower-petal-color);
+      transition: fill 0.6s ease;
+    }
+
+    .flower-glow-core {
+      fill: var(--flower-glow);
+      filter: drop-shadow(0 0 10px var(--flower-glow));
+      transition: fill 0.6s ease;
+    }
+
+    .flower-stem {
+      stroke: #3da87f;
+      stroke-width: 3;
+      stroke-linecap: round;
+    }
+
+    /* Trạng thái HOVER bông hoa: phát sáng rực rỡ + lắc lư nhẹ */
+    .flower-item:hover {
+      transform: translate(-50%, -50%) scale(1.22);
+      z-index: 50;
+    }
+
+    .flower-item:hover .flower-label {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .flower-item:hover .flower-svg-wrap {
+      filter: drop-shadow(0 0 18px var(--palette-neon-mint)) drop-shadow(0 0 35px var(--palette-soft-cyan));
+      animation: flowerExcited 0.6s ease-in-out infinite alternate;
+    }
+
+    /* Animation đung đưa */
+    @keyframes gentleBreeze {
+      0% { transform: rotate(-3deg); }
+      50% { transform: rotate(4deg); }
+      100% { transform: rotate(-2deg); }
+    }
+
+    @keyframes flowerExcited {
+      0% { transform: rotate(-7deg) scale(1.05); }
+      100% { transform: rotate(7deg) scale(1.1); }
+    }
+
+    /* ========================================================
+       5. CHÂN TRANG (FOOTER)
+       ======================================================== */
+    .footer {
+      position: relative;
+      z-index: 30;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--glass-border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      color: var(--palette-dark-navy);
+      font-weight: 500;
+    }
+
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--palette-dark-navy);
+      color: #fff;
+      border: 1px solid var(--palette-soft-cyan);
+      padding: 9px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(13, 56, 89, 0.2);
+      transition: var(--transition-smooth);
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--palette-ocean-blue);
+      border-color: var(--palette-neon-mint);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(65, 255, 210, 0.3);
+    }
+
+    .theme-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* ========================================================
+       6. KHUNG MODAL NỘI DUNG (HOA & BÀI VIẾT & VỀ DỰ ÁN)
+       ======================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 30, 48, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.35s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: #fdfefe;
+      background-image: radial-gradient(rgba(102, 200, 215, 0.08) 1px, transparent 0);
+      background-size: 24px 24px;
+      width: 100%;
+      max-width: 620px;
+      border-radius: 28px;
+      padding: 40px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+      position: relative;
+      border: 2px solid rgba(102, 200, 215, 0.35);
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(13, 56, 89, 0.08);
+      color: var(--palette-dark-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--palette-dark-navy);
+      color: #fff;
+      transform: rotate(90deg);
+    }
+
+    .modal-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 14px;
+      background: rgba(102, 200, 215, 0.2);
+      color: var(--palette-dark-navy);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--palette-dark-navy);
+      margin-bottom: 18px;
+      line-height: 1.3;
+    }
+
+    .modal-body {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #2c4a60;
+      margin-bottom: 28px;
+    }
+
+    .modal-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--palette-ocean-blue), var(--palette-dark-navy));
+      color: #fff;
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      box-shadow: 0 8px 20px rgba(13, 56, 89, 0.25);
+      transition: var(--transition-smooth);
+      border: none;
+      cursor: pointer;
+    }
+
+    .modal-action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(65, 255, 210, 0.4);
+      background: linear-gradient(135deg, var(--palette-dark-navy), var(--palette-ocean-blue));
+    }
+
+    /* VỊ TRÍ CHÈN MÃ WIDGET / CODE TỰ DO */
+    .widget-container {
+      margin-top: 24px;
+      padding: 18px;
+      background: rgba(102, 200, 215, 0.12);
+      border-radius: 16px;
+      border: 1px dashed var(--palette-ocean-blue);
+      font-size: 0.9rem;
+    }
+
+    /* TIMELINE CHO POPUP BÀI VIẾT */
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+      border-left: 2px solid var(--palette-soft-cyan);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .timeline-item {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -31px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--palette-neon-mint);
+      border: 3px solid var(--palette-dark-navy);
+    }
+
+    .timeline-date {
+      font-size: 0.8rem;
+      color: var(--palette-ocean-blue);
+      font-weight: 600;
+    }
+
+    .timeline-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--palette-dark-navy);
+      margin: 4px 0;
+    }
+
+    .timeline-desc {
+      font-size: 0.92rem;
+      color: #43647c;
+    }
+
+    /* MENU LIÊN HỆ DROPDOWN */
+    .contact-popup-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: #f1f9fb;
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--palette-dark-navy);
+      font-weight: 600;
+      border: 1px solid rgba(102, 200, 215, 0.3);
+      transition: var(--transition-smooth);
+    }
+
+    .social-card:hover {
+      background: var(--palette-dark-navy);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        padding: 0 16px;
+      }
+      .brand-title {
+        font-size: 1.15rem;
+      }
+      .nav-btn span {
+        display: none;
+      }
+      .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 16px;
+      }
+      .modal-card {
+        padding: 28px 20px;
+      }
+      .contact-popup-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="theme-day">
+
+  <!-- ========================================================
+       THÀNH PHẦN 1: THANH ĐIỀU HƯỚNG & TIỆN ÍCH (HEADER)
+       ======================================================== -->
+  <header class="header">
+    <div class="brand-container">
+      
+      <!-- ========================================================
+           [VỊ TRÍ CHÈN LOGO CỦA BẠN]:
+           Thay thế mã SVG dưới đây bằng thẻ <img> nếu bạn đã có file logo.
+           Ví dụ: <img src="logo.png" alt="Logo Khu Vườn Cảm Xúc">
+           ======================================================== -->
+      <div class="logo-slot" title="Logo Dự Án">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"/>
+        </svg>
+      </div>
+
+      <!-- Tên dự án sát bên trái ngay sau logo -->
+      <h2 class="brand-title">Khu Vườn Cảm Xúc</h2>
+    </div>
+
+    <!-- Menu điều hướng tối giản -->
+    <div class="nav-actions">
+      <ul class="nav-links">
+        <li>
+          <button class="nav-btn" onclick="openAboutModal()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            <span>Về Dự Án</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" onclick="openArticlesModal()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            <span>Bài Viết</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" onclick="openContactModal()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>Liên Hệ</span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Tiện ích Âm thanh Thiên Nhiên / Tiếng chim hót -->
+      <button class="audio-btn" id="audioToggleBtn" title="Bật/Tắt Nhạc Thiên Nhiên" onclick="toggleAudio()">
+        <svg id="audioIcon" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       THÀNH PHẦN 2: KHU VỰC ĐỊNH DANH (HERO SECTION)
+       ======================================================== -->
+  <section class="hero-section">
+    <h1 class="hero-title">Khu Vườn Cảm Xúc</h1>
+    <p class="hero-tagline">Mỗi bông hoa là 1 cảm xúc, nhấp vào hoa để lắng nghe cảm xúc của bạn.</p>
+  </section>
+
+  <!-- ========================================================
+       THÀNH PHẦN 3: KHU VỰC TƯƠNG TÁC CHÍNH (GARDEN VIEWPORT)
+       ======================================================== -->
+  <main class="garden-wrapper">
+    <!-- Hiệu ứng Tia nắng (God rays - Ban ngày) -->
+    <div class="god-rays" id="godRays"></div>
+
+    <!-- Canvas hạt ánh sáng và đom đóm -->
+    <canvas id="atmosphereCanvas"></canvas>
+
+    <!-- Đồ họa nền mô phỏng đồi hoa cỏ -->
+    <svg class="garden-scenery" viewBox="0 0 1440 600" preserveAspectRatio="none">
+      <!-- Lớp đồi xa -->
+      <path class="hill-far" d="M0,320 C320,240 460,340 760,260 C1060,180 1200,290 1440,240 L1440,600 L0,600 Z"/>
+      <!-- Lớp đồi giữa -->
+      <path class="hill-mid" d="M0,390 C280,310 520,430 840,340 C1120,270 1320,380 1440,320 L1440,600 L0,600 Z"/>
+      <!-- Lớp đồi tiền cảnh gần người xem -->
+      <path class="hill-near" d="M0,470 C340,410 680,510 1020,430 C1240,380 1380,440 1440,410 L1440,600 L0,600 Z"/>
+    </svg>
+
+    <!-- Nơi render các điểm tương tác bông hoa (Hotspots) -->
+    <div class="flower-hotspots-container" id="flowerContainer"></div>
+  </main>
+
+  <!-- ========================================================
+       THÀNH PHẦN 4: CHÂN TRANG (FOOTER)
+       ======================================================== -->
+  <footer class="footer">
+    <div class="copyright">
+      © 2026 Khu Vườn Cảm Xúc • Nuôi dưỡng tâm hồn qua từng đóa hoa
+    </div>
+
+    <!-- Nút chuyển đổi chế độ Ban Ngày / Ban Đêm -->
+    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
+      <svg id="themeIcon" viewBox="0 0 24 24">
+        <!-- Biểu tượng trăng/sao -->
+        <path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 10.6-10.7A8 8 0 0 1 12.3 2z"/>
+      </svg>
+      <span id="themeBtnText">Chế độ: Ban Đêm (Ánh trăng)</span>
+    </button>
+  </footer>
+
+  <!-- ========================================================
+       CÁC POPUP / MODAL HIỂN THỊ CHI TIẾT
+       ======================================================== -->
+  
+  <!-- MODAL BÔNG HOA CẢM XÚC -->
+  <div class="modal-overlay" id="flowerModal" onclick="closeModalOnBackdrop(event, 'flowerModal')">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal('flowerModal')" title="Đóng">✕</button>
+      
+      <span class="modal-badge" id="modalBadge">Cảm xúc</span>
+      <h3 class="modal-title" id="modalTitle">Tên Chủ Đề</h3>
+      
+      <!-- Nội dung văn bản chi tiết -->
+      <div class="modal-body" id="modalContent">
+        Nội dung cảm xúc...
+      </div>
+
+      <!-- Nút Chuyển Trang Con Riêng -->
+      <a href="#" class="modal-action-btn" id="modalSubpageBtn" target="_self">
+        <span>Đọc bài viết chi tiết</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+      </a>
+
+      <!-- ========================================================
+           [VỊ TRÍ CHÈN MÃ CODE / WIDGET DỰNG SẴN CỦA BẠN]
+           Bạn có thể chèn Form bình luận, Audio Player, Video Youtube,
+           hoặc iframe tùy ý vào thẻ div bên dưới.
+           ======================================================== -->
+      <div class="widget-container">
+        <strong>✨ Góc Widget / Tương tác bổ sung:</strong>
+        <p style="margin-top: 6px; font-size: 0.88rem; color: #356d94;">
+          <!-- CHÈN CODE HTML/JS HOẶC IFRAME TẠI ĐÂY -->
+          <em>"Mỗi xúc cảm là một thông điệp chân thật từ nội tâm. Hãy lắng nghe mà không phán xét."</em>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL "VỀ DỰ ÁN" -->
+  <div class="modal-overlay" id="aboutModal" onclick="closeModalOnBackdrop(event, 'aboutModal')">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal('aboutModal')">✕</button>
+      <span class="modal-badge">Giới thiệu</span>
+      <h3 class="modal-title">Về Dự Án</h3>
+      <div class="modal-body">
+        <p style="font-size: 1.25rem; font-weight: 600; color: var(--palette-dark-navy); margin-bottom: 12px;">
+          đây là dự án cảm xúc
+        </p>
+        <p>
+          Chào mừng bạn đã bước vào <strong>Khu Vườn Cảm Xúc</strong> — một không gian an yên được tạo ra để bạn kết nối lại với thế giới tinh thần của chính mình.
+        </p>
+        <p style="margin-top: 10px;">
+          Giữa những bộn bề hối hả của cuộc sống thường nhật, chúng ta thường quên mất việc dừng lại để lắng nghe tiếng nói từ trái tim. Tại đây, mỗi bông hoa đại diện cho một tầng cảm xúc: từ việc thấu hiểu khái niệm, nhận biết các tín hiệu rung động đến cách bao bọc và nuôi dưỡng tâm hồn bạn.
+        </p>
+      </div>
+      <button class="modal-action-btn" onclick="closeModal('aboutModal')">Trở lại khu vườn</button>
+    </div>
+  </div>
+
+  <!-- MODAL "BÀI VIẾT" THEO DÒNG THỜI GIAN -->
+  <div class="modal-overlay" id="articlesModal" onclick="closeModalOnBackdrop(event, 'articlesModal')">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal('articlesModal')">✕</button>
+      <span class="modal-badge">Mục lục</span>
+      <h3 class="modal-title">Dòng Thời Gian Bài Viết</h3>
+      <div class="modal-body">
+        <p>Tất cả các chủ đề hoa trong khu vườn được sắp xếp theo trình tự chiêm nghiệm:</p>
+        
+        <div class="timeline" id="timelineList">
+          <!-- Render tự động từ mảng dữ liệu JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL "LIÊN HỆ" -->
+  <div class="modal-overlay" id="contactModal" onclick="closeModalOnBackdrop(event, 'contactModal')">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal('contactModal')">✕</button>
+      <span class="modal-badge">Kết nối</span>
+      <h3 class="modal-title">Gửi Lời Nhắn Đến Khu Vườn</h3>
+      <div class="modal-body">
+        <p>Chúng mình luôn sẵn lòng lắng nghe những chia sẻ, câu chuyện và cảm xúc của bạn:</p>
+        <div class="contact-popup-links">
+          <a href="https://facebook.com" target="_blank" class="social-card">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+            Facebook Page
+          </a>
+          <a href="mailto:contact@khuvuoncamxuc.vn" class="social-card">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Email Thư Từ
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thẻ Audio phát tiếng chim hót & gió thoảng thiên nhiên (Âm thanh thực tế) -->
+  <audio id="bgNatureAudio" loop preload="none">
+    <source src="https://assets.mixkit.co/active_storage/sfx/2432/2432-preview.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ========================================================
+       7. TOÀN BỘ LOGIC JAVASCRIPT
+       ======================================================== -->
+  <script>
+    /* ========================================================
+       A. MẢNG DỮ LIỆU CÁC BÔNG HOA (ARRAY OF OBJECTS)
+       ==> Bạn có thể tùy ý THÊM, SỬA, XÓA bài viết và hoa tại đây!
+       ======================================================== */
+    const flowersData = [
+      {
+        id: "khai-niem",
+        title: "Khái niệm",
+        tag: "Cơ bản",
+        summary: "cảm xúc là",
+        fullText: "Cảm xúc là phản ứng tự nhiên, sinh động và phức tạp của tâm trí lẫn cơ thể trước các tình huống thực tại hoặc ký ức. Nó chính là lăng kính nguyên bản giúp bạn nhìn nhận sự tương tác giữa bản thân và cuộc đời.",
+        targetUrl: "trang-con-1.html",
+        x: 18, // Tọa độ ngang (% màn hình)
+        y: 68, // Tọa độ dọc (% màn hình)
+        scale: 1.05
+      },
+      {
+        id: "y-nghia",
+        title: "Ý nghĩa",
+        tag: "Nhận thức",
+        summary: "ý nghĩa cảm xúc",
+        fullText: "Ý nghĩa cảm xúc là chiếc cầu nối giữa thế giới nội tâm và thế giới khách quan. Chúng bảo vệ ta khỏi hiểm nguy, mở lối cho tình yêu thương và nhắc nhở ta về những điều ta thực sự trân quý trong kiếp sống này.",
+        targetUrl: "trang-con-2.html",
+        x: 36,
+        y: 54,
+        scale: 0.95
+      },
+      {
+        id: "vai-tro",
+        title: "Vai trò",
+        tag: "Hành động",
+        summary: "vai trò cảm xúc",
+        fullText: "Vai trò cảm xúc đóng vai trò là động lực định hình mọi quyết định, hành vi và khả năng phục hồi tinh thần. Không có cảm xúc, mọi lý trí đều trở nên khô cằn và mất đi phương hướng kết nối con người với nhau.",
+        targetUrl: "trang-con-3.html",
+        x: 64,
+        y: 58,
+        scale: 1.1
+      },
+      {
+        id: "nhan-biet",
+        title: "Nhận biết cảm xúc",
+        tag: "Thực hành",
+        summary: "cách nhận biết cảm xúc",
+        fullText: "Cách nhận biết cảm xúc bắt đầu từ sự tĩnh lặng: quan sát nhịp thở, cảm giác cơ thể căng cứng hay buông lỏng, và gọi tên chính xác từng trạng thái (buồn, giận, hân hoan, lo âu) mà không vội vàng xua đuổi chúng.",
+        targetUrl: "trang-con-4.html",
+        x: 82,
+        y: 72,
+        scale: 1.15
+      },
+      {
+        id: "chua-lanh",
+        title: "Nuôi dưỡng & Chữa lành",
+        tag: "Bình yên",
+        summary: "ôm ấp tâm hồn",
+        fullText: "Khi biết cách chấp nhận mọi xúc cảm mà không phán xét, bạn sẽ biến khu vườn tâm tưởng của mình thành một mảnh đất trù phú, nơi hoa nở rộ cả trong đêm tối lẫn khi ánh dương rạng rỡ.",
+        targetUrl: "trang-con-5.html",
+        x: 50,
+        y: 78,
+        scale: 1.2
+      }
+    ];
+
+    /* ========================================================
+       B. RENDER BÔNG HOA VÀ TIMELINE LÊN GIAO DIỆN
+       ======================================================== */
+    const flowerContainer = document.getElementById('flowerContainer');
+    const timelineList = document.getElementById('timelineList');
+
+    function renderGardenFlowers() {
+      flowerContainer.innerHTML = '';
+      flowersData.forEach((flower, index) => {
+        const flowerEl = document.createElement('div');
+        flowerEl.className = 'flower-item';
+        flowerEl.style.left = `${flower.x}%`;
+        flowerEl.style.top = `${flower.y}%`;
+        flowerEl.style.transform = `translate(-50%, -50%) scale(${flower.scale})`;
+        flowerEl.setAttribute('data-id', flower.id);
+
+        // Tạo SVG đồ họa hoa phỏng theo dáng hoa dạ quang như Ảnh 2
+        flowerEl.innerHTML = `
+          <div class="flower-label">${flower.title}</div>
+          <div class="flower-svg-wrap" style="animation-delay: -${index * 1.3}s">
+            <svg class="flower-svg" viewBox="0 0 100 120">
+              <!-- Cuống hoa -->
+              <path class="flower-stem" d="M50,115 Q48,80 50,55" />
+              <!-- Cánh hoa bung xòe kiểu Anemone / Crocus dạ quang -->
+              <path class="flower-petal" opacity="0.88" d="M50,55 C35,45 20,25 35,10 C45,22 48,40 50,55 Z" />
+              <path class="flower-petal" opacity="0.88" d="M50,55 C65,45 80,25 65,10 C55,22 52,40 50,55 Z" />
+              <path class="flower-petal" opacity="0.95" d="M50,55 C40,40 35,15 50,5 C65,15 60,40 50,55 Z" />
+              <path class="flower-petal" opacity="0.8" d="M50,55 C30,60 15,45 25,32 C38,40 45,48 50,55 Z" />
+              <path class="flower-petal" opacity="0.8" d="M50,55 C70,60 85,45 75,32 C62,40 55,48 50,55 Z" />
+              <!-- Nhụy phát sáng -->
+              <circle class="flower-glow-core" cx="50" cy="50" r="7" />
+              <circle cx="50" cy="50" r="3" fill="#ffffff" />
+            </svg>
+          </div>
+        `;
+
+        flowerEl.addEventListener('click', () => openFlowerModal(flower));
+        flowerContainer.appendChild(flowerEl);
+      });
+    }
+
+    function renderTimeline() {
+      timelineList.innerHTML = '';
+      flowersData.forEach((flower, idx) => {
+        const item = document.createElement('div');
+        item.className = 'timeline-item';
+        item.innerHTML = `
+          <div class="timeline-date">Bài ${idx + 1} • Chủ đề: ${flower.tag}</div>
+          <div class="timeline-title">${flower.title}</div>
+          <div class="timeline-desc"><strong>${flower.summary}</strong>: ${flower.fullText.substring(0, 85)}...</div>
+        `;
+        item.addEventListener('click', () => {
+          closeModal('articlesModal');
+          openFlowerModal(flower);
+        });
+        timelineList.appendChild(item);
+      });
+    }
+
+    /* ========================================================
+       C. ĐIỀU KHIỂN CÁC POPUP / MODAL
+       ======================================================== */
+    function openFlowerModal(flower) {
+      document.getElementById('modalBadge').textContent = `Chủ đề: ${flower.tag}`;
+      document.getElementById('modalTitle').textContent = flower.title;
+      
+      // Hiển thị nội dung yêu cầu cụ thể
+      document.getElementById('modalContent').innerHTML = `
+        <p style="font-weight: 700; font-size: 1.25rem; color: var(--palette-dark-navy); margin-bottom: 8px;">
+          ${flower.summary}
+        </p>
+        <p>${flower.fullText}</p>
+      `;
+
+      // Cập nhật đường link trang con
+      const subpageBtn = document.getElementById('modalSubpageBtn');
+      subpageBtn.href = flower.targetUrl;
+
+      document.getElementById('flowerModal').classList.add('active');
+    }
+
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('active');
+    }
+
+    function openArticlesModal() {
+      document.getElementById('articlesModal').classList.add('active');
+    }
+
+    function openContactModal() {
+      document.getElementById('contactModal').classList.add('active');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    function closeModalOnBackdrop(e, modalId) {
+      if (e.target.id === modalId) {
+        closeModal(modalId);
+      }
+    }
+
+    // Đóng khi nhấn phím ESC
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay').forEach(modal => modal.classList.remove('active'));
+      }
+    });
+
+    /* ========================================================
+       D. CHUYỂN ĐỔI CHẾ ĐỘ BAN NGÀY (NẮNG DỊU) & BAN ĐÊM (ÁNH TRĂNG)
+       ======================================================== */
+    let currentTheme = 'day';
+
+    function toggleTheme() {
+      const body = document.body;
+      const themeBtnText = document.getElementById('themeBtnText');
+      const themeIcon = document.getElementById('themeIcon');
+
+      if (currentTheme === 'day') {
+        currentTheme = 'night';
+        body.className = 'theme-night';
+        themeBtnText.textContent = "Chế độ: Ban Ngày (Nắng dịu)";
+        themeIcon.innerHTML = `<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"/>`;
+      } else {
+        currentTheme = 'day';
+        body.className = 'theme-day';
+        themeBtnText.textContent = "Chế độ: Ban Đêm (Ánh trăng)";
+        themeIcon.innerHTML = `<path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 10.6-10.7A8 8 0 0 1 12.3 2z"/>`;
+      }
+    }
+
+    /* ========================================================
+       E. TIỆN ÍCH ÂM THANH THIÊN NHIÊN (AUDIO TOGGLE + DỰ PHÒNG)
+       ======================================================== */
+    const audioEl = document.getElementById('bgNatureAudio');
+    const audioBtn = document.getElementById('audioToggleBtn');
+    let isPlaying = false;
+    let audioCtx = null;
+    let natureInterval = null;
+
+    // Bộ tạo âm thanh chim hót dự phòng (Web Audio API)
+    function playGentleChirp() {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        const startFreq = 2200 + Math.random() * 800;
+        osc.frequency.setValueAtTime(startFreq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(startFreq + 600, audioCtx.currentTime + 0.1);
+        osc.frequency.exponentialRampToValueAtTime(startFreq - 200, audioCtx.currentTime + 0.2);
+
+        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.04, audioCtx.currentTime + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.22);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.25);
+      } catch (err) {}
+    }
+
+    function toggleAudio() {
+      if (!isPlaying) {
+        audioEl.play().then(() => {
+          isPlaying = true;
+          audioBtn.classList.add('playing');
+        }).catch(() => {
+          // Nếu trình duyệt chặn URL ngoài, chạy chim hót Web Audio API
+          isPlaying = true;
+          audioBtn.classList.add('playing');
+          playGentleChirp();
+          natureInterval = setInterval(() => {
+            if (Math.random() > 0.4) playGentleChirp();
+          }, 3500);
+        });
+      } else {
+        audioEl.pause();
+        clearInterval(natureInterval);
+        isPlaying = false;
+        audioBtn.classList.remove('playing');
+      }
+    }
+
+    /* ========================================================
+       F. CANVAS ĐOM ĐÓM & HẠT SÁNG LƠ LỬNG
+       ======================================================== */
+    const canvas = document.getElementById('atmosphereCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = canvas.parentElement.clientHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2.5 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.7;
+        this.speedY = -Math.random() * 0.8 - 0.2;
+        this.alpha = Math.random() * 0.8 + 0.2;
+        this.fade = (Math.random() * 0.02 + 0.005) * (Math.random() > 0.5 ? 1 : -1);
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.alpha += this.fade;
+        if (this.alpha <= 0.1 || this.alpha >= 0.95) this.fade = -this.fade;
+        if (this.y < 0 || this.x < 0 || this.x > width) this.reset();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        if (currentTheme === 'night') {
+          // Ban đêm: Hạt sáng dạ quang ngọc bích / trắng
+          ctx.fillStyle = `rgba(65, 255, 210, ${this.alpha})`;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = '#41ffd2';
+        } else {
+          // Ban ngày: Hạt bụi phấn vàng óng trong nắng
+          ctx.fillStyle = `rgba(255, 235, 160, ${this.alpha * 0.8})`;
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = '#ffd269';
+        }
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    for (let i = 0; i < 45; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateAtmosphere() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateAtmosphere);
+    }
+
+    /* ========================================================
+       KHỞI TẠO TOÀN TRANG
+       ======================================================== */
+    renderGardenFlowers();
+    renderTimeline();
+    animateAtmosphere();
+  </script>
+</body>
+</html>

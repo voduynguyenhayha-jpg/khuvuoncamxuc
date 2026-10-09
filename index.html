@@ -12,70 +12,68 @@
 
   <style>
     /* ========================================================
-       1. HỆ THỐNG MÀU SẮC (THEME SYSTEM)
+       1. HỆ THỐNG MÀU SẮC CHỦ ĐẠO
        ======================================================== */
     :root {
-      /* Tông màu ban đêm (ẢNH 1 & Ánh trăng dạ quang) */
+      /* Bảng màu đêm ánh trăng */
       --palette-dark-navy: #0d3859;
       --palette-ocean-blue: #356d94;
       --palette-soft-cyan: #66c8d7;
       --palette-neon-mint: #41ffd2;
 
-      /* Tông màu ban ngày (CHUẨN 4 DẢI MÀU TỪ ẢNH 2 CỦA BẠN) */
-      --day-color-yellow: #fff98a;  /* Dải 1: Vàng nhạt dịu nắng */
-      --day-color-sage:   #a5c98d;  /* Dải 2: Xanh xô thơm / đồi xa */
-      --day-color-forest: #467140;  /* Dải 3: Xanh tán lá / đồi giữa */
-      --day-color-deep:   #06391d;  /* Dải 4: Xanh thẫm tiền cảnh */
+      /* Bảng màu ngày nắng đồi cỏ (Ảnh 2 màu vàng - xanh) */
+      --day-color-yellow: #fff98a;
+      --day-color-sage:   #a5c98d;
+      --day-color-forest: #467140;
+      --day-color-deep:   #06391d;
 
       --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    /* THEME BAN NGÀY (NẮNG DỊU - TÔNG MÀU ẢNH 2) */
+    /* THEME: BAN NGÀY (ĐỒI NẮNG DỊU - ẢNH 1 & 2) */
     body.theme-day {
-      --sky-grad: linear-gradient(180deg, var(--day-color-yellow) 0%, #f4fce6 42%, #d8efc7 72%, var(--day-color-sage) 100%);
-      --grass-far: var(--day-color-sage);
-      --grass-mid: var(--day-color-forest);
-      --grass-near: var(--day-color-deep);
-      --flower-glow: rgba(255, 240, 150, 0.9);
-      --god-ray-opacity: 0.65;
-      --hero-title-color: var(--day-color-deep);
-      --hero-sub-color: #275225;
-      
-      /* Màu khu vực thông tin dự án bên dưới */
-      --info-section-bg: #f5f9ed;
+      --sky-grad: linear-gradient(180deg, #7ecaf5 0%, #bde7ff 35%, #fffecb 70%, #dcf4b9 100%);
+      --grass-hill-far: #9bc57c;
+      --grass-hill-mid: #5d9744;
+      --grass-hill-near: #2e6924;
+      --flower-glow: rgba(255, 245, 170, 0.9);
+      --god-ray-opacity: 0.55;
+      --hero-title-color: #06391d;
+      --hero-sub-color: #1e501b;
+
+      --info-section-bg: #f4faed;
       --info-section-card: #ffffff;
-      --info-section-title: var(--day-color-deep);
-      --info-section-subtitle: var(--day-color-forest);
-      --info-section-text: #244222;
+      --info-section-title: #06391d;
+      --info-section-subtitle: #467140;
+      --info-section-text: #224320;
       --info-section-border: rgba(165, 201, 141, 0.5);
 
       --header-bg: rgba(255, 255, 255, 0.88);
-      --header-border: rgba(165, 201, 141, 0.35);
-      --header-text: var(--day-color-deep);
-      --btn-bg: var(--day-color-deep);
+      --header-border: rgba(165, 201, 141, 0.4);
+      --header-text: #06391d;
+      --btn-bg: #06391d;
       --btn-text: #ffffff;
     }
 
-    /* THEME BAN ĐÊM (ÁNH TRĂNG - HOA DẠ QUANG) */
+    /* THEME: BAN ĐÊM (ÁNH TRĂNG DẠ QUANG) */
     body.theme-night {
-      --sky-grad: linear-gradient(180deg, #051624 0%, var(--palette-dark-navy) 42%, #18425d 75%, #0d2a20 100%);
-      --grass-far: #1b414f;
-      --grass-mid: #10322c;
-      --grass-near: #081e18;
+      --sky-grad: linear-gradient(180deg, #051624 0%, var(--palette-dark-navy) 40%, #153c57 75%, #0a2119 100%);
+      --grass-hill-far: #163e4f;
+      --grass-hill-mid: #0d2e28;
+      --grass-hill-near: #051d16;
       --flower-glow: var(--palette-neon-mint);
       --god-ray-opacity: 0;
       --hero-title-color: #ffffff;
       --hero-sub-color: var(--palette-soft-cyan);
 
-      /* Màu khu vực thông tin dự án bên dưới */
-      --info-section-bg: #071926;
-      --info-section-card: #0c263a;
+      --info-section-bg: #061825;
+      --info-section-card: #0a2335;
       --info-section-title: #ffffff;
       --info-section-subtitle: var(--palette-neon-mint);
-      --info-section-text: #c8e3e2;
+      --info-section-text: #c2e2e0;
       --info-section-border: rgba(65, 255, 210, 0.25);
 
-      --header-bg: rgba(9, 29, 44, 0.88);
+      --header-bg: rgba(8, 26, 40, 0.88);
       --header-border: rgba(102, 200, 215, 0.25);
       --header-text: #ffffff;
       --btn-bg: var(--palette-neon-mint);
@@ -87,6 +85,10 @@
       margin: 0;
       padding: 0;
       -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -130,7 +132,7 @@
       text-decoration: none;
     }
 
-    /* [VỊ TRÍ CHÈN LOGO] */
+    /* [VỊ TRÍ CHÈN LOGO CỦA BẠN] */
     .logo-slot {
       width: 42px;
       height: 42px;
@@ -193,7 +195,7 @@
     }
 
     .nav-btn:hover {
-      background: rgba(165, 201, 141, 0.25);
+      background: rgba(165, 201, 141, 0.28);
       transform: translateY(-1px);
     }
 
@@ -224,11 +226,11 @@
     }
 
     /* ========================================================
-       3. KHU VỰC GIỚI THIỆU TRANG NHÃ (HERO SECTION)
+       3. KHU VỰC HERO
        ======================================================== */
     .hero-section {
-      padding-top: 110px;
-      padding-bottom: 10px;
+      padding-top: 105px;
+      padding-bottom: 8px;
       text-align: center;
       position: relative;
       z-index: 20;
@@ -240,7 +242,7 @@
       font-size: clamp(2.3rem, 5vw, 3.8rem);
       font-weight: 700;
       color: var(--hero-title-color);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       transition: color 0.6s ease;
       text-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
     }
@@ -257,18 +259,18 @@
     }
 
     /* ========================================================
-       4. KHU VƯỜN TƯƠNG TÁC (GARDEN VIEWPORT)
+       4. KHU VƯỜN ĐỒI CỎ NHẤP NHÔ (MÔ PHỎNG ẢNH 1)
        ======================================================== */
     .garden-wrapper {
       position: relative;
-      min-height: 650px;
-      height: 78vh;
+      min-height: 680px;
+      height: 80vh;
       width: 100%;
       overflow: hidden;
-      margin-top: -20px;
+      margin-top: -15px;
     }
 
-    /* Hiệu ứng nắng dịu (God rays) */
+    /* Tia nắng dịu xuyên mây */
     .god-rays {
       position: absolute;
       top: -80px;
@@ -278,16 +280,16 @@
       pointer-events: none;
       opacity: var(--god-ray-opacity);
       transition: opacity 1s ease;
-      z-index: 5;
-      background: radial-gradient(circle at 75% 15%, rgba(255, 248, 175, 0.85) 0%, transparent 60%),
-                  conic-gradient(from 215deg at 72% 10%, 
+      z-index: 4;
+      background: radial-gradient(circle at 65% 15%, rgba(255, 252, 195, 0.8) 0%, transparent 60%),
+                  conic-gradient(from 220deg at 62% 10%, 
                     transparent 0deg, 
-                    rgba(255, 245, 160, 0.4) 22deg, 
-                    transparent 38deg, 
-                    rgba(255, 250, 180, 0.35) 58deg, 
-                    transparent 78deg);
+                    rgba(255, 248, 170, 0.35) 20deg, 
+                    transparent 35deg, 
+                    rgba(255, 250, 185, 0.3) 55deg, 
+                    transparent 75deg);
       mix-blend-mode: screen;
-      filter: blur(10px);
+      filter: blur(12px);
     }
 
     #atmosphereCanvas {
@@ -300,26 +302,27 @@
       pointer-events: none;
     }
 
+    /* Địa hình đồi cỏ nhấp nhô uốn lượn có chiều sâu */
     .garden-scenery {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 4;
+      z-index: 3;
       pointer-events: none;
     }
 
     .hill-far {
-      fill: var(--grass-far);
+      fill: var(--grass-hill-far);
       transition: fill 1s ease;
     }
     .hill-mid {
-      fill: var(--grass-mid);
+      fill: var(--grass-hill-mid);
       transition: fill 1s ease;
     }
     .hill-near {
-      fill: var(--grass-near);
+      fill: var(--grass-hill-near);
       transition: fill 1s ease;
     }
 
@@ -330,7 +333,84 @@
     }
 
     /* ========================================================
-       THIẾT KẾ ĐỒ HỌA HOA SEN TRẮNG (WHITE LOTUS)
+       5. 3 CON BƯỚM BAY TỰ ĐỘNG TRONG NẮNG (ẢNH 2)
+       ======================================================== */
+    .butterfly-system {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    /* Ẩn bướm hoàn toàn khi vào chế độ Ban Đêm */
+    body.theme-night .butterfly-system {
+      display: none !important;
+    }
+
+    .butterfly-agent {
+      position: absolute;
+      width: 44px;
+      height: 38px;
+      transform-origin: center center;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.18));
+    }
+
+    /* Chuyển động đập cánh 3D */
+    .wing-flap-left {
+      transform-origin: right center;
+      animation: flapL 0.18s ease-in-out infinite alternate;
+    }
+    .wing-flap-right {
+      transform-origin: left center;
+      animation: flapR 0.18s ease-in-out infinite alternate;
+    }
+
+    @keyframes flapL {
+      0%   { transform: rotateY(0deg) scaleX(1); }
+      100% { transform: rotateY(75deg) scaleX(0.25); }
+    }
+    @keyframes flapR {
+      0%   { transform: rotateY(0deg) scaleX(1); }
+      100% { transform: rotateY(-75deg) scaleX(0.25); }
+    }
+
+    /* Quỹ đạo bay tự động của 3 con bướm */
+    .bfly-blue {
+      animation: flyLoop1 22s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    .bfly-purple {
+      animation: flyLoop2 28s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    .bfly-orange {
+      animation: flyLoop3 25s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes flyLoop1 {
+      0%   { top: 55%; left: -6%;  transform: scale(0.9) rotate(15deg); }
+      25%  { top: 40%; left: 32%;  transform: scale(1.1) rotate(-10deg); }
+      50%  { top: 62%; left: 60%;  transform: scale(0.95) rotate(25deg); }
+      75%  { top: 35%; left: 88%;  transform: scale(1.05) rotate(-15deg); }
+      100% { top: 55%; left: 106%; transform: scale(0.9) rotate(15deg); }
+    }
+
+    @keyframes flyLoop2 {
+      0%   { top: 30%; left: 105%; transform: scale(0.85) scaleX(-1) rotate(10deg); }
+      30%  { top: 58%; left: 68%;  transform: scale(1.0) scaleX(-1) rotate(-20deg); }
+      60%  { top: 42%; left: 35%;  transform: scale(0.9) scaleX(-1) rotate(15deg); }
+      85%  { top: 68%; left: 10%;  transform: scale(1.15) scaleX(-1) rotate(-10deg); }
+      100% { top: 30%; left: -8%;  transform: scale(0.85) scaleX(-1) rotate(10deg); }
+    }
+
+    @keyframes flyLoop3 {
+      0%   { top: 68%; left: 18%;  transform: scale(0.8) rotate(-10deg); }
+      30%  { top: 38%; left: 45%;  transform: scale(1.0) rotate(20deg); }
+      55%  { top: 72%; left: 75%;  transform: scale(1.2) rotate(-5deg); }
+      80%  { top: 45%; left: 52%;  transform: scale(0.9) rotate(-30deg); }
+      100% { top: 68%; left: 18%;  transform: scale(0.8) rotate(-10deg); }
+    }
+
+    /* ========================================================
+       6. ĐỒ HỌA HOA SEN TRẮNG ĐA DẠNG CÁNH & PHỐI CẢNH
        ======================================================== */
     .lotus-item {
       position: absolute;
@@ -346,14 +426,7 @@
       cursor: pointer;
     }
 
-    .lotus-item.ambient {
-      pointer-events: auto;
-      cursor: default;
-    }
-
     .lotus-svg-wrap {
-      width: 76px;
-      height: 88px;
       transform-origin: bottom center;
       animation: gentleBreeze 5.5s ease-in-out infinite alternate;
       transition: filter 0.4s ease;
@@ -366,37 +439,23 @@
       overflow: visible;
     }
 
-    /* Hiệu ứng cánh hoa sen trắng */
-    .lotus-petal-layer {
-      fill: #ffffff;
+    .lotus-petal {
       stroke: rgba(220, 235, 225, 0.65);
       stroke-width: 0.8;
-      transition: fill 0.4s ease, filter 0.4s ease;
+      transition: fill 0.4s ease;
     }
-    .lotus-petal-back {
-      fill: #edf5eb;
-    }
-    .lotus-petal-mid {
-      fill: #f9fdf8;
-    }
-    .lotus-petal-front {
-      fill: #ffffff;
-    }
+    .petal-back  { fill: #edf5eb; }
+    .petal-mid   { fill: #f9fdf8; }
+    .petal-front { fill: #ffffff; }
 
-    /* Nhụy vàng & bát sen */
-    .lotus-stamen {
-      fill: #f5c432;
-    }
+    .lotus-stamen { fill: #f5c432; }
     .lotus-pod {
       fill: #a6cf69;
       stroke: #86ab4d;
       stroke-width: 0.6;
     }
-    .lotus-seed {
-      fill: #4c6827;
-    }
+    .lotus-seed { fill: #4c6827; }
 
-    /* Vầng sáng dạ quang */
     .lotus-glow-core {
       fill: var(--flower-glow);
       filter: drop-shadow(0 0 10px var(--flower-glow));
@@ -410,7 +469,7 @@
       stroke-linecap: round;
     }
 
-    /* Nhãn Tooltip cho hoa có nội dung */
+    /* Tooltip */
     .lotus-label {
       position: absolute;
       bottom: 100%;
@@ -439,10 +498,10 @@
       border-top-color: rgba(6, 57, 29, 0.92);
     }
 
-    /* Tương tác khi Hover */
+    /* Hover */
     .lotus-item.interactive:hover {
-      transform: translate(-50%, -50%) scale(1.25);
-      z-index: 80;
+      transform: translate(-50%, -50%) scale(1.22);
+      z-index: 90 !important;
     }
     .lotus-item.interactive:hover .lotus-label {
       opacity: 1;
@@ -453,7 +512,7 @@
       animation: flowerExcited 0.6s ease-in-out infinite alternate;
     }
 
-    /* ĐỊNH DẠNG CỤM HOA (2-3 BÔNG CHỤM LẠI TỎA RA NHIỀU PHÍA) */
+    /* CỤM HOA (2-3 BÔNG CHỤM GỐC TỎA RA NHIỀU PHÍA) */
     .lotus-cluster {
       position: absolute;
       transform: translate(-50%, -50%);
@@ -478,18 +537,18 @@
       100% { transform: rotate(-2deg); }
     }
     @keyframes flowerExcited {
-      0% { transform: rotate(-7deg) scale(1.06); }
-      100% { transform: rotate(7deg) scale(1.1); }
+      0% { transform: rotate(-6deg) scale(1.05); }
+      100% { transform: rotate(6deg) scale(1.08); }
     }
 
     /* ========================================================
-       5. KHU VỰC NỘI DUNG DỰ ÁN (BÊN DƯỚI KHU VƯỜN)
+       7. NỘI DUNG DỰ ÁN (BÊN DƯỚI KHU VƯỜN)
        ======================================================== */
     .project-info-section {
       position: relative;
       z-index: 25;
       background: var(--info-section-bg);
-      padding: 90px 24px 80px;
+      padding: 100px 24px 90px;
       transition: background 0.8s ease;
       border-top: 1px solid var(--info-section-border);
     }
@@ -528,7 +587,7 @@
       align-items: center;
       justify-content: center;
       gap: 16px;
-      margin: 16px auto 28px;
+      margin: 16px auto 26px;
       max-width: 320px;
     }
     .project-divider-line {
@@ -548,6 +607,7 @@
       font-weight: 600;
       margin-bottom: 24px;
       transition: color 0.6s ease;
+      text-transform: capitalize;
     }
 
     .project-desc-card {
@@ -566,7 +626,7 @@
     }
 
     /* ========================================================
-       6. CHÂN TRANG (FOOTER)
+       8. CHÂN TRANG (FOOTER)
        ======================================================== */
     .footer {
       position: relative;
@@ -616,7 +676,7 @@
     }
 
     /* ========================================================
-       7. CÁC MODAL HIỂN THỊ NỘI DUNG
+       9. POPUPS & MODALS
        ======================================================== */
     .modal-overlay {
       position: fixed;
@@ -816,7 +876,7 @@
 <body class="theme-day">
 
   <!-- ========================================================
-       THÀNH PHẦN 1: THANH ĐIỀU HƯỚNG & TIỆN ÍCH (HEADER)
+       THÀNH PHẦN 1: THANH ĐIỀU HƯỚNG & TIỆN ÍCH
        ======================================================== -->
   <header class="header">
     <div class="brand-container">
@@ -833,7 +893,8 @@
     <div class="nav-actions">
       <ul class="nav-links">
         <li>
-          <button class="nav-btn" onclick="openAboutModal()">
+          <!-- Nút Về Dự Án: Tự động cuộn mượt xuống nội dung dự án bên dưới -->
+          <button class="nav-btn" onclick="scrollToProject()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
             <span>Về Dự Án</span>
           </button>
@@ -852,7 +913,7 @@
         </li>
       </ul>
 
-      <!-- Nút phát âm thanh -->
+      <!-- Nút Âm Thanh -->
       <button class="audio-btn" id="audioToggleBtn" title="Bật/Tắt Nhạc Thiên Nhiên" onclick="toggleAudio()">
         <svg id="audioIcon" viewBox="0 0 24 24">
           <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
@@ -862,7 +923,7 @@
   </header>
 
   <!-- ========================================================
-       THÀNH PHẦN 2: KHU VỰC ĐỊNH DANH (HERO SECTION)
+       THÀNH PHẦN 2: HERO SECTION
        ======================================================== -->
   <section class="hero-section">
     <h1 class="hero-title">Khu Vườn Cảm Xúc</h1>
@@ -870,20 +931,103 @@
   </section>
 
   <!-- ========================================================
-       THÀNH PHẦN 3: KHU VƯỜN TƯƠNG TÁC (GARDEN VIEWPORT)
+       THÀNH PHẦN 3: KHU VƯỜN ĐỒI CỎ & BƯỚM LƯỢN (ẢNH 1 & ẢNH 2)
        ======================================================== -->
   <main class="garden-wrapper">
+    <!-- Hiệu ứng tia nắng dịu xuyên mây -->
     <div class="god-rays" id="godRays"></div>
+
+    <!-- Hạt bụi nắng và đom đóm dạ quang -->
     <canvas id="atmosphereCanvas"></canvas>
 
-    <!-- Nền đồi cỏ theo hệ màu ảnh 2 -->
-    <svg class="garden-scenery" viewBox="0 0 1440 600" preserveAspectRatio="none">
-      <path class="hill-far" d="M0,300 C320,230 460,330 760,250 C1060,170 1200,280 1440,230 L1440,600 L0,600 Z"/>
-      <path class="hill-mid" d="M0,380 C280,300 520,420 840,330 C1120,260 1320,370 1440,310 L1440,600 L0,600 Z"/>
-      <path class="hill-near" d="M0,465 C340,405 680,505 1020,425 C1240,375 1380,435 1440,405 L1440,600 L0,600 Z"/>
+    <!-- 3 CON BƯỚM BAY TỰ ĐỘNG (CHỈ XUẤT HIỆN BAN NGÀY - ẢNH 2) -->
+    <div class="butterfly-system">
+      <!-- 1. Bướm xanh ngọc Morpho -->
+      <div class="butterfly-agent bfly-blue">
+        <svg viewBox="0 0 50 44" width="46" height="40">
+          <g class="wing-flap-left">
+            <path d="M24,20 C14,6 2,10 4,26 C6,34 18,34 24,24 Z" fill="#00d2ff" stroke="#045d8b" stroke-width="1.2"/>
+            <path d="M24,22 C16,14 8,16 9,26 C12,31 20,30 24,24 Z" fill="#0072ff"/>
+          </g>
+          <g class="wing-flap-right">
+            <path d="M26,20 C36,6 48,10 46,26 C44,34 32,34 26,24 Z" fill="#00d2ff" stroke="#045d8b" stroke-width="1.2"/>
+            <path d="M26,22 C34,14 42,16 41,26 C38,31 30,30 26,24 Z" fill="#0072ff"/>
+          </g>
+          <ellipse cx="25" cy="22" rx="2" ry="7" fill="#111827"/>
+        </svg>
+      </div>
+
+      <!-- 2. Bướm tím oải hương Lavender -->
+      <div class="butterfly-agent bfly-purple">
+        <svg viewBox="0 0 50 44" width="42" height="38">
+          <g class="wing-flap-left">
+            <path d="M24,20 C12,4 1,8 3,24 C5,33 17,32 24,23 Z" fill="#d946ef" stroke="#701a75" stroke-width="1.2"/>
+            <path d="M24,21 C15,11 7,14 8,24 C11,29 19,28 24,23 Z" fill="#a855f7"/>
+          </g>
+          <g class="wing-flap-right">
+            <path d="M26,20 C38,4 49,8 47,24 C45,33 33,32 26,23 Z" fill="#d946ef" stroke="#701a75" stroke-width="1.2"/>
+            <path d="M26,21 C35,11 43,14 42,24 C39,29 31,28 26,23 Z" fill="#a855f7"/>
+          </g>
+          <ellipse cx="25" cy="22" rx="2" ry="7" fill="#111827"/>
+        </svg>
+      </div>
+
+      <!-- 3. Bướm cam vàng Marigold -->
+      <div class="butterfly-agent bfly-orange">
+        <svg viewBox="0 0 50 44" width="38" height="34">
+          <g class="wing-flap-left">
+            <path d="M24,20 C13,7 3,11 5,25 C7,33 18,32 24,24 Z" fill="#fb923c" stroke="#9a3412" stroke-width="1.2"/>
+            <path d="M24,21 C16,13 9,15 10,24 C13,29 20,28 24,24 Z" fill="#f59e0b"/>
+          </g>
+          <g class="wing-flap-right">
+            <path d="M26,20 C37,7 47,11 45,25 C43,33 32,32 26,24 Z" fill="#fb923c" stroke="#9a3412" stroke-width="1.2"/>
+            <path d="M26,21 C34,13 41,15 40,24 C37,29 30,28 26,24 Z" fill="#f59e0b"/>
+          </g>
+          <ellipse cx="25" cy="22" rx="1.8" ry="6" fill="#111827"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ĐỊA HÌNH ĐỒI CỎ UỐN LƯỢN & THẢM HOA CÚC DẠI (MÔ PHỎNG ẢNH 1) -->
+    <svg class="garden-scenery" viewBox="0 0 1440 650" preserveAspectRatio="none">
+      <!-- 1. Gờ đồi xa xăm nhấp nhô mềm mại -->
+      <path class="hill-far" d="M0,280 C240,190 380,290 620,210 C860,130 1040,260 1240,190 C1350,150 1410,210 1440,230 L1440,650 L0,650 Z"/>
+
+      <!-- 2. Gò đồi lượn sóng trung cảnh (như các triền đồi trong ảnh 1) -->
+      <path class="hill-mid" d="M0,390 C180,310 320,440 580,330 C820,230 1020,380 1260,300 C1380,260 1420,330 1440,350 L1440,650 L0,650 Z"/>
+
+      <!-- 3. Triền đồi tiền cảnh uốn lượn tràn ngập cỏ xanh -->
+      <path class="hill-near" d="M0,480 C220,390 420,530 720,440 C980,360 1220,490 1440,430 L1440,650 L0,650 Z"/>
+
+      <!-- HOA CÚC TRẮNG & HOA DẠI RẢI RÁC TRÊN TRIỀN ĐỒI (GIỐNG ẢNH 1) -->
+      <g opacity="0.85">
+        <!-- Đồi xa -->
+        <circle cx="210" cy="245" r="3" fill="#ffffff"/><circle cx="210" cy="245" r="1.2" fill="#ffd54f"/>
+        <circle cx="480" cy="240" r="3" fill="#ffffff"/><circle cx="480" cy="240" r="1.2" fill="#ffd54f"/>
+        <circle cx="780" cy="180" r="2.8" fill="#ffb4c8"/>
+        <circle cx="950" cy="210" r="3.2" fill="#ffffff"/><circle cx="950" cy="210" r="1.3" fill="#ffd54f"/>
+        <circle cx="1180" cy="210" r="3" fill="#ffffff"/>
+
+        <!-- Đồi giữa -->
+        <circle cx="150" cy="380" r="4.2" fill="#ffffff"/><circle cx="150" cy="380" r="1.6" fill="#ffd54f"/>
+        <circle cx="340" cy="390" r="4.5" fill="#ffaec4"/>
+        <circle cx="440" cy="350" r="4" fill="#ffffff"/><circle cx="440" cy="350" r="1.5" fill="#ffd54f"/>
+        <circle cx="710" cy="340" r="4.2" fill="#ffffff"/><circle cx="710" cy="340" r="1.6" fill="#ffd54f"/>
+        <circle cx="890" cy="310" r="4.6" fill="#ffffff"/><circle cx="890" cy="310" r="1.8" fill="#ffd54f"/>
+        <circle cx="1080" cy="360" r="4.2" fill="#ffb3c6"/>
+        <circle cx="1320" cy="340" r="4.5" fill="#ffffff"/><circle cx="1320" cy="340" r="1.6" fill="#ffd54f"/>
+
+        <!-- Tiền cảnh gần -->
+        <circle cx="80" cy="530" r="5.5" fill="#ffffff"/><circle cx="80" cy="530" r="2" fill="#ffd54f"/>
+        <circle cx="260" cy="510" r="5.2" fill="#ff99bb"/>
+        <circle cx="560" cy="490" r="5.8" fill="#ffffff"/><circle cx="560" cy="490" r="2.2" fill="#ffd54f"/>
+        <circle cx="850" cy="460" r="5.4" fill="#ffffff"/><circle cx="850" cy="460" r="2" fill="#ffd54f"/>
+        <circle cx="1120" cy="500" r="5.6" fill="#ff94b8"/>
+        <circle cx="1380" cy="490" r="5.5" fill="#ffffff"/><circle cx="1380" cy="490" r="2" fill="#ffd54f"/>
+      </g>
     </svg>
 
-    <!-- Vùng chứa tất cả hoa sen: Có nội dung, hoa đơn & các cụm hoa -->
+    <!-- Nơi render toàn bộ hoa sen trắng theo quy luật xa gần -->
     <div class="flower-hotspots-container" id="flowerContainer"></div>
   </main>
 
@@ -915,7 +1059,7 @@
   </section>
 
   <!-- ========================================================
-       THÀNH PHẦN 4: CHÂN TRANG (FOOTER)
+       THÀNH PHẦN 4: FOOTER
        ======================================================== -->
   <footer class="footer">
     <div class="copyright">
@@ -931,7 +1075,7 @@
   </footer>
 
   <!-- ========================================================
-       CÁC POPUP / MODAL HIỂN THỊ
+       CÁC POPUP MODAL
        ======================================================== -->
   <!-- MODAL BÔNG HOA CẢM XÚC -->
   <div class="modal-overlay" id="flowerModal" onclick="closeModalOnBackdrop(event, 'flowerModal')">
@@ -957,27 +1101,6 @@
           <em>"Mỗi xúc cảm là một thông điệp chân thật từ nội tâm. Hãy lắng nghe mà không phán xét."</em>
         </p>
       </div>
-    </div>
-  </div>
-
-  <!-- MODAL VỀ DỰ ÁN -->
-  <div class="modal-overlay" id="aboutModal" onclick="closeModalOnBackdrop(event, 'aboutModal')">
-    <div class="modal-card">
-      <button class="modal-close-btn" onclick="closeModal('aboutModal')">✕</button>
-      <span class="modal-badge">Giới thiệu</span>
-      <h3 class="modal-title">Về Dự Án</h3>
-      <div class="modal-body">
-        <p style="font-size: 1.25rem; font-weight: 600; color: #06391d; margin-bottom: 12px;">
-          đây là dự án cảm xúc
-        </p>
-        <p>
-          Chào mừng bạn đã bước vào <strong>Khu Vườn Cảm Xúc</strong> — một không gian an yên được tạo ra để bạn kết nối lại với thế giới tinh thần của chính mình.
-        </p>
-        <p style="margin-top: 10px;">
-          Giữa những bộn bề hối hả của cuộc sống thường nhật, chúng ta thường quên mất việc dừng lại để lắng nghe tiếng nói từ trái tim. Tại đây, mỗi bông hoa đại diện cho một tầng cảm xúc: từ việc thấu hiểu khái niệm, nhận biết các tín hiệu rung động đến cách bao bọc và nuôi dưỡng tâm hồn bạn.
-        </p>
-      </div>
-      <button class="modal-action-btn" onclick="closeModal('aboutModal')">Trở lại khu vườn</button>
     </div>
   </div>
 
@@ -1016,79 +1139,104 @@
     </div>
   </div>
 
-  <!-- Âm thanh thiên nhiên -->
   <audio id="bgNatureAudio" loop preload="none">
     <source src="https://assets.mixkit.co/active_storage/sfx/2432/2432-preview.mp3" type="audio/mpeg">
   </audio>
 
   <!-- ========================================================
-       8. JAVASCRIPT XỬ LÝ TOÀN TRANG
+       10. JAVASCRIPT XỬ LÝ TOÀN TRANG
        ======================================================== -->
   <script>
     /* ========================================================
-       A. HÀM TẠO SVG HOA SEN TRẮNG (GIỐNG ẢNH ĐÍNH KÈM)
-       Có lớp cánh trắng nhiều tầng, nhụy vàng rực rỡ và bát sen hạt
+       A. HÀM TẠO SVG HOA SEN TRẮNG ĐA DẠNG CÁNH (KHÔNG HOA NÀO GIỐNG NHAU)
+       - Variant 1 (full): Nhiều cánh bung nở tròn đầy
+       - Variant 2 (tilt): Cánh xiên xéo, uốn lượn theo chiều gió
+       - Variant 3 (slender): Hoa ít cánh, thanh mảnh nhẹ nhàng
        ======================================================== */
-    function createLotusSVGMarkup() {
-      return `
-        <svg class="lotus-svg" viewBox="0 0 130 140">
-          <defs>
-            <filter id="lotusGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="5" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-
-          <!-- Cuống sen xanh ngọc -->
-          <path class="lotus-stem-path" d="M65,85 C65,105 64,124 65,140" />
-
-          <!-- TẦNG CÁNH NGOÀI 1 (Dang rộng sang hai bên & rủ nhẹ) -->
-          <path class="lotus-petal-layer lotus-petal-back" d="M65,80 C36,94 15,84 6,74 C22,64 46,70 65,80 Z" />
-          <path class="lotus-petal-layer lotus-petal-back" d="M65,80 C94,94 115,84 124,74 C108,64 84,70 65,80 Z" />
-          <path class="lotus-petal-layer lotus-petal-back" d="M65,82 C50,104 22,102 16,90 C29,78 51,77 65,82 Z" />
-          <path class="lotus-petal-layer lotus-petal-back" d="M65,82 C80,104 108,102 114,90 C101,78 79,77 65,82 Z" />
-
-          <!-- TẦNG CÁNH GIỮA 2 (Cánh hoa sen thon nhọn vươn cao) -->
-          <path class="lotus-petal-layer lotus-petal-mid" d="M65,80 C40,65 22,46 29,28 C47,38 58,60 65,80 Z" />
-          <path class="lotus-petal-layer lotus-petal-mid" d="M65,80 C90,65 108,46 101,28 C83,38 72,60 65,80 Z" />
-          <path class="lotus-petal-layer lotus-petal-mid" d="M65,78 C48,50 44,22 65,15 C86,22 82,50 65,78 Z" />
-
-          <!-- TẦNG CÁNH TRONG 3 (Bao quanh bát sen) -->
-          <path class="lotus-petal-layer lotus-petal-front" d="M65,78 C48,70 34,56 46,42 C58,52 63,66 65,78 Z" />
-          <path class="lotus-petal-layer lotus-petal-front" d="M65,78 C82,70 96,56 84,42 C72,52 67,66 65,78 Z" />
-          <path class="lotus-petal-layer lotus-petal-front" d="M65,84 C46,88 32,78 37,66 C51,71 61,78 65,84 Z" />
-          <path class="lotus-petal-layer lotus-petal-front" d="M65,84 C84,88 98,78 93,66 C79,71 69,78 65,84 Z" />
-          <path class="lotus-petal-layer lotus-petal-front" d="M65,88 C51,93 45,82 65,74 C85,82 79,93 65,88 Z" />
-
-          <!-- TUA NHỊ HOA SEN VÀNG ÓNG (STAMENS) -->
-          <ellipse cx="65" cy="65" rx="18" ry="11" class="lotus-stamen" />
-          <ellipse cx="65" cy="65" rx="15" ry="9" fill="#fbd85a" />
-
-          <!-- BÁT SEN / GƯƠNG SEN MÀU XANH NON (SEED POD) -->
-          <ellipse cx="65" cy="64" rx="12" ry="8" class="lotus-pod" />
-          <ellipse cx="65" cy="63" rx="10" ry="6.5" fill="#badf7b" />
-
-          <!-- CÁC HẠT SEN TRÊN BÁT SEN -->
-          <circle cx="60" cy="61" r="1.1" class="lotus-seed" />
-          <circle cx="65" cy="60" r="1.2" class="lotus-seed" />
-          <circle cx="70" cy="61" r="1.1" class="lotus-seed" />
-          <circle cx="58" cy="64" r="1.1" class="lotus-seed" />
-          <circle cx="63" cy="64" r="1.2" class="lotus-seed" />
-          <circle cx="67" cy="64" r="1.2" class="lotus-seed" />
-          <circle cx="72" cy="64" r="1.1" class="lotus-seed" />
-          <circle cx="61" cy="67" r="1.1" class="lotus-seed" />
-          <circle cx="65" cy="67" r="1.1" class="lotus-seed" />
-          <circle cx="69" cy="67" r="1.1" class="lotus-seed" />
-
-          <!-- VẦNG SÁNG PHÁT QUANG BAN ĐÊM -->
-          <ellipse class="lotus-glow-core" cx="65" cy="64" rx="13" ry="8" />
-        </svg>
-      `;
+    function createLotusVariantSVG(variant) {
+      if (variant === 'full') {
+        // HOA NHIỀU CÁNH NỞ RỘ TRÒN ĐẦY
+        return `
+          <svg class="lotus-svg" viewBox="0 0 130 140" style="width:78px; height:88px;">
+            <path class="lotus-stem-path" d="M65,86 C65,106 64,124 65,140" />
+            <!-- Tầng cánh ngoài cùng -->
+            <path class="lotus-petal petal-back" d="M65,80 C34,95 12,85 5,74 C21,63 46,70 65,80 Z" />
+            <path class="lotus-petal petal-back" d="M65,80 C96,95 118,85 125,74 C109,63 84,70 65,80 Z" />
+            <path class="lotus-petal petal-back" d="M65,82 C48,105 18,103 14,90 C28,78 51,77 65,82 Z" />
+            <path class="lotus-petal petal-back" d="M65,82 C82,105 112,103 116,90 C102,78 79,77 65,82 Z" />
+            <!-- Tầng cánh vươn cao -->
+            <path class="lotus-petal petal-mid" d="M65,80 C38,65 18,46 26,27 C45,37 57,60 65,80 Z" />
+            <path class="lotus-petal petal-mid" d="M65,80 C92,65 112,46 104,27 C85,37 73,60 65,80 Z" />
+            <path class="lotus-petal petal-mid" d="M65,78 C46,50 42,21 65,14 C88,21 84,50 65,78 Z" />
+            <!-- Cánh ôm nhụy -->
+            <path class="lotus-petal petal-front" d="M65,78 C46,69 32,55 44,40 C56,51 62,66 65,78 Z" />
+            <path class="lotus-petal petal-front" d="M65,78 C84,69 98,55 86,40 C74,51 68,66 65,78 Z" />
+            <path class="lotus-petal petal-front" d="M65,84 C45,89 29,78 34,65 C49,71 60,78 65,84 Z" />
+            <path class="lotus-petal petal-front" d="M65,84 C85,89 101,78 96,65 C81,71 70,78 65,84 Z" />
+            <path class="lotus-petal petal-front" d="M65,88 C50,94 43,82 65,74 C87,82 80,94 65,88 Z" />
+            <!-- Bát sen & nhụy vàng -->
+            <ellipse cx="65" cy="65" rx="18" ry="11" class="lotus-stamen" />
+            <ellipse cx="65" cy="64" rx="12" ry="8" class="lotus-pod" />
+            <ellipse cx="65" cy="63" rx="10" ry="6.5" fill="#badf7b" />
+            <circle cx="60" cy="61" r="1.1" class="lotus-seed"/><circle cx="65" cy="60" r="1.2" class="lotus-seed"/><circle cx="70" cy="61" r="1.1" class="lotus-seed"/>
+            <circle cx="58" cy="64" r="1.1" class="lotus-seed"/><circle cx="65" cy="64" r="1.2" class="lotus-seed"/><circle cx="72" cy="64" r="1.1" class="lotus-seed"/>
+            <ellipse class="lotus-glow-core" cx="65" cy="64" rx="14" ry="8" />
+          </svg>
+        `;
+      } else if (variant === 'tilt') {
+        // HOA CÁNH XIÊN XÉO NGHIÊNG THEO GIÓ
+        return `
+          <svg class="lotus-svg" viewBox="0 0 130 140" style="width:74px; height:86px;">
+            <path class="lotus-stem-path" d="M62,88 C58,108 55,124 54,140" />
+            <!-- Cánh nghiêng lệch tự nhiên -->
+            <path class="lotus-petal petal-back" d="M60,82 C28,92 8,78 6,66 C22,58 45,68 60,82 Z" />
+            <path class="lotus-petal petal-back" d="M60,82 C95,90 120,76 122,62 C104,56 82,66 60,82 Z" />
+            <path class="lotus-petal petal-mid" d="M60,80 C30,60 16,38 28,22 C44,34 54,58 60,80 Z" />
+            <path class="lotus-petal petal-mid" d="M60,80 C88,62 115,40 114,24 C95,33 80,58 60,80 Z" />
+            <path class="lotus-petal petal-mid" d="M60,78 C38,48 40,16 66,12 C86,22 80,52 60,78 Z" />
+            <path class="lotus-petal petal-front" d="M60,78 C42,66 32,50 48,36 C58,48 61,64 60,78 Z" />
+            <path class="lotus-petal petal-front" d="M60,78 C80,68 96,52 88,36 C76,49 68,64 60,78 Z" />
+            <path class="lotus-petal petal-front" d="M60,86 C42,90 35,78 48,64 C60,72 65,78 60,86 Z" />
+            <path class="lotus-petal petal-front" d="M60,87 C76,92 88,78 78,64 C68,72 65,78 60,87 Z" />
+            <!-- Nhụy hơi nghiêng -->
+            <ellipse cx="62" cy="65" rx="16" ry="10" transform="rotate(8 62 65)" class="lotus-stamen" />
+            <ellipse cx="62" cy="64" rx="11" ry="7" transform="rotate(8 62 64)" class="lotus-pod" />
+            <circle cx="58" cy="62" r="1.1" class="lotus-seed"/><circle cx="63" cy="62" r="1.2" class="lotus-seed"/><circle cx="68" cy="63" r="1.1" class="lotus-seed"/>
+            <circle cx="60" cy="65" r="1.1" class="lotus-seed"/><circle cx="65" cy="66" r="1.1" class="lotus-seed"/>
+            <ellipse class="lotus-glow-core" cx="62" cy="64" rx="13" ry="7.5" />
+          </svg>
+        `;
+      } else {
+        // HOA ÍT CÁNH, NỞ HÉ THANH MẢNH
+        return `
+          <svg class="lotus-svg" viewBox="0 0 130 140" style="width:68px; height:82px;">
+            <path class="lotus-stem-path" d="M65,85 C66,105 65,124 66,140" />
+            <!-- Dáng cánh thanh thoát, ít lớp hơn -->
+            <path class="lotus-petal petal-back" d="M65,82 C38,92 20,80 15,68 C30,62 50,70 65,82 Z" />
+            <path class="lotus-petal petal-back" d="M65,82 C92,92 110,80 115,68 C100,62 80,70 65,82 Z" />
+            <path class="lotus-petal petal-mid" d="M65,80 C44,60 32,36 42,22 C55,34 62,56 65,80 Z" />
+            <path class="lotus-petal petal-mid" d="M65,80 C86,60 98,36 88,22 C75,34 68,56 65,80 Z" />
+            <path class="lotus-petal petal-front" d="M65,78 C52,48 50,20 65,16 C80,20 78,48 65,78 Z" />
+            <path class="lotus-petal petal-front" d="M65,85 C50,89 42,76 52,65 C62,72 65,78 65,85 Z" />
+            <path class="lotus-petal petal-front" d="M65,85 C80,89 88,76 78,65 C68,72 65,78 65,85 Z" />
+            <!-- Nhụy nhỏ thanh tao -->
+            <ellipse cx="65" cy="66" rx="14" ry="9" class="lotus-stamen" />
+            <ellipse cx="65" cy="65" rx="9" ry="6" class="lotus-pod" />
+            <circle cx="62" cy="64" r="1.1" class="lotus-seed"/><circle cx="67" cy="64" r="1.1" class="lotus-seed"/><circle cx="65" cy="67" r="1.1" class="lotus-seed"/>
+            <ellipse class="lotus-glow-core" cx="65" cy="65" rx="11" ry="6.5" />
+          </svg>
+        `;
+      }
     }
 
     /* ========================================================
-       B. DỮ LIỆU CÁC HOA TƯƠNG TÁC (5 BÔNG CÓ NỘI DUNG)
+       B. BỐ TRÍ HOA THEO QUY LUẬT XA - GẦN (PERSPECTIVE)
+       - Xa (y: 44-55%): Kích thước nhỏ (scale: 0.55 - 0.72)
+       - Trung (y: 56-70%): Kích thước vừa (scale: 0.82 - 0.96)
+       - Gần (y: 71-86%): Kích thước to (scale: 1.1 - 1.35)
        ======================================================== */
+
+    // 5 Bông tương tác chính
     const interactiveFlowers = [
       {
         id: "khai-niem",
@@ -1097,7 +1245,7 @@
         summary: "cảm xúc là",
         fullText: "Cảm xúc là phản ứng tự nhiên, sinh động và phức tạp của tâm trí lẫn cơ thể trước các tình huống thực tại hoặc ký ức. Nó chính là lăng kính nguyên bản giúp bạn nhìn nhận sự tương tác giữa bản thân và cuộc đời.",
         targetUrl: "trang-con-1.html",
-        x: 20, y: 68, scale: 1.05
+        x: 23, y: 58, scale: 0.88, variant: 'tilt'
       },
       {
         id: "y-nghia",
@@ -1106,7 +1254,7 @@
         summary: "ý nghĩa cảm xúc",
         fullText: "Ý nghĩa cảm xúc là chiếc cầu nối giữa thế giới nội tâm và thế giới khách quan. Chúng bảo vệ ta khỏi hiểm nguy, mở lối cho tình yêu thương và nhắc nhở ta về những điều ta thực sự trân quý trong kiếp sống này.",
         targetUrl: "trang-con-2.html",
-        x: 37, y: 55, scale: 0.95
+        x: 48, y: 46, scale: 0.65, variant: 'slender' // Đỉnh đồi xa
       },
       {
         id: "vai-tro",
@@ -1115,7 +1263,7 @@
         summary: "vai trò cảm xúc",
         fullText: "Vai trò cảm xúc đóng vai trò là động lực định hình mọi quyết định, hành vi và khả năng phục hồi tinh thần. Không có cảm xúc, mọi lý trí đều trở nên khô cằn và mất đi phương hướng kết nối con người với nhau.",
         targetUrl: "trang-con-3.html",
-        x: 63, y: 56, scale: 1.1
+        x: 74, y: 56, scale: 0.90, variant: 'full'
       },
       {
         id: "nhan-biet",
@@ -1124,7 +1272,7 @@
         summary: "cách nhận biết cảm xúc",
         fullText: "Cách nhận biết cảm xúc bắt đầu từ sự tĩnh lặng: quan sát nhịp thở, cảm giác cơ thể căng cứng hay buông lỏng, và gọi tên chính xác từng trạng thái (buồn, giận, hân hoan, lo âu) mà không vội vàng xua đuổi chúng.",
         targetUrl: "https://voduynguyenhayha-jpg.github.io/banhxecamxuc/",
-        x: 82, y: 72, scale: 1.15
+        x: 83, y: 76, scale: 1.25, variant: 'tilt' // Tiền cảnh gần
       },
       {
         id: "chua-lanh",
@@ -1133,56 +1281,53 @@
         summary: "ôm ấp tâm hồn",
         fullText: "Khi biết cách chấp nhận mọi xúc cảm mà không phán xét, bạn sẽ biến khu vườn tâm tưởng của mình thành một mảnh đất trù phú, nơi hoa nở rộ cả trong đêm tối lẫn khi ánh dương rạng rỡ.",
         targetUrl: "trang-con-5.html",
-        x: 50, y: 78, scale: 1.25
+        x: 40, y: 82, scale: 1.35, variant: 'full' // Tiền cảnh gần nổi bật
       }
     ];
 
-    /* ========================================================
-       C. DỮ LIỆU HOA BỔ SUNG: 7 HOA ĐƠN LẺ & 3 CỤM HOA (KHÔNG CÓ NỘI DUNG)
-       ======================================================== */
-    // 7 Bông hoa đơn không có nội dung phân bố tự nhiên
+    // 7 Bông hoa đơn không có nội dung (phân bổ xa - gần)
     const singleAmbientFlowers = [
-      { x: 9,  y: 73, scale: 0.85, rot: -8, delay: 1.2 },
-      { x: 15, y: 49, scale: 0.58, rot: 5,  delay: 2.1 }, // Trên sườn đồi xa
-      { x: 28, y: 77, scale: 0.95, rot: -4, delay: 0.6 },
-      { x: 46, y: 46, scale: 0.52, rot: -9, delay: 3.3 }, // Triền đồi cao
-      { x: 72, y: 48, scale: 0.55, rot: 7,  delay: 1.9 },
-      { x: 88, y: 58, scale: 0.82, rot: -6, delay: 2.7 },
-      { x: 94, y: 81, scale: 1.1,  rot: 12, delay: 0.4 }  // Tiền cảnh góc phải
+      { x: 9,  y: 50, scale: 0.62, variant: 'slender', rot: -7, delay: 1.2 }, // Xa
+      { x: 32, y: 45, scale: 0.56, variant: 'tilt',    rot: 6,  delay: 2.1 }, // Rất xa
+      { x: 63, y: 44, scale: 0.54, variant: 'slender', rot: -8, delay: 3.3 }, // Rất xa
+      { x: 91, y: 49, scale: 0.65, variant: 'full',    rot: 7,  delay: 1.8 }, // Xa
+      { x: 13, y: 74, scale: 1.05, variant: 'full',    rot: -5, delay: 0.6 }, // Gần
+      { x: 60, y: 71, scale: 1.00, variant: 'tilt',    rot: 6,  delay: 2.6 }, // Gần
+      { x: 95, y: 84, scale: 1.30, variant: 'full',    rot: 12, delay: 0.4 }  // Rất gần
     ];
 
-    // 3 Cụm hoa (mỗi cụm gồm 2-3 hoa chụm lại tỏa ra các hướng)
+    // 3 Cụm hoa (mỗi cụm 2-3 bông chụm lại tỏa nhiều phía)
     const clusterAmbientGroups = [
       {
-        // Cụm 1: Phía sườn đồi trái (gồm 3 bông tỏa nhẹ)
-        x: 12, y: 61,
+        // Cụm 1: Sườn đồi trái trung cảnh (3 bông nghiêng tỏa)
+        x: 18, y: 64,
         flowers: [
-          { offsetX: -16, offsetY: 4, scale: 0.72, rot: -20, delay: 0.8 },
-          { offsetX: 0,   offsetY: -3, scale: 0.85, rot: 4,   delay: 1.5 },
-          { offsetX: 18,  offsetY: 8, scale: 0.68, rot: 22,  delay: 2.4 }
+          { offsetX: -16, offsetY: 4, scale: 0.76, rot: -22, variant: 'tilt', delay: 0.9 },
+          { offsetX: 0,   offsetY: -3, scale: 0.86, rot: 3,  variant: 'full', delay: 1.6 },
+          { offsetX: 18,  offsetY: 7, scale: 0.72, rot: 24, variant: 'slender', delay: 2.3 }
         ]
       },
       {
-        // Cụm 2: Giữa tiền cảnh (gồm 3 bông chụm nở rộ)
-        x: 35, y: 82,
+        // Cụm 2: Triền đồi xa phía trung tâm (2 bông dịu dàng)
+        x: 44, y: 52,
         flowers: [
-          { offsetX: -22, offsetY: 6,  scale: 1.05, rot: -16, delay: 1.1 },
-          { offsetX: 0,   offsetY: -4, scale: 1.15, rot: 2,   delay: 0.2 },
-          { offsetX: 24,  offsetY: 10, scale: 0.98, rot: 18,  delay: 2.8 }
+          { offsetX: -11, offsetY: 3, scale: 0.58, rot: -15, variant: 'slender', delay: 1.5 },
+          { offsetX: 10,  offsetY: -1, scale: 0.65, rot: 14, variant: 'tilt', delay: 3.0 }
         ]
       },
       {
-        // Cụm 3: Phía triền đồi phải (gồm 2 bông nghiêng duyên dáng)
-        x: 77, y: 49,
+        // Cụm 3: Tiền cảnh góc phải (3 bông nở rộ to đẹp)
+        x: 68, y: 83,
         flowers: [
-          { offsetX: -13, offsetY: 4, scale: 0.56, rot: -14, delay: 1.7 },
-          { offsetX: 11,  offsetY: -1, scale: 0.62, rot: 15, delay: 3.1 }
+          { offsetX: -24, offsetY: 6,  scale: 1.10, rot: -18, variant: 'tilt', delay: 1.0 },
+          { offsetX: 0,   offsetY: -4, scale: 1.25, rot: 2,   variant: 'full', delay: 0.3 },
+          { offsetX: 25,  offsetY: 10, scale: 1.05, rot: 20,  variant: 'slender', delay: 2.7 }
         ]
       }
     ];
 
     /* ========================================================
-       D. RENDER TẤT CẢ HOA VÀO KHU VƯỜN
+       C. RENDER TẤT CẢ HOA VÀO KHU VƯỜN
        ======================================================== */
     const flowerContainer = document.getElementById('flowerContainer');
     const timelineList = document.getElementById('timelineList');
@@ -1190,27 +1335,29 @@
     function renderAllFlowers() {
       flowerContainer.innerHTML = '';
 
-      // 1. Render 7 bông hoa đơn lẻ không có nội dung
-      singleAmbientFlowers.forEach((f, i) => {
+      // 1. Render 7 hoa đơn không nội dung
+      singleAmbientFlowers.forEach(f => {
         const item = document.createElement('div');
-        item.className = 'lotus-item ambient';
+        item.className = 'lotus-item';
         item.style.left = `${f.x}%`;
         item.style.top = `${f.y}%`;
+        item.style.zIndex = Math.round(f.y);
         item.style.transform = `translate(-50%, -50%) scale(${f.scale}) rotate(${f.rot}deg)`;
         item.innerHTML = `
           <div class="lotus-svg-wrap" style="animation-delay: -${f.delay}s">
-            ${createLotusSVGMarkup()}
+            ${createLotusVariantSVG(f.variant)}
           </div>
         `;
         flowerContainer.appendChild(item);
       });
 
-      // 2. Render 3 cụm hoa (2-3 hoa chụm lại tỏa nhiều phía)
+      // 2. Render 3 cụm hoa
       clusterAmbientGroups.forEach(group => {
         const cluster = document.createElement('div');
         cluster.className = 'lotus-cluster';
         cluster.style.left = `${group.x}%`;
         cluster.style.top = `${group.y}%`;
+        cluster.style.zIndex = Math.round(group.y);
 
         group.flowers.forEach(bf => {
           const branch = document.createElement('div');
@@ -1218,7 +1365,7 @@
           branch.style.transform = `translate(${bf.offsetX}px, ${bf.offsetY}px) scale(${bf.scale}) rotate(${bf.rot}deg)`;
           branch.innerHTML = `
             <div class="lotus-svg-wrap" style="animation-delay: -${bf.delay}s">
-              ${createLotusSVGMarkup()}
+              ${createLotusVariantSVG(bf.variant)}
             </div>
           `;
           cluster.appendChild(branch);
@@ -1227,19 +1374,20 @@
         flowerContainer.appendChild(cluster);
       });
 
-      // 3. Render 5 bông hoa tương tác chính (chứa nội dung)
+      // 3. Render 5 hoa tương tác chính
       interactiveFlowers.forEach((flower, index) => {
         const item = document.createElement('div');
         item.className = 'lotus-item interactive';
         item.style.left = `${flower.x}%`;
         item.style.top = `${flower.y}%`;
+        item.style.zIndex = Math.round(flower.y) + 10;
         item.style.transform = `translate(-50%, -50%) scale(${flower.scale})`;
         item.setAttribute('data-id', flower.id);
 
         item.innerHTML = `
           <div class="lotus-label">${flower.title}</div>
           <div class="lotus-svg-wrap" style="animation-delay: -${index * 1.3}s">
-            ${createLotusSVGMarkup()}
+            ${createLotusVariantSVG(flower.variant)}
           </div>
         `;
 
@@ -1267,7 +1415,17 @@
     }
 
     /* ========================================================
-       E. ĐIỀU KHIỂN CÁC POPUP / MODAL
+       D. CHỨC NĂNG CUỘN XUỐNG DỰ ÁN KHI BẤM NÚT
+       ======================================================== */
+    function scrollToProject() {
+      const section = document.getElementById('projectInfoSection');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    /* ========================================================
+       E. ĐIỀU KHIỂN CÁC POPUP MODAL
        ======================================================== */
     function openFlowerModal(flower) {
       document.getElementById('modalBadge').textContent = `Chủ đề: ${flower.tag}`;
@@ -1283,10 +1441,6 @@
       subpageBtn.href = flower.targetUrl;
 
       document.getElementById('flowerModal').classList.add('active');
-    }
-
-    function openAboutModal() {
-      document.getElementById('aboutModal').classList.add('active');
     }
 
     function openArticlesModal() {
@@ -1314,7 +1468,7 @@
     });
 
     /* ========================================================
-       F. CHUYỂN ĐỔI CHẾ ĐỘ BAN NGÀY (ẢNH 2) & BAN ĐÊM
+       F. CHUYỂN ĐỔI CHẾ ĐỘ BAN NGÀY & BAN ĐÊM
        ======================================================== */
     let currentTheme = 'day';
 
@@ -1455,7 +1609,7 @@
       requestAnimationFrame(animateAtmosphere);
     }
 
-    /* Khởi tạo toàn trang */
+    /* Khởi tạo toàn bộ */
     renderAllFlowers();
     renderTimeline();
     animateAtmosphere();

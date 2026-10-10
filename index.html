@@ -16,14 +16,10 @@
        ======================================================== */
     :root {
       /* ========================================================
-         [VỊ TRÍ 1: ĐỔI ẢNH NỀN TĨNH CHO BAN NGÀY & BAN ĐÊM]
-         Đặt 2 ảnh cùng thư mục với file index.html:
-         - Ảnh ngày (các bạn trẻ + chong chóng): day.jpg
-         - Ảnh đêm (đồi cúc đêm + chong chóng): night.jpg
-         (Hoặc dán trực tiếp đường link URL ảnh vào bên dưới)
+         [VỊ TRÍ 1: ĐỔI ẢNH NỀN TĨNH (DỰ PHÒNG KHI VIDEO CHƯA TẢI XONG)]
          ======================================================== */
-      --bg-day-image: url('');
-      --bg-night-image: url('');
+      --bg-day-image: url('day.jpg');
+      --bg-night-image: url('night.jpg');
 
       --palette-dark-navy: #0d3859;
       --palette-ocean-blue: #356d94;
@@ -202,29 +198,29 @@
       transform: translateY(-1px);
     }
 
-    .audio-btn {
+    /* Nút Chuyển đổi Sáng / Tối trên Header */
+    .theme-toggle-header-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: var(--btn-bg);
       color: var(--btn-text);
-      border: none;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 1px solid var(--header-border);
+      padding: 8px 18px;
+      border-radius: 30px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
       transition: var(--transition-smooth);
     }
-    .audio-btn:hover {
-      transform: scale(1.08);
+    .theme-toggle-header-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(65, 255, 210, 0.3);
     }
-    .audio-btn.playing {
-      box-shadow: 0 0 16px var(--palette-neon-mint);
-    }
-    .audio-btn svg {
-      width: 20px;
-      height: 20px;
+    .theme-toggle-header-btn svg {
+      width: 17px;
+      height: 17px;
       fill: currentColor;
     }
 
@@ -289,13 +285,11 @@
     .hero-stage-container {
       position: relative;
       width: 100%;
-      /* Bắt đầu ngay từ đáy menu 70px */
-      margin-top: 70px;
+      margin-top: 70px; /* Bắt đầu ngay từ mép dưới menu 70px */
       height: calc(100vh - 70px);
       min-height: 620px;
       overflow: hidden;
       background-color: #071926;
-      /* Mép trên của ảnh luôn trùng khít mép dưới thanh menu */
       background-image: var(--current-bg-image);
       background-size: cover;
       background-position: center top;
@@ -303,7 +297,6 @@
       transition: background-image 0.8s ease-in-out;
     }
 
-    /* Lớp phủ chuyển sắc nhẹ làm dịu mắt */
     .hero-stage-container::before {
       content: '';
       position: absolute;
@@ -314,7 +307,7 @@
     }
 
     /* ========================================================
-       5. HỆ THỐNG VIDEO NỀN CHO CHẾ ĐỘ SÁNG & TỐI
+       5. HỆ THỐNG VIDEO NỀN (TỐI ƯU HOÀN TOÀN CHO LAPTOP & PC)
        ======================================================== */
     .video-background-layer {
       position: absolute;
@@ -326,6 +319,7 @@
       z-index: 1;
     }
 
+    /* KHẮC PHỤC LỖI PC: Không dùng display:none để Desktop luôn giải mã & tải video ngay */
     .main-bg-video {
       position: absolute;
       top: 0;
@@ -333,20 +327,22 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 55%; /* Mép trên video cũng khớp đáy menu */
+      object-position: center 55%;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
-      display: none; /* Chỉ kích hoạt khi có nguồn video */
+      visibility: hidden;
+      transition: opacity 0.8s ease-in-out, visibility 0.8s;
+      display: block;
+      transform: translate3d(0, 0, 0); /* Ép card đồ họa GPU máy tính kích hoạt */
     }
 
-    /* Kích hoạt video tương ứng theo theme */
+    /* Hiển thị video tương ứng theo theme khi đã sẵn sàng */
     body.theme-day .main-bg-video.video-day.active {
-      display: block;
       opacity: 1;
+      visibility: visible;
     }
     body.theme-night .main-bg-video.video-night.active {
-      display: block;
       opacity: 1;
+      visibility: visible;
     }
 
     /* Canvas đom đóm dạ quang ban đêm */
@@ -373,10 +369,6 @@
       justify-content: center;
       transition: var(--transition-smooth);
 
-      /* ========================================================
-         [TỌA ĐỘ CHONG CHÓNG LỚN Ở SƯỜN ĐỒI GÓC BÊN TRÁI]
-         Chính xác vị trí cánh chong chóng ngũ sắc bên trái
-         ======================================================== */
       top: 23%;
       left: 19.5%;
       width: 130px;
@@ -384,7 +376,6 @@
       transform: translate(-50%, -50%);
     }
 
-    /* Vầng sáng hào quang phát quang khi kê chuột */
     .pinwheel-glow-aura {
       position: absolute;
       inset: -15px;
@@ -411,7 +402,6 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Nhãn chữ "chong chóng cảm xúc" hiện ra khi kê chuột */
     .pinwheel-tooltip {
       position: absolute;
       bottom: -48px;
@@ -453,7 +443,6 @@
       border-bottom-color: rgba(9, 36, 56, 0.95);
     }
 
-    /* HIỆU ỨNG PHÁT QUANG KHI HOVER VÀO CHONG CHÓNG */
     .pinwheel-hotspot:hover .pinwheel-glow-aura {
       opacity: 1;
       transform: scale(1.35);
@@ -578,7 +567,8 @@
       font-weight: 500;
     }
 
-    .theme-toggle-btn {
+    /* Nút Âm Thanh ở Footer */
+    .audio-footer-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -593,11 +583,15 @@
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
       transition: var(--transition-smooth);
     }
-    .theme-toggle-btn:hover {
+    .audio-footer-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(65, 255, 210, 0.35);
     }
-    .theme-toggle-btn svg {
+    .audio-footer-btn.playing {
+      box-shadow: 0 0 16px var(--palette-neon-mint);
+      border-color: var(--palette-neon-mint);
+    }
+    .audio-footer-btn svg {
       width: 18px;
       height: 18px;
       fill: currentColor;
@@ -773,13 +767,19 @@
         width: 95px;
         height: 95px;
       }
+      .theme-toggle-header-btn span {
+        display: none; /* Thu gọn chữ trên màn hình điện thoại */
+      }
+      .theme-toggle-header-btn {
+        padding: 8px 12px;
+      }
     }
   </style>
 </head>
 <body class="theme-day">
 
   <!-- ========================================================
-       THÀNH PHẦN 1: THANH ĐIỀU HƯỚNG & TIỆN ÍCH
+       THÀNH PHẦN 1: THANH ĐIỀU HƯỚNG & TIỆN ÍCH (HEADER)
        ======================================================== -->
   <header class="header">
     <div class="brand-container">
@@ -797,7 +797,6 @@
     <div class="nav-actions">
       <ul class="nav-links">
         <li>
-          <!-- Bấm vào tự động cuộn êm xuống phần "Khu vườn cảm xúc" bên dưới -->
           <button class="nav-btn" onclick="scrollToProject()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
             <span>Về Dự Án</span>
@@ -817,11 +816,12 @@
         </li>
       </ul>
 
-      <!-- Nút Bật/Tắt Âm Thanh Thiên Nhiên -->
-      <button class="audio-btn" id="audioToggleBtn" title="Bật/Tắt Nhạc Thiên Nhiên" onclick="toggleAudio()">
-        <svg id="audioIcon" viewBox="0 0 24 24">
-          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+      <!-- NÚT CHUYỂN ĐỔI CHẾ ĐỘ SÁNG / TỐI (ĐÃ CHUYỂN LÊN ĐÂY) -->
+      <button class="theme-toggle-header-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Chuyển chế độ Sáng / Tối">
+        <svg id="themeIcon" viewBox="0 0 24 24">
+          <path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 10.6-10.7A8 8 0 0 1 12.3 2z"/>
         </svg>
+        <span id="themeBtnText">Chế độ: Ban Đêm</span>
       </button>
     </div>
   </header>
@@ -833,20 +833,17 @@
   <main class="hero-stage-container" id="heroStage">
 
     <!-- ========================================================
-         [VỊ TRÍ 2: THÊM VIDEO LÀM NỀN TRANG CHÍNH]
-         - Ban Ngày: Chèn đường dẫn video vào src của thẻ <source> trong video-day
-         - Ban Đêm:  Chèn đường dẫn video vào src của thẻ <source> trong video-night
-         - Sau khi thêm file video, hệ thống sẽ tự động phát video nền tương ứng.
-         - Nếu để trống, trang web sẽ tự động chuyển về ảnh nền tĩnh như bình thường.
+         [VỊ TRÍ 2: VIDEO NỀN TRANG CHÍNH]
+         Tối ưu hóa đa nền tảng: Laptop, Máy tính bàn, Điện thoại
          ======================================================== -->
     <div class="video-background-layer">
       <!-- 1. Video nền Ban Ngày -->
-      <video class="main-bg-video video-day" id="bgVideoDay" autoplay loop muted playsinline>
+      <video class="main-bg-video video-day" id="bgVideoDay" autoplay loop muted playsinline preload="auto">
         <source src="day2.mp4" type="video/mp4">
       </video>
 
       <!-- 2. Video nền Ban Đêm -->
-      <video class="main-bg-video video-night" id="bgVideoNight" autoplay loop muted playsinline>
+      <video class="main-bg-video video-night" id="bgVideoNight" autoplay loop muted playsinline preload="auto">
         <source src="night2.mp4" type="video/mp4">
       </video>
     </div>
@@ -864,7 +861,6 @@
 
     <!-- ========================================================
          [VỊ TRÍ 3: CHONG CHÓNG CẢM XÚC Ở GÓC BÊN TRÁI]
-         - Đã căn chỉnh chính xác tại chong chóng to ở sườn đồi bên trái!
          - THAY LINK TRANG CON CỦA BẠN TẠI ĐÂY: href="trang-con-chong-chong.html"
          ======================================================== -->
     <a href="trang-con-chong-chong.html" 
@@ -920,12 +916,12 @@
       © 2026 Khu Vườn Cảm Xúc • Nuôi dưỡng tâm hồn qua từng nhịp quay
     </div>
 
-    <!-- Nút chuyển đổi chế độ Ban Ngày / Ban Đêm -->
-    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
-      <svg id="themeIcon" viewBox="0 0 24 24">
-        <path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 10.6-10.7A8 8 0 0 1 12.3 2z"/>
+    <!-- NÚT BẬT / TẮT ÂM THANH THIÊN NHIÊN (ĐÃ CHUYỂN XUỐNG ĐÂY) -->
+    <button class="audio-footer-btn" id="audioToggleBtn" onclick="toggleAudio()" title="Bật/Tắt Nhạc Thiên Nhiên">
+      <svg id="audioIcon" viewBox="0 0 24 24">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
       </svg>
-      <span id="themeBtnText">Chế độ: Ban Đêm (Ánh trăng)</span>
+      <span id="audioBtnText">Âm thanh: Tắt</span>
     </button>
   </footer>
 
@@ -977,28 +973,65 @@
        ======================================================== -->
   <script>
     /* ========================================================
-       A. TỰ ĐỘNG KIỂM TRA VÀ KÍCH HOẠT VIDEO NỀN NẾU CÓ
+       A. TỰ ĐỘNG KÍCH HOẠT VÀ TỐI ƯU VIDEO CHO LAPTOP / PC / MOBILE
        ======================================================== */
-    function checkBackgroundVideos() {
-      const vidDay = document.getElementById('bgVideoDay');
-      const vidNight = document.getElementById('bgVideoNight');
+    const vidDay = document.getElementById('bgVideoDay');
+    const vidNight = document.getElementById('bgVideoNight');
 
-      if (vidDay) {
-        vidDay.addEventListener('loadeddata', () => {
-          vidDay.classList.add('active');
-        });
-        vidDay.addEventListener('error', () => {
-          vidDay.classList.remove('active'); // Nếu video lỗi hoặc chưa có file, dùng ảnh nền tĩnh
-        });
+    function setupVideoElement(vid) {
+      if (!vid) return;
+
+      // Ép chế độ Muted để vượt qua chính sách Autoplay của Chrome/Edge trên PC
+      vid.muted = true;
+      vid.defaultMuted = true;
+
+      const activateAndPlay = () => {
+        vid.classList.add('active');
+        // Chỉ chạy play video khi đang ở đúng Theme tương ứng
+        if ((currentTheme === 'day' && vid === vidDay) || (currentTheme === 'night' && vid === vidNight)) {
+          const playPromise = vid.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              // Dự phòng tự phát
+            });
+          }
+        }
+      };
+
+      // Nếu video đã có sẵn dữ liệu từ trước
+      if (vid.readyState >= 2) {
+        activateAndPlay();
+      } else {
+        vid.addEventListener('loadeddata', activateAndPlay);
+        vid.addEventListener('canplay', activateAndPlay);
+        vid.addEventListener('loadedmetadata', activateAndPlay);
       }
 
-      if (vidNight) {
-        vidNight.addEventListener('loadeddata', () => {
-          vidNight.classList.add('active');
-        });
-        vidNight.addEventListener('error', () => {
-          vidNight.classList.remove('active');
-        });
+      vid.addEventListener('error', () => {
+        vid.classList.remove('active'); // Tự động dùng ảnh tĩnh nếu không có file video
+      });
+    }
+
+    function checkBackgroundVideos() {
+      setupVideoElement(vidDay);
+      setupVideoElement(vidNight);
+      syncVideosWithTheme();
+    }
+
+    // Đồng bộ video theo theme để tiết kiệm tài nguyên CPU của máy tính
+    function syncVideosWithTheme() {
+      if (currentTheme === 'day') {
+        if (vidDay) {
+          vidDay.currentTime = vidDay.currentTime || 0;
+          vidDay.play().catch(() => {});
+        }
+        if (vidNight) vidNight.pause();
+      } else {
+        if (vidNight) {
+          vidNight.currentTime = vidNight.currentTime || 0;
+          vidNight.play().catch(() => {});
+        }
+        if (vidDay) vidDay.pause();
       }
     }
 
@@ -1065,7 +1098,7 @@
     }
 
     /* ========================================================
-       D. ĐIỀU KHIỂN CHẾ ĐỘ BAN NGÀY & BAN ĐÊM
+       D. ĐIỀU KHIỂN CHẾ ĐỘ BAN NGÀY & BAN ĐÊM (TRÊN HEADER)
        ======================================================== */
     let currentTheme = 'day';
 
@@ -1077,14 +1110,16 @@
       if (currentTheme === 'day') {
         currentTheme = 'night';
         body.className = 'theme-night';
-        themeBtnText.textContent = "Chế độ: Ban Ngày (Nắng dịu)";
+        themeBtnText.textContent = "Chế độ: Ban Ngày";
         themeIcon.innerHTML = `<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"/>`;
       } else {
         currentTheme = 'day';
         body.className = 'theme-day';
-        themeBtnText.textContent = "Chế độ: Ban Đêm (Ánh trăng)";
+        themeBtnText.textContent = "Chế độ: Ban Đêm";
         themeIcon.innerHTML = `<path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 10.6-10.7A8 8 0 0 1 12.3 2z"/>`;
       }
+
+      syncVideosWithTheme();
     }
 
     /* ========================================================
@@ -1110,10 +1145,11 @@
     });
 
     /* ========================================================
-       F. ÂM THANH THIÊN NHIÊN
+       F. ÂM THANH THIÊN NHIÊN (Ở FOOTER)
        ======================================================== */
     const audioEl = document.getElementById('bgNatureAudio');
     const audioBtn = document.getElementById('audioToggleBtn');
+    const audioBtnText = document.getElementById('audioBtnText');
     let isPlaying = false;
     let audioCtx = null;
     let natureInterval = null;
@@ -1147,9 +1183,11 @@
         audioEl.play().then(() => {
           isPlaying = true;
           audioBtn.classList.add('playing');
+          if (audioBtnText) audioBtnText.textContent = "Âm thanh: Đang bật";
         }).catch(() => {
           isPlaying = true;
           audioBtn.classList.add('playing');
+          if (audioBtnText) audioBtnText.textContent = "Âm thanh: Đang bật";
           playGentleChirp();
           natureInterval = setInterval(() => {
             if (Math.random() > 0.4) playGentleChirp();
@@ -1160,6 +1198,7 @@
         clearInterval(natureInterval);
         isPlaying = false;
         audioBtn.classList.remove('playing');
+        if (audioBtnText) audioBtnText.textContent = "Âm thanh: Tắt";
       }
     }
 

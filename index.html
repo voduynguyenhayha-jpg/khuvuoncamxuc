@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khu Vườn Cảm Xúc</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================= BIẾN GIAO DIỆN SÁNG / TỐI ================= */
+        :root {
+            --bg-color: #f7fafc;
+            --text-main: #2d3748;
+            --text-muted: #4a5568;
+            --nav-bg: rgba(255, 255, 255, 0.75);
+            --card-bg: #ffffff;
+            --sky-gradient: linear-gradient(180deg, #6ec6f2 0%, #b2e4f9 55%, #dff4fd 100%);
+            --grass-color: #62a838;
+            --card-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        body.dark-mode {
+            --bg-color: #0f172a;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --nav-bg: rgba(15, 23, 42, 0.85);
+            --card-bg: #1e293b;
+            --sky-gradient: linear-gradient(180deg, #091326 0%, #15294a 60%, #1e3a5f 100%);
+            --grass-color: #1f4221;
+            --card-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.4s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* ================= 1. THANH MENU (HEADER) ================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 5%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        /* Khung chừa sẵn Logo */
+        .logo-placeholder {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff7675, #fab1a0, #74b9ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            overflow: hidden;
+        }
+        .logo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-name {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #ff7675;
+        }
+
+        .theme-toggle-btn {
+            background: rgba(255,255,255,0.25);
+            border: 1px solid rgba(0,0,0,0.1);
+            color: var(--text-main);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ================= 2. PHẦN NỀN TRANH VẼ HERO ================= */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            min-height: 550px;
+            background: var(--sky-gradient);
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        /* Mây lững lờ trôi */
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50px;
+            filter: blur(8px);
+            animation: drift linear infinite;
+        }
+        .cloud-1 { width: 280px; height: 90px; top: 12%; left: -100px; animation-duration: 45s; }
+        .cloud-2 { width: 380px; height: 110px; top: 22%; left: 30%; animation-duration: 65s; }
+        .cloud-3 { width: 220px; height: 75px; top: 8%; left: 70%; animation-duration: 38s; }
+
+        @keyframes drift {
+            0% { transform: translateX(-200px); }
+            100% { transform: translateX(110vw); }
+        }
+
+        /* Đồi cỏ tranh sơn dầu */
+        .meadow {
+            position: absolute;
+            bottom: 0;
+            width: 120%;
+            left: -10%;
+            height: 280px;
+            background: var(--grass-color);
+            border-radius: 50% 50% 0 0 / 80px 80px 0 0;
+            box-shadow: inset 0 25px 35px rgba(255,230,120,0.25);
+        }
+
+        /* Cụm hoa cúc đung đưa */
+        .flowers-field {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .flower {
+            font-size: 28px;
+            animation: sway 3s ease-in-out infinite alternate;
+            transform-origin: bottom center;
+        }
+        .flower:nth-child(2n) { animation-duration: 2.2s; animation-delay: 0.3s; font-size: 34px; }
+        .flower:nth-child(3n) { animation-duration: 2.7s; animation-delay: 0.6s; font-size: 24px; }
+
+        @keyframes sway {
+            0% { transform: rotate(-10deg); }
+            100% { transform: rotate(10deg); }
+        }
+
+        /* Chong chóng nhỏ trang trí bên trái */
+        .pinwheel-deco {
+            position: absolute;
+            bottom: 220px;
+            left: 10%;
+            animation: rotateFast 4s linear infinite;
+            transform-origin: center center;
+        }
+
+        /* ================= 3. CHONG CHÓNG LỚN TƯƠNG TÁC GÓC PHẢI ================= */
+        .interactive-portal {
+            position: absolute;
+            right: 8%;
+            top: 25%;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .interactive-portal:hover {
+            transform: scale(1.12);
+        }
+
+        /* Chong chóng lớn quay liên tục */
+        .big-pinwheel {
+            width: 130px;
+            height: 130px;
+            animation: rotateFast 2.8s linear infinite;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.25));
+        }
+
+        /* Cán cầm của chong chóng */
+        .pinwheel-stick {
+            width: 6px;
+            height: 150px;
+            background: #e8d0a9;
+            border-radius: 4px;
+            margin-top: -10px;
+        }
+
+        /* Nhãn nút bấm gợi ý */
+        .portal-badge {
+            background: #ffffff;
+            color: #d63031;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 2px solid #ff7675;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes rotateFast {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* ================= 4. NỘI DUNG BÊN DƯỚI NỀN ================= */
+        .content-section {
+            max-width: 900px;
+            margin: -60px auto 80px;
+            padding: 50px 40px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            z-index: 20;
+            text-align: center;
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #ff7675;
+            margin-bottom: 20px;
+        }
+
+        .goal-box {
+            background: rgba(116, 185, 255, 0.1);
+            border-left: 5px solid #74b9ff;
+            padding: 24px 30px;
+            border-radius: 12px;
+            text-align: left;
+            margin-top: 25px;
+        }
+
+        .goal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .goal-desc {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================================================== -->
+    <!-- THANH MENU GÓC TRÊN CÙNG -->
+    <!-- ======================================================== -->
+    <header>
+        <a href="#" class="brand-container">
+            <!-- [VỊ TRÍ 1: THAY ẢNH LOGO TẠI ĐÂY] -->
+            <!-- Nếu bạn có file logo, xóa chữ 🌸 và thay bằng: <img src="link-anh-logo.png" alt="Logo"> -->
+            <div class="logo-placeholder">🌸</div>
+            <span class="brand-name">Khu Vườn Cảm Xúc</span>
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="#ve-du-an">Về dự án</a></li>
+                <li><a href="#bai-viet">Bài viết</a></li>
+                <li><a href="#ky-thuat">Các kỹ thuật</a></li>
+                <li>
+                    <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()">
+                        <span id="themeIcon">🌙</span> <span id="themeText">Chế độ tối</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ======================================================== -->
+    <!-- PHẦN HÌNH NỀN HERO VỚI HIỆU ỨNG CHUYỂN ĐỘNG -->
+    <!-- ======================================================== -->
+    <section class="hero">
+        <!-- Các đám mây trôi lững lờ -->
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+
+        <!-- Chong chóng nhỏ xa xa bên trái -->
+        <svg class="pinwheel-deco" width="60" height="60" viewBox="0 0 100 100">
+            <path d="M50 50 L50 10 A40 40 0 0 1 90 50 Z" fill="#ff7675"/>
+            <path d="M50 50 L90 50 A40 40 0 0 1 50 90 Z" fill="#74b9ff"/>
+            <path d="M50 50 L50 90 A40 40 0 0 1 10 50 Z" fill="#ffeaa7"/>
+            <path d="M50 50 L10 50 A40 40 0 0 1 50 10 Z" fill="#55efc4"/>
+            <circle cx="50" cy="50" r="5" fill="#ffffff" />
+        </svg>
+
+        <!-- [VỊ TRÍ 2: THAY LINK WEB CON CHO CHONG CHÓNG GÓC PHẢI] -->
+        <!-- Bạn hãy thay dấu thăng '#' dưới đây bằng link trang web bạn muốn mở (ví dụ: https://google.com) -->
+        <a href="#" target="_blank" class="interactive-portal" title="Nhấn vào đây để khám phá">
+            <!-- Chong chóng ngũ sắc lớn quay liên tục -->
+            <svg class="big-pinwheel" viewBox="0 0 100 100">
+                <path d="M50 50 L50 5 A45 45 0 0 1 95 50 Z" fill="#e74c3c"/>
+                <path d="M50 50 L95 50 A45 45 0 0 1 50 95 Z" fill="#3498db"/>
+                <path d="M50 50 L50 95 A45 45 0 0 1 5 50 Z" fill="#f1c40f"/>
+                <path d="M50 50 L5 50 A45 45 0 0 1 50 5 Z" fill="#2ecc71"/>
+                <circle cx="50" cy="50" r="7" fill="#ffffff"/>
+            </svg>
+            <div class="pinwheel-stick"></div>
+            <div class="portal-badge">✨ Nhấn vào đây!</div>
+        </a>
+
+        <!-- Đồi cỏ xanh -->
+        <div class="meadow"></div>
+
+        <!-- Cánh đồng hoa cúc đung đưa -->
+        <div class="flowers-field">
+            <span class="flower">🌼</span>
+            <span class="flower">🌸</span>
+            <span class="flower">🌼</span>
+            <span class="flower">🌼</span>
+            <span class="flower">🌸</span>
+            <span class="flower">🌼</span>
+            <span class="flower">🌼</span>
+            <span class="flower">🌸</span>
+            <span class="flower">🌼</span>
+        </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- PHẦN NỘI DUNG BÊN DƯỚI ẢNH NỀN -->
+    <!-- ======================================================== -->
+    <main class="content-section" id="ve-du-an">
+        <h1 class="project-title">Khu Vườn Cảm Xúc</h1>
+        
+        <div class="goal-box">
+            <h2 class="goal-title">🎯 Mục tiêu dự án</h2>
+            
+            <!-- [VỊ TRÍ 3: THAY ĐỔI NỘI DUNG MỤC TIÊU CỦA BẠN TẠI ĐÂY] -->
+            <p class="goal-desc">
+                Mục tiêu là tạo dựng một không gian trực tuyến an yên, nơi kết nối những tâm hồn đồng điệu, giúp bạn xoa dịu những căng thẳng đời thường và tìm lại những ký ức tuổi thơ trong trẻo, hồn nhiên qua từng cánh hoa và vòng quay chong chóng.
+            </p>
+        </div>
+    </main>
+
+    <!-- ======================================================== -->
+    <!-- MÃ JAVASCRIPT ĐIỀU KHIỂN CHẾ ĐỘ SÁNG / TỐI -->
+    <!-- ======================================================== -->
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            const text = document.getElementById('themeText');
+
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Chế độ sáng';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Chế độ tối';
+            }
+        }
+    </script>
+</body>
+</html>

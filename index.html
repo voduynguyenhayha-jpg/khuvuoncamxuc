@@ -556,4 +556,384 @@
     <div class="project-info-container">
       <span class="project-badge-pill">Thấu Hiểu Nội Tâm</span>
       <h2 class="project-main-title">Khu vườn cảm xúc</h2>
-      <div class="project-divider"><span class="project-divide
+      <div class="project-divider"><span class="project-divider-line"></span><span class="project-divider-lotus">🪷</span><span class="project-divider-line"></span></div>
+      <h3 class="project-sub-title">mục đích dự án</h3>
+      <div class="project-desc-card">
+        <p><strong>Khu Vườn Cảm Xúc</strong> được kiến tạo như một chốn dừng chân bình yên, nơi bạn có thể chậm rãi bước vào thế giới nội tâm và lắng nghe những thanh âm chân thật nhất từ tâm hồn mình giữa guồng quay hối hả thường nhật.</p>
+        <p>Hình ảnh chiếc chong chóng quay tròn trong gió đại diện cho những luồng cảm xúc tự nhiên: khi nhẹ nhàng như gió thoảng, khi dạt dào rộn rã. Mục đích của dự án là giúp bạn nhận diện, thấu hiểu, bao dung và chuyển hóa mọi xúc cảm thành nguồn năng lượng nuôi dưỡng bản thân an yên, vững vàng.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       4. KHU VỰC BÀI VIẾT (TÂM LÝ HỌC)
+       ======================================================== -->
+  <section class="blog-section" id="blogSection">
+    <div class="blog-header">
+      <div class="blog-header-line"></div>
+      <h2>Bài viết Tâm lý học</h2>
+      <div class="blog-header-line"></div>
+    </div>
+
+    <div class="blog-grid" id="blogGrid">
+      <!-- Dữ liệu bài viết sẽ được JS render vào đây -->
+    </div>
+  </section>
+
+  <!-- ========================================================
+       5. KHU VỰC CÁC KỸ THUẬT CẢI THIỆN SỨC KHỎE TINH THẦN (MỚI)
+       ======================================================== -->
+  <section class="blog-section" id="techniquesSection" style="padding-top: 20px;">
+    <div class="blog-header">
+      <div class="blog-header-line"></div>
+      <h2>Các kỹ thuật cải thiện sức khỏe tinh thần</h2>
+      <div class="blog-header-line"></div>
+    </div>
+
+    <div class="blog-grid" id="techniquesGrid">
+      <!-- Dữ liệu kỹ thuật sẽ được JS render vào đây -->
+    </div>
+  </section>
+
+  <!-- ========================================================
+       6. CHÂN TRANG
+       ======================================================== -->
+  <footer class="footer">
+    <div class="copyright">© 2026 Khu Vườn Cảm Xúc • Nuôi dưỡng tâm hồn qua từng nhịp quay</div>
+    <button class="audio-footer-btn" id="audioToggleBtn" onclick="toggleAudio()">
+      <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      <span id="audioBtnText">Âm thanh: Tắt</span>
+    </button>
+  </footer>
+
+  <!-- ========================================================
+       7. MODALS BẬT LÊN
+       ======================================================== -->
+       
+  <!-- MODAL ĐỌC BÀI VIẾT FULL TOÀN MÀN HÌNH -->
+  <div class="modal-overlay" id="articleReadModal">
+    <div class="modal-card">
+      <div class="article-modal-top">
+        <div class="article-modal-brand">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          Khu vườn cảm xúc
+        </div>
+        <button class="btn-close-article" onclick="closeModal('articleReadModal')">X</button>
+      </div>
+
+      <div class="article-layout">
+        <!-- Khu vực đọc chữ bên trái -->
+        <div class="article-main-content">
+          <div class="art-category" id="artCategory">BLOG</div>
+          <h1 class="art-title" id="artTitle">Tiêu đề bài viết</h1>
+          <div class="art-meta">ĐĂNG VÀO NGÀY <span id="artDate">26/06/2026</span></div>
+          
+          <img src="" alt="Cover" class="art-cover" id="artImage">
+          
+          <div class="art-body" id="artBody">
+            <!-- Nội dung chi tiết bài viết sẽ được chèn vào đây -->
+          </div>
+        </div>
+
+        <!-- Sidebar bài viết bên phải -->
+        <div class="article-sidebar">
+          <div class="sidebar-title">BÀI VIẾT NỔI BẬT</div>
+          <div id="sidebarList">
+            <!-- Render danh sách sidebar -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL LIÊN HỆ -->
+  <div class="modal-overlay" id="contactModal" onclick="closeModalOnBackdrop(event, 'contactModal')">
+    <div class="modal-card-small">
+      <button class="modal-close-small" onclick="closeModal('contactModal')">✕</button>
+      <h3 style="margin-bottom:15px; color:var(--hero-title-color);">Gửi Lời Nhắn Đến Khu Vườn</h3>
+      <p style="color:var(--hero-sub-color); margin-bottom:20px;">Chúng mình luôn sẵn lòng lắng nghe bạn:</p>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <a href="https://facebook.com" target="_blank" style="padding:15px; background:var(--palette-ocean-blue); color:white; text-decoration:none; border-radius:8px; text-align:center; font-weight:bold;">Facebook Page</a>
+        <a href="mailto:email@domain.com" style="padding:15px; background:#467140; color:white; text-decoration:none; border-radius:8px; text-align:center; font-weight:bold;">Gửi Email</a>
+      </div>
+    </div>
+  </div>
+
+  <audio id="bgNatureAudio" loop preload="none">
+    <source src="https://assets.mixkit.co/active_storage/sfx/2432/2432-preview.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ========================================================
+       8. JAVASCRIPT
+       ======================================================== -->
+  <script>
+    /* ----------------------------------------------------
+       DỮ LIỆU BÀI VIẾT (BÀI VIẾT TÂM LÝ HỌC)
+       ---------------------------------------------------- */
+    const blogsData = [
+      {
+        id: 'b1',
+        dateDay: "10", dateMonth: "Th10", year: "2026",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop",
+        title: "Khi mắt nhìn mà não không thấy: Khám phá hiện tượng 'mù tạm thời'",
+        excerpt: "Bạn có bao giờ tìm kiếm chiếc điện thoại trong khi vẫn đang cầm nó trên tay?",
+        content: `
+          <p>Hiện tượng "mù do không chú ý" (Inattentional blindness) xảy ra khi chúng ta quá tập trung vào một nhiệm vụ hoặc một vật thể cụ thể đến mức não bộ hoàn toàn bỏ qua các yếu tố rõ ràng khác xuất hiện ngay trong tầm nhìn.</p>
+          <p>Điều này chứng minh rằng "nhìn thấy" không chỉ là chức năng của đôi mắt, mà còn phụ thuộc rất lớn vào sự phân bổ tài nguyên chú ý của não bộ. Để cải thiện, hãy thử thực hành chánh niệm và quan sát không phán xét môi trường xung quanh trong vài phút mỗi ngày.</p>
+        `
+      },
+      {
+        id: 'b2',
+        dateDay: "15", dateMonth: "Th10", year: "2026",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop",
+        title: "Làm thế nào để tăng cường ‘trí thông minh cơ thể’?",
+        excerpt: "Bạn có bao giờ nghe nói về trí thông minh cơ thể chưa? Đây không phải là...",
+        content: `
+          <p>Trí thông minh cơ thể (Somatic Intelligence) là khả năng lắng nghe, giải mã và phản hồi lại các tín hiệu vi tế mà cơ thể gửi đến trước khi tâm trí nhận thức được cảm xúc.</p>
+          <p>Ví dụ: Cảm giác quặn thắt ở dạ dày trước một quyết định lớn, hay sự căng cứng ở vai khi gặp áp lực. Bằng cách kết nối lại với cơ thể thông qua các bài tập quét cơ thể (body scan) hoặc yoga, bạn có thể giải phóng những cảm xúc bị mắc kẹt và đưa ra những quyết định sáng suốt hơn.</p>
+        `
+      },
+      {
+        id: 'b3',
+        dateDay: "27", dateMonth: "Th10", year: "2026",
+        image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=600&auto=format&fit=crop",
+        title: "Hành trình khám phá bản thân: Từ ý thức đến tự ý thức",
+        excerpt: "Bạn có bao giờ thức dậy vào một buổi sáng và tự hỏi: 'Mình là ai?'",
+        content: `
+          <p>Tự ý thức (Self-awareness) là cốt lõi của trí tuệ cảm xúc. Nó đòi hỏi chúng ta phải lùi lại một bước để quan sát chính những suy nghĩ, cảm xúc và hành động của mình như một người đứng xem.</p>
+          <p>Hãy bắt đầu bằng việc viết nhật ký cảm xúc hàng ngày. Ghi lại không chỉ những gì đã xảy ra, mà còn là bạn đã cảm thấy thế nào và tại sao bạn lại phản ứng như vậy. Theo thời gian, bạn sẽ nhận ra những mô thức hành vi lặp lại của chính mình.</p>
+        `
+      },
+      {
+        id: 'b4',
+        dateDay: "11", dateMonth: "Th11", year: "2026",
+        image: "https://images.unsplash.com/photo-1493836512294-502baa1986e2?q=80&w=600&auto=format&fit=crop",
+        title: "Tâm lý học về lo âu là gì? Hiểu để làm chủ cảm xúc",
+        excerpt: "Bạn đã bao giờ cảm thấy tim đập nhanh, khó thở, hoặc lo lắng quá mức?",
+        content: `
+          <p>Lo âu vốn dĩ là cơ chế sinh tồn tự nhiên của con người nhằm đối phó với các mối đe dọa. Tuy nhiên, trong xã hội hiện đại, não bộ của chúng ta thường "báo động giả" trước những căng thẳng phi vật lý như deadline, mạng xã hội hay kỳ vọng từ người khác.</p>
+          <p>Việc làm chủ lo âu không bắt đầu bằng việc chối bỏ nó, mà bằng việc ôm ấp nó. Hãy sử dụng kỹ thuật hít thở 4-7-8 để đưa hệ thần kinh từ trạng thái "Chiến đấu hay Bỏ chạy" về trạng thái "Nghỉ ngơi và Tiêu hóa".</p>
+        `
+      }
+    ];
+
+    /* ----------------------------------------------------
+       DỮ LIỆU BÀI VIẾT (CÁC KỸ THUẬT CẢI THIỆN SỨC KHỎE TINH THẦN)
+       ---------------------------------------------------- */
+    const techniquesData = [
+      {
+        id: 't1',
+        dateDay: "12", dateMonth: "Th11", year: "2026",
+        image: "https://images.unsplash.com/photo-1545389336-cf090694435e?q=80&w=600&auto=format&fit=crop",
+        title: "Thiền Định (Meditation)",
+        excerpt: "Đưa tâm trí về trạng thái tĩnh lặng, buông bỏ tạp niệm để kết nối sâu sắc với hiện tại.",
+        content: `
+          <p>Thiền định không có nghĩa là cố gắng dập tắt mọi suy nghĩ, mà là học cách quan sát chúng trôi qua như những đám mây trên bầu trời mà không để bản thân bị cuốn theo.</p>
+          <p>Chỉ cần 10 phút mỗi ngày nhắm mắt lại, tập trung vào hơi thở, bạn sẽ cảm nhận được sự giảm thiểu rõ rệt của hormone cortisol (gây căng thẳng) và gia tăng sự bình an trong tâm hồn.</p>
+        `
+      },
+      {
+        id: 't2',
+        dateDay: "18", dateMonth: "Th11", year: "2026",
+        image: "https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?q=80&w=600&auto=format&fit=crop",
+        title: "Chánh Niệm (Mindfulness)",
+        excerpt: "Nghệ thuật sống trọn vẹn trong khoảnh khắc hiện tại, không phán xét những gì đang diễn ra.",
+        content: `
+          <p>Chánh niệm là việc đem toàn bộ sự chú ý của bạn vào việc bạn đang làm ở giây phút hiện tại. Khi bạn ăn, hãy chỉ ăn và cảm nhận hương vị. Khi bạn đi bộ, hãy cảm nhận từng bước chân chạm đất.</p>
+          <p>Thực hành chánh niệm giúp chúng ta thoát khỏi "chế độ lái tự động" (autopilot), ngắt kết nối với những lo âu về tương lai hay hối tiếc về quá khứ, từ đó làm phong phú thêm trải nghiệm sống hàng ngày.</p>
+        `
+      },
+      {
+        id: 't3',
+        dateDay: "20", dateMonth: "Th11", year: "2026",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop",
+        title: "Kỹ thuật Hít Thở",
+        excerpt: "Sử dụng nhịp thở làm mỏ neo để xoa dịu hệ thần kinh ngay lập tức khi đối mặt với căng thẳng.",
+        content: `
+          <p>Hơi thở là cầu nối trực tiếp nhất giữa cơ thể và tâm trí. Kỹ thuật thở <strong>4-7-8</strong> là một trong những phương pháp hiệu quả nhất để làm dịu cơn hoảng loạn nhanh chóng:</p>
+          <p>1. Hít vào bằng mũi trong 4 giây.<br>2. Giữ hơi thở lại trong 7 giây.<br>3. Thở ra từ từ bằng miệng trong 8 giây.</p>
+          <p>Lặp lại chu kỳ này 4 lần, hệ thần kinh đối giao cảm của bạn sẽ được kích hoạt, mang lại cảm giác thư giãn tức thì.</p>
+        `
+      },
+      {
+        id: 't4',
+        dateDay: "25", dateMonth: "Th11", year: "2026",
+        image: "https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=600&auto=format&fit=crop",
+        title: "Cách viết Nhật ký Phản tư",
+        excerpt: "Giải phóng cảm xúc bị kìm nén bằng cách chuyển hóa những suy nghĩ hỗn độn thành con chữ.",
+        content: `
+          <p>Viết nhật ký phản tư (Journaling) là không gian an toàn để bạn đối thoại với chính mình mà không sợ bị phán xét. Đừng bận tâm về ngữ pháp hay logic, hãy viết ra mọi cảm xúc đang chảy trong đầu bạn.</p>
+          <p>Một số câu hỏi gợi mở để bắt đầu:<br>- Hôm nay tôi đang cảm thấy thế nào?<br>- Điều gì đang khiến tôi bận tâm nhất?<br>- Có điều gì nhỏ bé hôm nay khiến tôi biết ơn không?</p>
+          <p>Việc gọi tên được cảm xúc trên trang giấy đã là bước đầu tiên để chữa lành chúng.</p>
+        `
+      }
+    ];
+
+    // Hàm tạo thẻ Card dùng chung cho cả 2 mục
+    function renderCard(item) {
+      return `
+        <div class="blog-card" onclick="openArticle('${item.id}')">
+          <div class="blog-date-badge">
+            <div class="blog-date-text-wrapper">
+              <span class="blog-date-day">${item.dateDay}</span>
+              <span class="blog-date-month">${item.dateMonth}</span>
+            </div>
+          </div>
+          <img src="${item.image}" alt="Cover" class="blog-card-img">
+          <div class="blog-card-content">
+            <h3 class="blog-card-title">${item.title}</h3>
+            <p class="blog-card-excerpt">${item.excerpt}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render danh sách Bài viết
+    function renderBlogGrid() {
+      const grid = document.getElementById('blogGrid');
+      grid.innerHTML = blogsData.map(blog => renderCard(blog)).join('');
+    }
+
+    // Render danh sách Kỹ thuật
+    function renderTechniquesGrid() {
+      const grid = document.getElementById('techniquesGrid');
+      grid.innerHTML = techniquesData.map(tech => renderCard(tech)).join('');
+    }
+
+    // Mở bài viết chi tiết bên trong Modal
+    function openArticle(id) {
+      // Tìm xem bài viết thuộc mảng nào
+      let article = blogsData.find(b => b.id === id);
+      let category = "TÂM LÝ HỌC";
+      
+      if (!article) {
+        article = techniquesData.find(t => t.id === id);
+        category = "KỸ THUẬT";
+      }
+      if(!article) return;
+
+      document.getElementById('artCategory').textContent = category;
+      document.getElementById('artTitle').textContent = article.title;
+      document.getElementById('artDate').textContent = `${article.dateDay}/${article.dateMonth.replace('Th','')}/${article.year}`;
+      document.getElementById('artImage').src = article.image;
+      document.getElementById('artBody').innerHTML = article.content;
+
+      // Render Sidebar (Hiển thị tất cả bài viết của cả 2 mục)
+      const sidebar = document.getElementById('sidebarList');
+      const allArticles = [...blogsData, ...techniquesData];
+      sidebar.innerHTML = allArticles.map(a => `
+        <div class="side-post" onclick="openArticle('${a.id}')">
+          <div class="side-date-box">
+            ${a.dateDay} <span>${a.dateMonth}</span>
+          </div>
+          <div class="side-post-title">${a.title}</div>
+        </div>
+      `).join('');
+
+      openModal('articleReadModal');
+    }
+
+    /* ----------------------------------------------------
+       CÁC HÀM TIỆN ÍCH CHUNG
+       ---------------------------------------------------- */
+    function scrollToElement(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    function closeModalOnBackdrop(e, id) { if (e.target.id === id) closeModal(id); }
+
+    let currentTheme = 'day';
+    function toggleTheme() {
+      currentTheme = currentTheme === 'day' ? 'night' : 'day';
+      document.body.className = `theme-${currentTheme}`;
+      document.getElementById('themeBtnText').textContent = currentTheme === 'day' ? "Chế độ: Ban Đêm" : "Chế độ: Ban Ngày";
+      
+      const vidDay = document.getElementById('bgVideoDay');
+      const vidNight = document.getElementById('bgVideoNight');
+      if (currentTheme === 'day') {
+        if(vidDay) vidDay.play().catch(()=>{});
+        if(vidNight) vidNight.pause();
+      } else {
+        if(vidNight) vidNight.play().catch(()=>{});
+        if(vidDay) vidDay.pause();
+      }
+    }
+
+    /* Kích hoạt Video tự động */
+    function initVideos() {
+      const vids = [document.getElementById('bgVideoDay'), document.getElementById('bgVideoNight')];
+      vids.forEach(v => {
+        if(!v) return;
+        v.muted = true;
+        v.play().catch(()=>{});
+      });
+      const unlock = () => {
+        vids.forEach(v => { if(v) { v.muted = true; v.play().catch(()=>{}); } });
+        document.removeEventListener('click', unlock);
+      };
+      document.addEventListener('click', unlock);
+    }
+
+    /* Hạt đom đóm ban đêm */
+    const cvs = document.getElementById('atmosphereCanvas');
+    const ctx = cvs.getContext('2d');
+    let pts = [];
+    function resizeCanvas() { cvs.width = window.innerWidth; cvs.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+    for(let i=0; i<40; i++) {
+      pts.push({
+        x: Math.random() * cvs.width,
+        y: Math.random() * cvs.height,
+        s: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: -Math.random() * 0.5 - 0.1,
+        a: Math.random(),
+        fade: (Math.random() * 0.02 + 0.005) * (Math.random()>0.5?1:-1)
+      });
+    }
+    function drawAtmosphere() {
+      ctx.clearRect(0,0,cvs.width,cvs.height);
+      if(currentTheme === 'night') {
+        pts.forEach(p => {
+          p.x += p.vx; p.y += p.vy; p.a += p.fade;
+          if(p.a <= 0.1 || p.a >= 0.9) p.fade *= -1;
+          if(p.y < 0) p.y = cvs.height;
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(255, 230, 95, ${p.a})`;
+          ctx.shadowBlur = 10; ctx.shadowColor = '#ffd54f';
+          ctx.fill(); ctx.shadowBlur = 0;
+        });
+      }
+      requestAnimationFrame(drawAtmosphere);
+    }
+
+    /* Âm thanh */
+    let isPlaying = false;
+    function toggleAudio() {
+      const audio = document.getElementById('bgNatureAudio');
+      const btn = document.getElementById('audioToggleBtn');
+      const txt = document.getElementById('audioBtnText');
+      if(!isPlaying) {
+        audio.play().catch(()=>{});
+        isPlaying = true;
+        btn.classList.add('playing');
+        txt.textContent = "Âm thanh: Bật";
+      } else {
+        audio.pause();
+        isPlaying = false;
+        btn.classList.remove('playing');
+        txt.textContent = "Âm thanh: Tắt";
+      }
+    }
+
+    // Chạy các hàm khởi tạo
+    initVideos();
+    renderBlogGrid();
+    renderTechniquesGrid();
+    drawAtmosphere();
+  </script>
+</body>
+</html>

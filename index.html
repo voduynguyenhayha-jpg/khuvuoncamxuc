@@ -241,13 +241,11 @@
 
     .hero-title-badge {
       display: inline-block;
-      padding: 8px 24px;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 30px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: transparent !important;   /* Tắt màu nền */
+      border: none !important;              /* Tắt đường viền */
+      box-shadow: none !important;          /* Tắt bóng đổ */
+      backdrop-filter: none !important;     /* Tắt làm mờ kính */
+      -webkit-backdrop-filter: none !important;
       margin-bottom: 8px;
     }
     body.theme-night .hero-title-badge {

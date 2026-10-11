@@ -15,11 +15,9 @@
        1. CẤU HÌNH HỆ THỐNG MÀU SẮC & ẢNH NỀN
        ======================================================== */
     :root {
-      /* ========================================================
-         [VỊ TRÍ 1: ĐỔI ẢNH NỀN TĨNH (DỰ PHÒNG KHI VIDEO CHƯA TẢI XONG)]
-         ======================================================== */
-      --bg-day-image: url('');
-      --bg-night-image: url('');
+      /* Đổi ảnh nền tại đây */
+      --bg-day-image: url('day.jpg');
+      --bg-night-image: url('night.jpg');
 
       --palette-dark-navy: #0d3859;
       --palette-ocean-blue: #356d94;
@@ -39,13 +37,18 @@
       --hero-title-color: #06391d;
       --hero-sub-color: #1e501b;
 
-      --info-section-bg: #f5faee;
+      --info-section-bg: #f4faed;
       --info-section-card: #ffffff;
       --info-section-title: #06391d;
       --info-section-subtitle: #467140;
       --info-section-text: #224320;
       --info-section-border: rgba(165, 201, 141, 0.5);
 
+      --blog-bg: #f9f9f9;
+      --blog-card-bg: #ffffff;
+      --blog-text-title: #0f2738;
+      --blog-text-desc: #555555;
+      
       --header-bg: rgba(255, 255, 255, 0.9);
       --header-border: rgba(165, 201, 141, 0.4);
       --header-text: #06391d;
@@ -69,6 +72,11 @@
       --info-section-text: #c2e2e0;
       --info-section-border: rgba(65, 255, 210, 0.25);
 
+      --blog-bg: #041018;
+      --blog-card-bg: #0a2335;
+      --blog-text-title: #ffffff;
+      --blog-text-desc: #a5c3d4;
+
       --header-bg: rgba(8, 26, 40, 0.9);
       --header-border: rgba(102, 200, 215, 0.25);
       --header-text: #ffffff;
@@ -79,16 +87,8 @@
       --pinwheel-aura: rgba(102, 200, 215, 0.75);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -103,1171 +103,750 @@
     }
 
     /* ========================================================
-       2. THANH ĐIỀU HƯỚNG (HEADER: CHIỀU CAO 70PX)
+       2. THANH ĐIỀU HƯỚNG (HEADER)
        ======================================================== */
     .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 70px;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 32px;
-      background: var(--header-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--header-border);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: fixed; top: 0; left: 0; right: 0; height: 70px; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 32px;
+      background: var(--header-bg); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--header-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       transition: var(--transition-smooth);
     }
 
-    .brand-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    /* [VỊ TRÍ CHÈN LOGO CỦA BẠN] */
+    .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .logo-slot {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+      width: 42px; height: 42px; border-radius: 12px;
       background: linear-gradient(135deg, #a5c98d, var(--palette-neon-mint));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(70, 113, 64, 0.25);
-      overflow: hidden;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0;
     }
-    .logo-slot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .logo-slot svg {
-      width: 24px;
-      height: 24px;
-      fill: #06391d;
-    }
+    .logo-slot img { width: 100%; height: 100%; object-fit: cover; }
+    .logo-slot svg { width: 24px; height: 24px; fill: #06391d; }
 
     .brand-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--header-text);
-      letter-spacing: -0.3px;
-      transition: color 0.5s ease;
+      font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700;
+      color: var(--header-text); transition: color 0.5s ease;
     }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      list-style: none;
-    }
-
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
     .nav-btn {
-      background: transparent;
-      border: none;
-      padding: 8px 16px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--header-text);
-      cursor: pointer;
-      border-radius: 20px;
-      transition: var(--transition-smooth);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      background: transparent; border: none; padding: 8px 16px; font-size: 0.95rem;
+      font-weight: 500; color: var(--header-text); cursor: pointer; border-radius: 20px;
+      transition: var(--transition-smooth); display: inline-flex; align-items: center; gap: 6px;
     }
+    .nav-btn:hover { background: rgba(165, 201, 141, 0.28); transform: translateY(-1px); }
 
-    .nav-btn:hover {
-      background: rgba(165, 201, 141, 0.28);
-      transform: translateY(-1px);
-    }
-
-    /* Nút Chuyển đổi Sáng / Tối trên Header */
     .theme-toggle-header-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--btn-bg);
-      color: var(--btn-text);
-      border: 1px solid var(--header-border);
-      padding: 8px 18px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 0.88rem;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-      transition: var(--transition-smooth);
+      display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: var(--btn-text);
+      border: 1px solid var(--header-border); padding: 8px 18px; border-radius: 30px; cursor: pointer;
+      font-size: 0.88rem; font-weight: 600; transition: var(--transition-smooth);
     }
-    .theme-toggle-header-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(65, 255, 210, 0.3);
-    }
-    .theme-toggle-header-btn svg {
-      width: 17px;
-      height: 17px;
-      fill: currentColor;
-    }
+    .theme-toggle-header-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(65, 255, 210, 0.3); }
+    .theme-toggle-header-btn svg { width: 17px; height: 17px; fill: currentColor; }
 
     /* ========================================================
-       3. KHU VỰC HERO SECTION (NẰM TRÊN NỀN)
+       3. HERO SECTION (CHỈNH VỊ TRÍ CHỮ & MẤT CHỮ 'X')
        ======================================================== */
     .hero-section {
-      padding-top: 50px;
-      padding-bottom: 12px;
-      text-align: center;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 20;
-      pointer-events: none;
-    }
-
-    .hero-title-badge {
-      display: inline-block;
-      background: transparent !important;   /* Tắt màu nền */
-      border: none !important;              /* Tắt đường viền */
-      box-shadow: none !important;          /* Tắt bóng đổ */
-      backdrop-filter: none !important;     /* Tắt làm mờ kính */
-      -webkit-backdrop-filter: none !important;
-      margin-bottom: 8px;
-    }
-    body.theme-night .hero-title-badge {
-      background: rgba(7, 26, 40, 0.82);
-      border-color: rgba(65, 255, 210, 0.3);
+      /* Căn vị trí lên cao để giống ảnh 1 */
+      padding-top: 15vh; 
+      text-align: center; position: absolute; top: 0; left: 0; right: 0; z-index: 20; pointer-events: none;
     }
 
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
       font-weight: 700;
       color: var(--hero-title-color);
       transition: color 0.6s ease;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); /* Đổ bóng sáng nhẹ cho dễ đọc */
+      letter-spacing: 1px;
+    }
+
+    /* Hiệu ứng ẩn chữ X vào ban ngày để lòi chong chóng ra */
+    .missing-x {
+      display: inline-block;
+      transition: var(--transition-smooth);
+    }
+    body.theme-day .missing-x {
+      opacity: 0;
+      width: 0.85em; /* Khoảng trống đủ cho chiếc chong chóng */
+    }
+    body.theme-night .missing-x {
+      opacity: 1;
+      width: auto;
     }
 
     .hero-tagline {
-      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-      font-weight: 500;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 600;
       color: var(--hero-sub-color);
-      max-width: 650px;
-      margin: 0 auto;
+      margin: 15px auto 0;
       line-height: 1.5;
-      padding: 0 20px;
-      text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
+      text-shadow: 0 1px 5px rgba(255, 255, 255, 0.8);
       transition: color 0.6s ease;
-      transform: translateY(40px); /* Dịch xuống 15px (hoặc -15px để dịch lên) */
-    }
-    body.theme-night .hero-tagline {
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
     }
 
+    body.theme-night .hero-title { text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8); }
+    body.theme-night .hero-tagline { text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8); }
+
     /* ========================================================
-       4. KHÔNG GIAN NỀN TRANG CHÍNH: KHỚP MÉP DƯỚI THANH MENU
+       4. NỀN & VIDEO TRANG CHÍNH
        ======================================================== */
     .hero-stage-container {
-      position: relative;
-      width: 100%;
-      margin-top: 70px; /* Bắt đầu ngay từ mép dưới menu 70px */
-      height: calc(100vh - 70px);
-      min-height: 620px;
-      overflow: hidden;
-      background-color: #071926;
-      background-image: var(--current-bg-image);
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-      transition: background-image 0.8s ease-in-out;
+      position: relative; width: 100%; margin-top: 70px; height: calc(100vh - 70px); min-height: 620px;
+      overflow: hidden; background-color: #071926; background-image: var(--current-bg-image);
+      background-size: cover; background-position: center top; transition: background-image 0.8s ease-in-out;
     }
-
-    .hero-stage-container::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.12) 0%, transparent 22%, transparent 75%, rgba(0,0,0,0.3) 100%);
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    /* ========================================================
-       5. HỆ THỐNG VIDEO NỀN (TỐI ƯU HOÀN TOÀN CHO LAPTOP & PC)
-       ======================================================== */
-    .video-background-layer {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* KHẮC PHỤC LỖI PC: Không dùng display:none để Desktop luôn giải mã & tải video ngay */
+    .video-background-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
     .main-bg-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 45%;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.8s ease-in-out, visibility 0.8s;
-      display: block;
-      transform: translate3d(0, 0, 0); /* Ép card đồ họa GPU máy tính kích hoạt */
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%;
+      opacity: 0; visibility: hidden; transition: opacity 0.8s, visibility 0.8s; display: block;
     }
+    body.theme-day .main-bg-video.video-day { opacity: 1; visibility: visible; }
+    body.theme-night .main-bg-video.video-night { opacity: 1; visibility: visible; }
+    #atmosphereCanvas { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
 
-    /* Hiển thị video tương ứng theo theme khi đã sẵn sàng */
-    body.theme-day .main-bg-video.video-day.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    body.theme-night .main-bg-video.video-night.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Canvas đom đóm dạ quang ban đêm */
-    #atmosphereCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    /* ========================================================
-       6. CHONG CHÓNG CẢM XÚC: Ở GÓC TRÁI (CẢ NGÀY VÀ ĐÊM)
-       ======================================================== */
+    /* CHONG CHÓNG CẢM XÚC GÓC TRÁI */
     .pinwheel-hotspot {
-      position: absolute;
-      z-index: 50;
-      cursor: pointer;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition-smooth);
-
-      top: 23%;
-      left: 19.5%;
-      width: 130px;
-      height: 130px;
-      transform: translate(-50%, -50%);
+      position: absolute; z-index: 50; cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; justify-content: center;
+      top: 25%; left: 18%; width: 120px; height: 120px; transform: translate(-50%, -50%);
     }
-
     .pinwheel-glow-aura {
-      position: absolute;
-      inset: -15px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--pinwheel-aura) 0%, transparent 70%);
-      opacity: 0;
-      transform: scale(0.65);
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      pointer-events: none;
+      position: absolute; inset: -15px; border-radius: 50%;
+      background: radial-gradient(circle, var(--pinwheel-aura) 0%, transparent 70%); opacity: 0; transform: scale(0.65); transition: all 0.5s; pointer-events: none;
     }
-
     .pinwheel-pulse-ring {
-      position: absolute;
-      inset: 8px;
-      border-radius: 50%;
-      border: 2px dashed rgba(255, 255, 255, 0.75);
-      opacity: 0;
-      animation: spinRing 12s linear infinite;
-      transition: opacity 0.4s ease;
+      position: absolute; inset: 8px; border-radius: 50%; border: 2px dashed rgba(255, 255, 255, 0.75);
+      opacity: 0; animation: spinRing 12s linear infinite; transition: opacity 0.4s ease;
     }
-
-    @keyframes spinRing {
-      0%   { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
+    @keyframes spinRing { 100% { transform: rotate(360deg); } }
     .pinwheel-tooltip {
-      position: absolute;
-      bottom: -48px;
-      white-space: nowrap;
-      background: rgba(6, 57, 29, 0.95);
-      color: #ffffff;
-      padding: 8px 18px;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-      border: 1.5px solid var(--palette-neon-mint);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      transform: translateY(12px) scale(0.9);
-      transition: var(--transition-smooth);
-      pointer-events: none;
+      position: absolute; bottom: -48px; white-space: nowrap; background: rgba(6, 57, 29, 0.95);
+      color: #ffffff; padding: 8px 18px; border-radius: 30px; font-size: 0.95rem; font-weight: 700;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.35); border: 1.5px solid var(--palette-neon-mint); display: inline-flex; align-items: center; gap: 8px;
+      opacity: 0; transform: translateY(12px) scale(0.9); transition: var(--transition-smooth); pointer-events: none;
     }
-
-    body.theme-night .pinwheel-tooltip {
-      background: rgba(9, 36, 56, 0.95);
-      border-color: var(--palette-neon-mint);
-    }
-
+    body.theme-night .pinwheel-tooltip { background: rgba(9, 36, 56, 0.95); border-color: var(--palette-neon-mint); }
     .pinwheel-tooltip::before {
-      content: '';
-      position: absolute;
-      top: -7px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      border-bottom: 7px solid rgba(6, 57, 29, 0.95);
+      content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
+      border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid rgba(6, 57, 29, 0.95);
     }
-    body.theme-night .pinwheel-tooltip::before {
-      border-bottom-color: rgba(9, 36, 56, 0.95);
-    }
-
-    .pinwheel-hotspot:hover .pinwheel-glow-aura {
-      opacity: 1;
-      transform: scale(1.35);
-      filter: drop-shadow(0 0 28px var(--pinwheel-glow));
-    }
-
-    .pinwheel-hotspot:hover .pinwheel-pulse-ring {
-      opacity: 1;
-    }
-
-    .pinwheel-hotspot:hover .pinwheel-tooltip {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+    body.theme-night .pinwheel-tooltip::before { border-bottom-color: rgba(9, 36, 56, 0.95); }
+    .pinwheel-hotspot:hover .pinwheel-glow-aura { opacity: 1; transform: scale(1.35); filter: drop-shadow(0 0 28px var(--pinwheel-glow)); }
+    .pinwheel-hotspot:hover .pinwheel-pulse-ring { opacity: 1; }
+    .pinwheel-hotspot:hover .pinwheel-tooltip { opacity: 1; transform: translateY(0) scale(1); }
 
     /* ========================================================
-       7. NỘI DUNG DỰ ÁN (BÊN DƯỚI)
+       5. NỘI DUNG DỰ ÁN
        ======================================================== */
     .project-info-section {
-      position: relative;
-      z-index: 25;
-      background: var(--info-section-bg);
-      padding: 95px 24px 85px;
-      transition: background 0.8s ease;
-      border-top: 1px solid var(--info-section-border);
+      position: relative; z-index: 25; background: var(--info-section-bg); padding: 80px 24px;
+      transition: background 0.8s ease; border-top: 1px solid var(--info-section-border);
     }
-
-    .project-info-container {
-      max-width: 860px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
+    .project-info-container { max-width: 860px; margin: 0 auto; text-align: center; }
     .project-badge-pill {
-      display: inline-block;
-      padding: 6px 18px;
-      border-radius: 30px;
-      background: rgba(165, 201, 141, 0.25);
-      color: var(--info-section-subtitle);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      border: 1px solid var(--info-section-border);
+      display: inline-block; padding: 6px 18px; border-radius: 30px; background: rgba(165, 201, 141, 0.25);
+      color: var(--info-section-subtitle); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; border: 1px solid var(--info-section-border);
     }
-
-    .project-main-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 4.5vw, 3.4rem);
-      color: var(--info-section-title);
-      font-weight: 700;
-      margin-bottom: 8px;
-      transition: color 0.6s ease;
+    .project-main-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4.5vw, 3.4rem); color: var(--info-section-title); font-weight: 700; margin-bottom: 8px; }
+    .project-divider { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 16px auto 26px; max-width: 320px; }
+    .project-divider-line { flex: 1; height: 1px; background: var(--info-section-border); }
+    .project-sub-title { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--info-section-subtitle); font-weight: 600; margin-bottom: 24px; text-transform: capitalize; }
+    .project-desc-card {
+      background: var(--info-section-card); border: 1px solid var(--info-section-border); border-radius: 28px; padding: 42px 36px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06); color: var(--info-section-text); font-size: 1.1rem; line-height: 1.9;
     }
+    .project-desc-card p + p { margin-top: 18px; }
 
-    .project-divider {
+    /* ========================================================
+       6. KHU VỰC BÀI VIẾT (PSY. BLOGS) GIỐNG ẢNH 2
+       ======================================================== */
+    .blog-section {
+      background: var(--blog-bg);
+      padding: 80px 24px;
+      transition: background 0.8s ease;
+    }
+    
+    .blog-header {
+      text-align: center;
+      margin-bottom: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      margin: 16px auto 26px;
-      max-width: 320px;
+      gap: 15px;
     }
-    .project-divider-line {
-      flex: 1;
-      height: 1px;
-      background: var(--info-section-border);
-    }
-    .project-divider-lotus {
-      font-size: 1.3rem;
-      opacity: 0.85;
+    .blog-header-line { width: 40px; height: 1px; background: #ccc; }
+    .blog-header h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--blog-text-title);
+      letter-spacing: 1px;
     }
 
-    .project-sub-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.7rem;
-      color: var(--info-section-subtitle);
-      font-weight: 600;
-      margin-bottom: 24px;
-      transition: color 0.6s ease;
-      text-transform: capitalize;
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .project-desc-card {
-      background: var(--info-section-card);
+    .blog-card {
+      background: var(--blog-card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
       border: 1px solid var(--info-section-border);
-      border-radius: 28px;
-      padding: 42px 36px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-      color: var(--info-section-text);
-      font-size: 1.1rem;
-      line-height: 1.9;
-      transition: background 0.6s ease, border-color 0.6s ease, color 0.6s ease;
     }
-    .project-desc-card p + p {
-      margin-top: 18px;
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    }
+
+    .blog-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--palette-neon-mint);
+    }
+
+    .blog-date-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--palette-ocean-blue);
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .blog-date-day { font-size: 1.1rem; font-weight: 800; line-height: 1; }
+    .blog-date-month { font-size: 0.7rem; font-weight: 500; }
+
+    .blog-card-content {
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .blog-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blog-text-title);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .blog-card-excerpt {
+      font-size: 0.95rem;
+      color: var(--blog-text-desc);
+      line-height: 1.6;
     }
 
     /* ========================================================
-       8. CHÂN TRANG (FOOTER)
+       7. CHÂN TRANG (FOOTER)
        ======================================================== */
     .footer {
-      position: relative;
-      z-index: 30;
-      background: var(--header-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid var(--header-border);
-      padding: 20px 32px;
+      background: var(--header-bg); border-top: 1px solid var(--header-border);
+      padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+    .copyright { font-size: 0.92rem; color: var(--header-text); font-weight: 500; }
+    .audio-footer-btn {
+      display: inline-flex; align-items: center; gap: 10px; background: var(--btn-bg); color: var(--btn-text);
+      border: 1px solid var(--header-border); padding: 10px 22px; border-radius: 30px; cursor: pointer; font-size: 0.92rem; font-weight: 600;
+    }
+
+    /* ========================================================
+       8. FULL-PAGE MODAL ĐỌC BÀI VIẾT (GIỐNG ẢNH 3)
+       ======================================================== */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
+      z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+
+    /* Modal riêng cho bài viết (To hơn, giống trang web thật) */
+    #articleReadModal .modal-card {
+      max-width: 1200px;
+      width: 100%;
+      height: 90vh;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    body.theme-night #articleReadModal .modal-card { background: #0a1924; border: 1px solid #1a3c54;}
+
+    /* Top bar của Modal bài viết */
+    .article-modal-top {
+      height: 60px;
+      background: #f1f5f9;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-      transition: var(--transition-smooth);
+      padding: 0 20px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    body.theme-night .article-modal-top { background: #061118; border-color: #1a3c54;}
+    .article-modal-brand { font-weight: 700; color: #0d3859; display: flex; align-items: center; gap: 8px;}
+    body.theme-night .article-modal-brand { color: #41ffd2; }
+    
+    .btn-close-article {
+      background: #ff4757; color: white; border: none; width: 32px; height: 32px; border-radius: 50%;
+      cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;
     }
 
-    .copyright {
-      font-size: 0.92rem;
-      color: var(--header-text);
-      font-weight: 500;
-    }
-
-    /* Nút Âm Thanh ở Footer */
-    .audio-footer-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--btn-bg);
-      color: var(--btn-text);
-      border: 1px solid var(--header-border);
-      padding: 10px 22px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 0.92rem;
-      font-weight: 600;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-      transition: var(--transition-smooth);
-    }
-    .audio-footer-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(65, 255, 210, 0.35);
-    }
-    .audio-footer-btn.playing {
-      box-shadow: 0 0 16px var(--palette-neon-mint);
-      border-color: var(--palette-neon-mint);
-    }
-    .audio-footer-btn svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
-    }
-
-    /* ========================================================
-       9. POPUPS & MODALS
-       ======================================================== */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(5, 26, 17, 0.72);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 2000;
+    /* Layout chính: Trái đọc bài - Phải Sidebar */
+    .article-layout {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.35s ease;
-    }
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-card {
-      background: #fdfefe;
-      width: 100%;
-      max-width: 620px;
-      border-radius: 28px;
-      padding: 40px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-      position: relative;
-      border: 2px solid rgba(165, 201, 141, 0.5);
-      transform: scale(0.9) translateY(20px);
-      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-      max-height: 85vh;
+      flex: 1;
       overflow-y: auto;
     }
-    .modal-overlay.active .modal-card {
-      transform: scale(1) translateY(0);
+    
+    .article-main-content {
+      flex: 3;
+      padding: 40px;
+      overflow-y: auto;
     }
+    .article-sidebar {
+      flex: 1;
+      min-width: 300px;
+      background: #fafafa;
+      padding: 40px 24px;
+      border-left: 1px solid #eee;
+      overflow-y: auto;
+    }
+    body.theme-night .article-sidebar { background: #040c12; border-color: #1a3c54; }
 
-    .modal-close-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(6, 57, 29, 0.08);
-      color: #06391d;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: var(--transition-smooth);
-    }
-    .modal-close-btn:hover {
-      background: #06391d;
-      color: #fff;
-      transform: rotate(90deg);
-    }
+    /* Chi tiết bài viết */
+    .art-category { font-size: 0.85rem; font-weight: 700; color: #7f8c8d; text-transform: uppercase; text-align: center; margin-bottom: 15px; letter-spacing: 2px;}
+    .art-title { font-size: 2.2rem; font-weight: 700; color: #111; text-align: center; margin-bottom: 15px; line-height: 1.3;}
+    body.theme-night .art-title { color: #fff; }
+    .art-meta { font-size: 0.85rem; color: #95a5a6; text-align: center; margin-bottom: 30px;}
+    .art-cover { width: 100%; max-height: 450px; object-fit: cover; border-radius: 12px; margin-bottom: 30px;}
+    .art-body { font-size: 1.15rem; line-height: 1.8; color: #333; }
+    body.theme-night .art-body { color: #ddd; }
+    .art-body p { margin-bottom: 20px; }
 
-    .modal-badge {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 14px;
-      background: rgba(165, 201, 141, 0.3);
-      color: #06391d;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
+    /* Sidebar list */
+    .sidebar-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; text-transform: uppercase; border-bottom: 2px solid #ddd; padding-bottom: 10px; color: #111;}
+    body.theme-night .sidebar-title { color: #fff; border-color: #333;}
+    .side-post { display: flex; gap: 15px; margin-bottom: 20px; cursor: pointer; }
+    .side-post:hover .side-post-title { color: #356d94; }
+    .side-date-box { border: 1px solid #2c3e50; padding: 5px; text-align: center; min-width: 45px; height: 50px; display: flex; flex-direction: column; justify-content: center; font-weight: bold; border-radius: 4px; color:#2c3e50;}
+    body.theme-night .side-date-box { border-color: #66c8d7; color: #66c8d7;}
+    .side-date-box span { font-size: 0.7rem; font-weight: normal;}
+    .side-post-title { font-size: 0.95rem; line-height: 1.4; color: #222; transition: 0.2s;}
+    body.theme-night .side-post-title { color: #ccc; }
 
-    .modal-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: #06391d;
-      margin-bottom: 18px;
+    /* Modal nhỏ (Liên hệ) */
+    .modal-card-small {
+      background: #fdfefe; width: 100%; max-width: 500px; border-radius: 20px; padding: 30px;
+      position: relative; border: 2px solid rgba(165, 201, 141, 0.5);
     }
+    body.theme-night .modal-card-small { background: #0a2335; border-color: rgba(65, 255, 210, 0.3);}
+    .modal-close-small { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #555;}
+    body.theme-night .modal-close-small { color: #ccc;}
 
-    .modal-body {
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: #27472c;
-      margin-bottom: 28px;
+    @media (max-width: 900px) {
+      .article-layout { flex-direction: column; }
+      .article-sidebar { border-left: none; border-top: 1px solid #eee; }
     }
-
-    .timeline {
-      position: relative;
-      padding-left: 24px;
-      border-left: 2px solid #a5c98d;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      margin-top: 20px;
-    }
-    .timeline-item {
-      position: relative;
-      cursor: pointer;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -31px;
-      top: 4px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--palette-neon-mint);
-      border: 3px solid #06391d;
-    }
-    .timeline-date {
-      font-size: 0.8rem;
-      color: #467140;
-      font-weight: 600;
-    }
-    .timeline-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #06391d;
-      margin: 4px 0;
-    }
-    .timeline-desc {
-      font-size: 0.92rem;
-      color: #3b5f3a;
-    }
-
-    .contact-popup-links {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 20px;
-    }
-    .social-card {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 18px;
-      background: #f4fbf0;
-      border-radius: 16px;
-      text-decoration: none;
-      color: #06391d;
-      font-weight: 600;
-      border: 1px solid rgba(165, 201, 141, 0.4);
-      transition: var(--transition-smooth);
-    }
-    .social-card:hover {
-      background: #06391d;
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
     @media (max-width: 768px) {
       .header { padding: 0 16px; }
       .brand-title { font-size: 1.15rem; }
       .nav-btn span { display: none; }
-      .footer { flex-direction: column; text-align: center; }
-      .modal-card { padding: 28px 20px; }
-      .contact-popup-links { grid-template-columns: 1fr; }
-      .project-info-section { padding: 60px 18px; }
-      .project-desc-card { padding: 26px 20px; }
-      .pinwheel-hotspot {
-        top: 25%;
-        left: 24%;
-        width: 95px;
-        height: 95px;
-      }
-      .theme-toggle-header-btn span {
-        display: none; /* Thu gọn chữ trên màn hình điện thoại */
-      }
-      .theme-toggle-header-btn {
-        padding: 8px 12px;
-      }
+      .theme-toggle-header-btn span { display: none; }
+      .hero-title { font-size: 2.5rem; }
     }
   </style>
 </head>
 <body class="theme-day">
 
   <!-- ========================================================
-       THÀNH PHẦN 1: THANH ĐIỀU HƯỚNG & TIỆN ÍCH (HEADER)
+       1. THANH ĐIỀU HƯỚNG
        ======================================================== -->
   <header class="header">
-    <div class="brand-container">
-      
-      <!-- [VỊ TRÍ CHÈN LOGO CỦA BẠN]: Thay thẻ SVG bằng thẻ <img src="logo.png"> -->
-      <div class="logo-slot" title="Logo Dự Án">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"/>
-        </svg>
+    <a href="#" class="brand-container">
+      <div class="logo-slot">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"/></svg>
       </div>
-
       <h2 class="brand-title">Khu Vườn Cảm Xúc</h2>
-    </div>
+    </a>
 
     <div class="nav-actions">
       <ul class="nav-links">
         <li>
-          <button class="nav-btn" onclick="scrollToProject()">
+          <button class="nav-btn" onclick="scrollToElement('projectInfoSection')">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
             <span>Về Dự Án</span>
           </button>
         </li>
         <li>
-          <button class="nav-btn" onclick="openArticlesModal()">
+          <!-- Đổi chức năng: Cuộn xuống mục Bài Viết thay vì mở popup -->
+          <button class="nav-btn" onclick="scrollToElement('blogSection')">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
             <span>Bài Viết</span>
           </button>
         </li>
         <li>
-          <button class="nav-btn" onclick="openContactModal()">
+          <button class="nav-btn" onclick="openModal('contactModal')">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             <span>Liên Hệ</span>
           </button>
         </li>
       </ul>
-
-      <!-- NÚT CHUYỂN ĐỔI CHẾ ĐỘ SÁNG / TỐI (ĐÃ CHUYỂN LÊN ĐÂY) -->
-      <button class="theme-toggle-header-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Chuyển chế độ Sáng / Tối">
-        <svg id="themeIcon" viewBox="0 0 24 24">
-          <path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 10.6-10.7A8 8 0 0 1 12.3 2z"/>
-        </svg>
+      <button class="theme-toggle-header-btn" onclick="toggleTheme()">
+        <svg viewBox="0 0 24 24"><path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 10.6-10.7A8 8 0 0 1 12.3 2z"/></svg>
         <span id="themeBtnText">Chế độ: Ban Đêm</span>
       </button>
     </div>
   </header>
 
   <!-- ========================================================
-       THÀNH PHẦN 2 & 3: KHÔNG GIAN NỀN TRANG CHÍNH
-       Mép trên trùng khớp 100% với mép dưới thanh menu
+       2. HERO SECTION & NỀN TRANG CHÍNH
        ======================================================== -->
-  <main class="hero-stage-container" id="heroStage">
-
-    <!-- ========================================================
-         [VỊ TRÍ 2: VIDEO NỀN TRANG CHÍNH]
-         Tối ưu hóa đa nền tảng: Laptop, Máy tính bàn, Điện thoại
-         ======================================================== -->
+  <main class="hero-stage-container">
+    
     <div class="video-background-layer">
-      <!-- 1. Video nền Ban Ngày -->
-      <video class="main-bg-video video-day" id="bgVideoDay" autoplay loop muted playsinline preload="auto">
-        <source src="day2-converted.mp4" type="video/mp4">
-      </video>
-
-      <!-- 2. Video nền Ban Đêm -->
-      <video class="main-bg-video video-night" id="bgVideoNight" autoplay loop muted playsinline preload="auto">
-        <source src="night2-converted.mp4" type="video/mp4">
-      </video>
+      <video class="main-bg-video video-day" id="bgVideoDay" autoplay loop muted playsinline><source src="day2-converted.mp4" type="video/mp4"></video>
+      <video class="main-bg-video video-night" id="bgVideoNight" autoplay loop muted playsinline><source src="night2-converted.mp4" type="video/mp4"></video>
     </div>
     
-    <!-- Tiêu đề và định danh phía trên -->
     <section class="hero-section">
-      <div class="hero-title-badge">
-        <h1 class="hero-title">Khu Vườn Cảm Xúc</h1>
-      </div>
+      <!-- TIÊU ĐỀ: Ẩn chữ X vào ban ngày để hở chong chóng -->
+      <h1 class="hero-title">Khu Vườn Cảm<span class="missing-x">X</span>úc</h1>
       <p class="hero-tagline">Mỗi vòng quay là một rung động, chạm vào chong chóng để lắng nghe chính mình.</p>
     </section>
 
-    <!-- Canvas đom đóm dạ quang lơ lửng ban đêm -->
     <canvas id="atmosphereCanvas"></canvas>
 
-    <!-- ========================================================
-         [VỊ TRÍ 3: CHONG CHÓNG CẢM XÚC Ở GÓC BÊN TRÁI]
-         - THAY LINK TRANG CON CỦA BẠN TẠI ĐÂY: href="trang-con-chong-chong.html"
-         ======================================================== -->
-    <a href="https://voduynguyenhayha-jpg.github.io/banhxecamxuc/" 
-       class="pinwheel-hotspot" 
-       id="pinwheelHotspot" 
-       title="Nhấp để khám phá Chong chóng cảm xúc">
-      
-      <!-- Vầng hào quang phát quang rực rỡ khi kê chuột -->
+    <!-- CHONG CHÓNG CẢM XÚC GÓC TRÁI -->
+    <a href="trang-con-chong-chong.html" class="pinwheel-hotspot" title="Nhấp để khám phá Chong chóng cảm xúc">
       <div class="pinwheel-glow-aura"></div>
       <div class="pinwheel-pulse-ring"></div>
-
-      <!-- Nhãn chữ "chong chóng cảm xúc" hiện ra khi di chuột -->
       <div class="pinwheel-tooltip">
-        <span style="font-size: 1.2rem;">🎡</span>
-        <span>chong chóng cảm xúc</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-8.29-1.42 1.42L16.86 11H5v2z"/></svg>
+        <span>🎡 chong chóng cảm xúc</span>
       </div>
     </a>
   </main>
 
   <!-- ========================================================
-       THÀNH PHẦN 4: NỘI DUNG DỰ ÁN (BÊN DƯỚI)
+       3. NỘI DUNG DỰ ÁN
        ======================================================== -->
   <section class="project-info-section" id="projectInfoSection">
     <div class="project-info-container">
       <span class="project-badge-pill">Thấu Hiểu Nội Tâm</span>
       <h2 class="project-main-title">Khu vườn cảm xúc</h2>
-      
-      <div class="project-divider">
-        <span class="project-divider-line"></span>
-        <span class="project-divider-lotus">🪷</span>
-        <span class="project-divider-line"></span>
-      </div>
-
+      <div class="project-divider"><span class="project-divider-line"></span><span class="project-divider-lotus">🪷</span><span class="project-divider-line"></span></div>
       <h3 class="project-sub-title">mục đích dự án</h3>
-
       <div class="project-desc-card">
-        <p>
-          <strong>Khu Vườn Cảm Xúc</strong> được kiến tạo như một chốn dừng chân bình yên, nơi bạn có thể chậm rãi bước vào thế giới nội tâm và lắng nghe những thanh âm chân thật nhất từ tâm hồn mình giữa guồng quay hối hả thường nhật.
-        </p>
-        <p>
-          Hình ảnh chiếc chong chóng quay tròn trong gió đại diện cho những luồng cảm xúc tự nhiên: khi nhẹ nhàng như gió thoảng, khi dạt dào rộn rã. Mục đích của dự án là giúp bạn <strong>nhận diện</strong>, <strong>thấu hiểu</strong>, <strong>bao dung</strong> và chuyển hóa mọi xúc cảm thành nguồn năng lượng nuôi dưỡng bản thân an yên, vững vàng.
-        </p>
+        <p><strong>Khu Vườn Cảm Xúc</strong> được kiến tạo như một chốn dừng chân bình yên, nơi bạn có thể chậm rãi bước vào thế giới nội tâm và lắng nghe những thanh âm chân thật nhất từ tâm hồn mình giữa guồng quay hối hả thường nhật.</p>
+        <p>Hình ảnh chiếc chong chóng quay tròn trong gió đại diện cho những luồng cảm xúc tự nhiên: khi nhẹ nhàng như gió thoảng, khi dạt dào rộn rã. Mục đích của dự án là giúp bạn nhận diện, thấu hiểu, bao dung và chuyển hóa mọi xúc cảm thành nguồn năng lượng nuôi dưỡng bản thân an yên, vững vàng.</p>
       </div>
     </div>
   </section>
 
   <!-- ========================================================
-       THÀNH PHẦN 5: CHÂN TRANG (FOOTER)
+       4. KHU VỰC BÀI VIẾT (PSY. BLOGS)
        ======================================================== -->
-  <footer class="footer">
-    <div class="copyright">
-      © 2026 Khu Vườn Cảm Xúc • Nuôi dưỡng tâm hồn qua từng nhịp quay
+  <section class="blog-section" id="blogSection">
+    <div class="blog-header">
+      <div class="blog-header-line"></div>
+      <h2>PSY. BLOGS</h2>
+      <div class="blog-header-line"></div>
     </div>
 
-    <!-- NÚT BẬT / TẮT ÂM THANH THIÊN NHIÊN (ĐÃ CHUYỂN XUỐNG ĐÂY) -->
-    <button class="audio-footer-btn" id="audioToggleBtn" onclick="toggleAudio()" title="Bật/Tắt Nhạc Thiên Nhiên">
-      <svg id="audioIcon" viewBox="0 0 24 24">
-        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-      </svg>
+    <div class="blog-grid" id="blogGrid">
+      <!-- Dữ liệu bài viết sẽ được JS render vào đây -->
+    </div>
+  </section>
+
+  <!-- ========================================================
+       5. CHÂN TRANG
+       ======================================================== -->
+  <footer class="footer">
+    <div class="copyright">© 2026 Khu Vườn Cảm Xúc • Nuôi dưỡng tâm hồn qua từng nhịp quay</div>
+    <button class="audio-footer-btn" id="audioToggleBtn" onclick="toggleAudio()">
+      <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
       <span id="audioBtnText">Âm thanh: Tắt</span>
     </button>
   </footer>
 
   <!-- ========================================================
-       CÁC POPUP MODAL
+       6. MODALS BẬT LÊN
        ======================================================== -->
-  <!-- MODAL BÀI VIẾT (TIMELINE) -->
-  <div class="modal-overlay" id="articlesModal" onclick="closeModalOnBackdrop(event, 'articlesModal')">
+       
+  <!-- MODAL ĐỌC BÀI VIẾT FULL TOÀN MÀN HÌNH (Giống ảnh 3) -->
+  <div class="modal-overlay" id="articleReadModal">
     <div class="modal-card">
-      <button class="modal-close-btn" onclick="closeModal('articlesModal')">✕</button>
-      <span class="modal-badge">Mục lục</span>
-      <h3 class="modal-title">Dòng Thời Gian Bài Viết</h3>
-      <div class="modal-body">
-        <p>Các chủ đề cảm xúc được sắp xếp theo trình tự chiêm nghiệm:</p>
-        <div class="timeline" id="timelineList"></div>
+      <div class="article-modal-top">
+        <div class="article-modal-brand">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          Psyme
+        </div>
+        <button class="btn-close-article" onclick="closeModal('articleReadModal')">X</button>
+      </div>
+
+      <div class="article-layout">
+        <!-- Khu vực đọc chữ bên trái -->
+        <div class="article-main-content">
+          <div class="art-category" id="artCategory">BLOG</div>
+          <h1 class="art-title" id="artTitle">Làm thế nào để tăng cường ‘trí thông minh cơ thể’?</h1>
+          <div class="art-meta">POSTED ON <span id="artDate">26/06/2025</span></div>
+          
+          <img src="" alt="Cover" class="art-cover" id="artImage">
+          
+          <div class="art-body" id="artBody">
+            <!-- Nội dung chi tiết bài viết sẽ được chèn vào đây -->
+          </div>
+        </div>
+
+        <!-- Sidebar bài viết mới nhất bên phải -->
+        <div class="article-sidebar">
+          <div class="sidebar-title">BÀI VIẾT MỚI NHẤT</div>
+          <div id="sidebarList">
+            <!-- Render danh sách sidebar -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- MODAL LIÊN HỆ -->
   <div class="modal-overlay" id="contactModal" onclick="closeModalOnBackdrop(event, 'contactModal')">
-    <div class="modal-card">
-      <button class="modal-close-btn" onclick="closeModal('contactModal')">✕</button>
-      <span class="modal-badge">Kết nối</span>
-      <h3 class="modal-title">Gửi Lời Nhắn Đến Khu Vườn</h3>
-      <div class="modal-body">
-        <p>Chúng mình luôn sẵn lòng lắng nghe những chia sẻ, câu chuyện và cảm xúc của bạn:</p>
-        <div class="contact-popup-links">
-          <a href="https://www.facebook.com/share/1D5tgXDLmg" target="_blank" class="social-card">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-            Facebook Page
-          </a>
-          <a href="mailto:contact@khuvuoncamxuc.vn" class="social-card">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            Email Thư Từ
-          </a>
-        </div>
+    <div class="modal-card-small">
+      <button class="modal-close-small" onclick="closeModal('contactModal')">✕</button>
+      <h3 style="margin-bottom:15px; color:var(--hero-title-color);">Gửi Lời Nhắn</h3>
+      <p style="color:var(--hero-sub-color); margin-bottom:20px;">Chúng mình luôn sẵn lòng lắng nghe bạn:</p>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <a href="https://facebook.com" target="_blank" style="padding:15px; background:var(--palette-ocean-blue); color:white; text-decoration:none; border-radius:8px; text-align:center; font-weight:bold;">Facebook Page</a>
+        <a href="mailto:email@domain.com" style="padding:15px; background:#467140; color:white; text-decoration:none; border-radius:8px; text-align:center; font-weight:bold;">Gửi Email</a>
       </div>
     </div>
   </div>
 
-  <!-- Âm thanh thiên nhiên -->
   <audio id="bgNatureAudio" loop preload="none">
     <source src="https://assets.mixkit.co/active_storage/sfx/2432/2432-preview.mp3" type="audio/mpeg">
   </audio>
 
   <!-- ========================================================
-       10. JAVASCRIPT ĐIỀU KHIỂN TOÀN TRANG
+       7. JAVASCRIPT
        ======================================================== -->
   <script>
-    /* ========================================================
-       A. TỰ ĐỘNG KÍCH HOẠT VÀ TỐI ƯU VIDEO CHO LAPTOP / PC / MOBILE
-       ======================================================== */
-    const vidDay = document.getElementById('bgVideoDay');
-    const vidNight = document.getElementById('bgVideoNight');
-
-    function setupVideoElement(vid) {
-      if (!vid) return;
-
-      // Ép chế độ Muted để vượt qua chính sách Autoplay của Chrome/Edge trên PC
-      vid.muted = true;
-      vid.defaultMuted = true;
-
-      const activateAndPlay = () => {
-        vid.classList.add('active');
-        // Chỉ chạy play video khi đang ở đúng Theme tương ứng
-        if ((currentTheme === 'day' && vid === vidDay) || (currentTheme === 'night' && vid === vidNight)) {
-          const playPromise = vid.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {
-              // Dự phòng tự phát
-            });
-          }
-        }
-      };
-
-      // Nếu video đã có sẵn dữ liệu từ trước
-      if (vid.readyState >= 2) {
-        activateAndPlay();
-      } else {
-        vid.addEventListener('loadeddata', activateAndPlay);
-        vid.addEventListener('canplay', activateAndPlay);
-        vid.addEventListener('loadedmetadata', activateAndPlay);
-      }
-
-      vid.addEventListener('error', () => {
-        vid.classList.remove('active'); // Tự động dùng ảnh tĩnh nếu không có file video
-      });
-    }
-
-    function checkBackgroundVideos() {
-      setupVideoElement(vidDay);
-      setupVideoElement(vidNight);
-      syncVideosWithTheme();
-    }
-
-    // Đồng bộ video theo theme để tiết kiệm tài nguyên CPU của máy tính
-    function syncVideosWithTheme() {
-      if (currentTheme === 'day') {
-        if (vidDay) {
-          vidDay.currentTime = vidDay.currentTime || 0;
-          vidDay.play().catch(() => {});
-        }
-        if (vidNight) vidNight.pause();
-      } else {
-        if (vidNight) {
-          vidNight.currentTime = vidNight.currentTime || 0;
-          vidNight.play().catch(() => {});
-        }
-        if (vidDay) vidDay.pause();
-      }
-    }
-
-    /* ========================================================
-       B. DỮ LIỆU CÁC BÀI VIẾT (TIMELINE)
-       ======================================================== */
-    const articlesData = [
+    /* ----------------------------------------------------
+       DỮ LIỆU BÀI VIẾT (PSY. BLOGS)
+       ---------------------------------------------------- */
+    const blogsData = [
       {
-        title: "Khái niệm cảm xúc",
-        tag: "Cơ bản",
-        summary: "Cảm xúc là phản ứng tự nhiên của tâm trí và cơ thể trước các tình huống cuộc sống.",
-        link: "trang-con-1.html"
+        id: 1,
+        dateDay: "26", dateMonth: "Th6", year: "2025",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop",
+        title: "Khi mắt nhìn mà não không thấy: Khám phá hiện tượng 'mù tạm thời'",
+        excerpt: "Bạn có bao giờ tìm kiếm chiếc điện thoại trong khi vẫn đang cầm nó trên tay?",
+        content: `
+          <p>Hiện tượng "mù do không chú ý" (Inattentional blindness) xảy ra khi chúng ta quá tập trung vào một nhiệm vụ hoặc một vật thể cụ thể đến mức não bộ hoàn toàn bỏ qua các yếu tố rõ ràng khác xuất hiện ngay trong tầm nhìn.</p>
+          <p>Điều này chứng minh rằng "nhìn thấy" không chỉ là chức năng của đôi mắt, mà còn phụ thuộc rất lớn vào sự phân bổ tài nguyên chú ý của não bộ. Để cải thiện, hãy thử thực hành chánh niệm và quan sát không phán xét môi trường xung quanh trong vài phút mỗi ngày.</p>
+        `
       },
       {
-        title: "Ý nghĩa của cảm xúc",
-        tag: "Nhận thức",
-        summary: "Cầu nối bảo vệ ta khỏi hiểm nguy và mở lối cho sự kết nối chân thật.",
-        link: "trang-con-2.html"
+        id: 2,
+        dateDay: "26", dateMonth: "Th6", year: "2025",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop",
+        title: "Làm thế nào để tăng cường ‘trí thông minh cơ thể’?",
+        excerpt: "Bạn có bao giờ nghe nói về trí thông minh cơ thể chưa? Đây không phải là...",
+        content: `
+          <p>Trí thông minh cơ thể (Somatic Intelligence) là khả năng lắng nghe, giải mã và phản hồi lại các tín hiệu vi tế mà cơ thể gửi đến trước khi tâm trí nhận thức được cảm xúc.</p>
+          <p>Ví dụ: Cảm giác quặn thắt ở dạ dày trước một quyết định lớn, hay sự căng cứng ở vai khi gặp áp lực. Bằng cách kết nối lại với cơ thể thông qua các bài tập quét cơ thể (body scan) hoặc yoga, bạn có thể giải phóng những cảm xúc bị mắc kẹt và đưa ra những quyết định sáng suốt hơn.</p>
+        `
       },
       {
-        title: "Vai trò cảm xúc",
-        tag: "Hành động",
-        summary: "Động lực định hình quyết định và khả năng thấu cảm giữa người với người.",
-        link: "trang-con-3.html"
+        id: 3,
+        dateDay: "26", dateMonth: "Th6", year: "2025",
+        image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=600&auto=format&fit=crop",
+        title: "Hành trình khám phá bản thân: Từ ý thức đến tự ý thức",
+        excerpt: "Bạn có bao giờ thức dậy vào một buổi sáng và tự hỏi: 'Mình là ai?'",
+        content: `
+          <p>Tự ý thức (Self-awareness) là cốt lõi của trí tuệ cảm xúc. Nó đòi hỏi chúng ta phải lùi lại một bước để quan sát chính những suy nghĩ, cảm xúc và hành động của mình như một người đứng xem.</p>
+          <p>Hãy bắt đầu bằng việc viết nhật ký cảm xúc hàng ngày. Ghi lại không chỉ những gì đã xảy ra, mà còn là bạn đã cảm thấy thế nào và tại sao bạn lại phản ứng như vậy. Theo thời gian, bạn sẽ nhận ra những mô thức hành vi lặp lại của chính mình.</p>
+        `
       },
       {
-        title: "Bánh xe cảm xúc",
-        tag: "Thực hành",
-        summary: "Nhận biết và gọi tên chính xác từng trạng thái rung động bên trong.",
-        link: "https://voduynguyenhayha-jpg.github.io/banhxecamxuc/"
-      },
-      {
-        title: "Chong chóng cảm xúc",
-        tag: "Khám phá",
-        summary: "Vòng quay nhiệm màu nuôi dưỡng và chuyển hóa những áp lực thành bình an.",
-        link: "trang-con-chong-chong.html"
+        id: 4,
+        dateDay: "06", dateMonth: "Th4", year: "2025",
+        image: "https://images.unsplash.com/photo-1493836512294-502baa1986e2?q=80&w=600&auto=format&fit=crop",
+        title: "Tâm lý học về lo âu là gì? Hiểu để làm chủ cảm xúc",
+        excerpt: "Bạn đã bao giờ cảm thấy tim đập nhanh, khó thở, hoặc lo lắng quá mức?",
+        content: `
+          <p>Lo âu vốn dĩ là cơ chế sinh tồn tự nhiên của con người nhằm đối phó với các mối đe dọa. Tuy nhiên, trong xã hội hiện đại, não bộ của chúng ta thường "báo động giả" trước những căng thẳng phi vật lý như deadline, mạng xã hội hay kỳ vọng từ người khác.</p>
+          <p>Việc làm chủ lo âu không bắt đầu bằng việc chối bỏ nó, mà bằng việc ôm ấp nó. Hãy sử dụng kỹ thuật hít thở 4-7-8 để đưa hệ thần kinh từ trạng thái "Chiến đấu hay Bỏ chạy" về trạng thái "Nghỉ ngơi và Tiêu hóa".</p>
+        `
       }
     ];
 
-    function renderTimeline() {
-      const list = document.getElementById('timelineList');
-      list.innerHTML = '';
-      articlesData.forEach((item, idx) => {
-        const el = document.createElement('div');
-        el.className = 'timeline-item';
-        el.innerHTML = `
-          <div class="timeline-date">Bài ${idx + 1} • Chủ đề: ${item.tag}</div>
-          <div class="timeline-title">${item.title}</div>
-          <div class="timeline-desc">${item.summary}</div>
+    // Render danh sách Card ngoài trang chủ
+    function renderBlogGrid() {
+      const grid = document.getElementById('blogGrid');
+      grid.innerHTML = '';
+      blogsData.forEach(blog => {
+        const card = document.createElement('div');
+        card.className = 'blog-card';
+        card.onclick = () => openArticle(blog.id);
+        card.innerHTML = `
+          <div class="blog-date-badge">
+            <span class="blog-date-day">${blog.dateDay}</span>
+            <span class="blog-date-month">${blog.dateMonth}</span>
+          </div>
+          <img src="${blog.image}" alt="Cover" class="blog-card-img">
+          <div class="blog-card-content">
+            <h3 class="blog-card-title">${blog.title}</h3>
+            <p class="blog-card-excerpt">${blog.excerpt}</p>
+          </div>
         `;
-        el.onclick = () => { window.location.href = item.link; };
-        list.appendChild(el);
+        grid.appendChild(card);
       });
     }
 
-    /* ========================================================
-       C. NÚT VỀ DỰ ÁN: TỰ ĐỘNG CUỘN XUỐNG BÊN DƯỚI
-       ======================================================== */
-    function scrollToProject() {
-      const section = document.getElementById('projectInfoSection');
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    // Mở bài viết chi tiết bên trong Modal
+    function openArticle(id) {
+      const blog = blogsData.find(b => b.id === id);
+      if(!blog) return;
+
+      document.getElementById('artTitle').textContent = blog.title;
+      document.getElementById('artDate').textContent = `${blog.dateDay}/${blog.dateMonth.replace('Th','')}/${blog.year}`;
+      document.getElementById('artImage').src = blog.image;
+      document.getElementById('artBody').innerHTML = blog.content;
+
+      // Render Sidebar nhỏ bên cạnh
+      const sidebar = document.getElementById('sidebarList');
+      sidebar.innerHTML = '';
+      blogsData.forEach(b => {
+        const sideItem = document.createElement('div');
+        sideItem.className = 'side-post';
+        sideItem.onclick = () => openArticle(b.id);
+        sideItem.innerHTML = `
+          <div class="side-date-box">
+            ${b.dateDay} <span>${b.dateMonth}</span>
+          </div>
+          <div class="side-post-title">${b.title}</div>
+        `;
+        sidebar.appendChild(sideItem);
+      });
+
+      openModal('articleReadModal');
     }
 
-    /* ========================================================
-       D. ĐIỀU KHIỂN CHẾ ĐỘ BAN NGÀY & BAN ĐÊM (TRÊN HEADER)
-       ======================================================== */
+    /* ----------------------------------------------------
+       CÁC HÀM TIỆN ÍCH CHUNG
+       ---------------------------------------------------- */
+    function scrollToElement(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    function closeModalOnBackdrop(e, id) { if (e.target.id === id) closeModal(id); }
+
     let currentTheme = 'day';
-
     function toggleTheme() {
-      const body = document.body;
-      const themeBtnText = document.getElementById('themeBtnText');
-      const themeIcon = document.getElementById('themeIcon');
-
+      currentTheme = currentTheme === 'day' ? 'night' : 'day';
+      document.body.className = `theme-${currentTheme}`;
+      document.getElementById('themeBtnText').textContent = currentTheme === 'day' ? "Chế độ: Ban Đêm" : "Chế độ: Ban Ngày";
+      
+      const vidDay = document.getElementById('bgVideoDay');
+      const vidNight = document.getElementById('bgVideoNight');
       if (currentTheme === 'day') {
-        currentTheme = 'night';
-        body.className = 'theme-night';
-        themeBtnText.textContent = "Chế độ: Ban Ngày";
-        themeIcon.innerHTML = `<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"/>`;
+        if(vidDay) vidDay.play().catch(()=>{});
+        if(vidNight) vidNight.pause();
       } else {
-        currentTheme = 'day';
-        body.className = 'theme-day';
-        themeBtnText.textContent = "Chế độ: Ban Đêm";
-        themeIcon.innerHTML = `<path d="M12.3 2a10 10 0 0 0-1.9 20 10 10 0 0 0 10.6-10.7A8 8 0 0 1 12.3 2z"/>`;
-      }
-
-      syncVideosWithTheme();
-    }
-
-    /* ========================================================
-       E. POPUP MODALS
-       ======================================================== */
-    function openArticlesModal() {
-      document.getElementById('articlesModal').classList.add('active');
-    }
-    function openContactModal() {
-      document.getElementById('contactModal').classList.add('active');
-    }
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('active');
-    }
-    function closeModalOnBackdrop(e, id) {
-      if (e.target.id === id) closeModal(id);
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-      }
-    });
-
-    /* ========================================================
-       F. ÂM THANH THIÊN NHIÊN (Ở FOOTER)
-       ======================================================== */
-    const audioEl = document.getElementById('bgNatureAudio');
-    const audioBtn = document.getElementById('audioToggleBtn');
-    const audioBtnText = document.getElementById('audioBtnText');
-    let isPlaying = false;
-    let audioCtx = null;
-    let natureInterval = null;
-
-    function playGentleChirp() {
-      try {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        const startFreq = 2200 + Math.random() * 800;
-        osc.frequency.setValueAtTime(startFreq, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(startFreq + 600, audioCtx.currentTime + 0.1);
-        osc.frequency.exponentialRampToValueAtTime(startFreq - 200, audioCtx.currentTime + 0.2);
-
-        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.04, audioCtx.currentTime + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.22);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.25);
-      } catch (err) {}
-    }
-
-    function toggleAudio() {
-      if (!isPlaying) {
-        audioEl.play().then(() => {
-          isPlaying = true;
-          audioBtn.classList.add('playing');
-          if (audioBtnText) audioBtnText.textContent = "Âm thanh: Đang bật";
-        }).catch(() => {
-          isPlaying = true;
-          audioBtn.classList.add('playing');
-          if (audioBtnText) audioBtnText.textContent = "Âm thanh: Đang bật";
-          playGentleChirp();
-          natureInterval = setInterval(() => {
-            if (Math.random() > 0.4) playGentleChirp();
-          }, 3500);
-        });
-      } else {
-        audioEl.pause();
-        clearInterval(natureInterval);
-        isPlaying = false;
-        audioBtn.classList.remove('playing');
-        if (audioBtnText) audioBtnText.textContent = "Âm thanh: Tắt";
+        if(vidNight) vidNight.play().catch(()=>{});
+        if(vidDay) vidDay.pause();
       }
     }
 
-    /* ========================================================
-       G. CANVAS ĐOM ĐÓM VÀNG BAN ĐÊM
-       ======================================================== */
-    const canvas = document.getElementById('atmosphereCanvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let particles = [];
-
-    function resizeCanvas() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = canvas.parentElement.clientHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class FireflyParticle {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = height * 0.35 + Math.random() * (height * 0.65);
-        this.size = Math.random() * 3.2 + 1.2;
-        this.speedX = (Math.random() - 0.5) * 0.6;
-        this.speedY = -Math.random() * 0.7 - 0.15;
-        this.alpha = Math.random() * 0.8 + 0.2;
-        this.fade = (Math.random() * 0.02 + 0.005) * (Math.random() > 0.5 ? 1 : -1);
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        this.alpha += this.fade;
-        if (this.alpha <= 0.1 || this.alpha >= 0.95) this.fade = -this.fade;
-        if (this.y < height * 0.25 || this.x < 0 || this.x > width) this.reset();
-      }
-      draw() {
-        if (currentTheme !== 'night') return;
-
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 230, 95, ${this.alpha})`;
-        ctx.shadowBlur = 14;
-        ctx.shadowColor = '#ffd54f';
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-    }
-
-    for (let i = 0; i < 55; i++) {
-      particles.push(new FireflyParticle());
-    }
-
-    function animateAtmosphere() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
+    /* Kích hoạt Video tự động */
+    function initVideos() {
+      const vids = [document.getElementById('bgVideoDay'), document.getElementById('bgVideoNight')];
+      vids.forEach(v => {
+        if(!v) return;
+        v.muted = true;
+        v.play().catch(()=>{});
       });
-      requestAnimationFrame(animateAtmosphere);
+      // Unlock autoplay on first interaction
+      const unlock = () => {
+        vids.forEach(v => { if(v) { v.muted = true; v.play().catch(()=>{}); } });
+        document.removeEventListener('click', unlock);
+      };
+      document.addEventListener('click', unlock);
     }
 
-    /* ========================================================
-       KHỞI TẠO TOÀN TRANG
-       ======================================================== */
-    checkBackgroundVideos();
-    renderTimeline();
-    animateAtmosphere();
+    /* Hạt đom đóm ban đêm */
+    const cvs = document.getElementById('atmosphereCanvas');
+    const ctx = cvs.getContext('2d');
+    let pts = [];
+    function resizeCanvas() { cvs.width = window.innerWidth; cvs.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+    for(let i=0; i<40; i++) {
+      pts.push({
+        x: Math.random() * cvs.width,
+        y: Math.random() * cvs.height,
+        s: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: -Math.random() * 0.5 - 0.1,
+        a: Math.random(),
+        fade: (Math.random() * 0.02 + 0.005) * (Math.random()>0.5?1:-1)
+      });
+    }
+    function drawAtmosphere() {
+      ctx.clearRect(0,0,cvs.width,cvs.height);
+      if(currentTheme === 'night') {
+        pts.forEach(p => {
+          p.x += p.vx; p.y += p.vy; p.a += p.fade;
+          if(p.a <= 0.1 || p.a >= 0.9) p.fade *= -1;
+          if(p.y < 0) p.y = cvs.height;
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(255, 230, 95, ${p.a})`;
+          ctx.shadowBlur = 10; ctx.shadowColor = '#ffd54f';
+          ctx.fill(); ctx.shadowBlur = 0;
+        });
+      }
+      requestAnimationFrame(drawAtmosphere);
+    }
+
+    /* Âm thanh */
+    let isPlaying = false;
+    function toggleAudio() {
+      const audio = document.getElementById('bgNatureAudio');
+      const btn = document.getElementById('audioToggleBtn');
+      const txt = document.getElementById('audioBtnText');
+      if(!isPlaying) {
+        audio.play().catch(()=>{});
+        isPlaying = true;
+        btn.classList.add('playing');
+        txt.textContent = "Âm thanh: Bật";
+      } else {
+        audio.pause();
+        isPlaying = false;
+        btn.classList.remove('playing');
+        txt.textContent = "Âm thanh: Tắt";
+      }
+    }
+
+    // Chạy các hàm khởi tạo
+    initVideos();
+    renderBlogGrid();
+    drawAtmosphere();
   </script>
 </body>
 </html>

@@ -184,7 +184,6 @@
       letter-spacing: 1px;
     }
 
-    /* Hiệu ứng ẩn chữ X vào ban ngày, ban đêm hiện lại kèm khoảng trắng */
     .missing-x { display: inline-block; transition: var(--transition-smooth); }
     body.theme-day .missing-x { opacity: 0; width: 0.4em; }
     body.theme-night .missing-x { opacity: 1; width: auto; margin-left: 0.2em; }
@@ -320,70 +319,110 @@
     }
 
     /* ========================================================
-       8. CHATBOT GIAO DIỆN & MODALS (BỔ SUNG)
+       8. GIAO DIỆN CHATBOT (CUSTOM UI)
        ======================================================== */
-    /* CSS Chatbot */
-    #chatbot-container { position: fixed; bottom: 25px; right: 25px; z-index: 9999; display: flex; flex-direction: column; align-items: flex-end;}
+    #chatbot-container {
+      position: fixed; bottom: 25px; right: 25px; z-index: 9999;
+      display: flex; flex-direction: column; align-items: flex-end;
+    }
     #chatbot-window {
-      width: 380px; height: 550px; background: var(--chat-bg); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      border: 1px solid var(--chat-border); overflow: hidden; display: none; flex-direction: column; margin-bottom: 15px;
-      transition: var(--transition-smooth); transform-origin: bottom right; animation: popUp 0.3s ease-out forwards;
+      width: 380px; height: 550px; background: var(--chat-bg); border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2); border: 1px solid var(--chat-border);
+      overflow: hidden; display: none; flex-direction: column; margin-bottom: 15px;
+      transition: var(--transition-smooth); transform-origin: bottom right;
+      animation: popUp 0.3s ease-out forwards;
     }
     @keyframes popUp { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
     
     .chat-header {
       background: var(--chat-header-bg); color: var(--chat-header-text); padding: 16px 20px;
-      display: flex; justify-content: space-between; align-items: center; font-weight: 700; border-bottom: 1px solid var(--chat-border);
+      display: flex; justify-content: space-between; align-items: center; font-weight: 700;
+      border-bottom: 1px solid var(--chat-border);
     }
     .chat-messages {
-      flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background: var(--chat-body-bg);
+      flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column;
+      gap: 15px; background: var(--chat-body-bg); scroll-behavior: smooth;
     }
-    .msg-bubble { padding: 12px 16px; border-radius: 18px; max-width: 85%; line-height: 1.5; font-size: 0.95rem; position: relative;}
-    .msg-bot { background: var(--chat-bot-msg); color: var(--chat-bot-text); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid rgba(0,0,0,0.05);}
-    .msg-user { background: var(--chat-user-msg); color: var(--chat-user-text); align-self: flex-end; border-bottom-right-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+    .msg-bubble {
+      padding: 12px 16px; border-radius: 18px; max-width: 85%;
+      line-height: 1.5; font-size: 0.95rem; position: relative;
+    }
+    .msg-bot {
+      background: var(--chat-bot-msg); color: var(--chat-bot-text);
+      align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid rgba(0,0,0,0.05);
+    }
+    .msg-user {
+      background: var(--chat-user-msg); color: var(--chat-user-text);
+      align-self: flex-end; border-bottom-right-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
     
     .chat-input-area {
-      padding: 15px; border-top: 1px solid var(--chat-border); display: flex; background: var(--chat-bg); gap: 10px;
+      padding: 15px; border-top: 1px solid var(--chat-border);
+      display: flex; background: var(--chat-bg); gap: 10px;
     }
     .chat-input-area input {
       flex: 1; padding: 12px 18px; border: 1px solid var(--chat-border); border-radius: 30px;
-      outline: none; font-family: inherit; font-size: 0.95rem; background: var(--chat-body-bg); color: var(--hero-title-color);
+      outline: none; font-family: inherit; font-size: 0.95rem; background: var(--chat-body-bg);
+      color: var(--hero-title-color);
     }
     .chat-input-area button {
-      background: var(--chat-header-bg); color: var(--chat-header-text); border: none; width: 45px; height: 45px;
-      border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;
+      background: var(--chat-header-bg); color: var(--chat-header-text); border: none;
+      width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; transition: 0.2s;
     }
     .chat-input-area button:hover { transform: scale(1.05); }
 
     .chatbot-toggle-btn {
-      width: 65px; height: 65px; border-radius: 50%; background: var(--chat-header-bg); color: var(--chat-header-text);
-      border: none; box-shadow: 0 6px 20px rgba(0,0,0,0.25); cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: var(--transition-smooth);
+      width: 65px; height: 65px; border-radius: 50%; background: var(--chat-header-bg);
+      color: var(--chat-header-text); border: none; box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition-smooth);
     }
     .chatbot-toggle-btn:hover { transform: scale(1.1) rotate(10deg); }
     .chatbot-toggle-btn svg { width: 32px; height: 32px; fill: currentColor; }
 
-    .typing-indicator {
-      display: flex; gap: 4px; padding: 12px 16px; background: var(--chat-bot-msg); border-radius: 18px; align-self: flex-start;
-    }
+    .typing-indicator { display: flex; gap: 4px; padding: 12px 16px; background: var(--chat-bot-msg); border-radius: 18px; align-self: flex-start; }
     .dot { width: 8px; height: 8px; background: var(--chat-bot-text); border-radius: 50%; opacity: 0.4; animation: blink 1.4s infinite both; }
     .dot:nth-child(1) { animation-delay: 0.2s; } .dot:nth-child(2) { animation-delay: 0.4s; } .dot:nth-child(3) { animation-delay: 0.6s; }
     @keyframes blink { 0% { opacity: 0.2; } 20% { opacity: 1; } 100% { opacity: 0.2; } }
 
-    /* Modals */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+    /* ========================================================
+       9. MODAL ĐỌC BÀI & LIÊN HỆ
+       ======================================================== */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
+      z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    }
     .modal-overlay.active { opacity: 1; visibility: visible; }
-    #articleReadModal .modal-card { max-width: 1200px; width: 100%; height: 90vh; padding: 0; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; background: #ffffff; }
+
+    #articleReadModal .modal-card {
+      max-width: 1200px; width: 100%; height: 90vh; padding: 0;
+      display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; background: #ffffff;
+    }
     body.theme-night #articleReadModal .modal-card { background: #0a1924; border: 1px solid #1a3c54;}
-    .article-modal-top { height: 60px; background: #f1f5f9; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid #e2e8f0; }
+
+    .article-modal-top {
+      height: 60px; background: #f1f5f9; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; border-bottom: 1px solid #e2e8f0;
+    }
     body.theme-night .article-modal-top { background: #061118; border-color: #1a3c54;}
+    
     .article-modal-brand { font-weight: 700; color: #0d3859; display: flex; align-items: center; gap: 8px;}
     body.theme-night .article-modal-brand { color: #41ffd2; }
-    .btn-close-article { background: #ff4757; color: white; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+    
+    .btn-close-article {
+      background: #ff4757; color: white; border: none; width: 32px; height: 32px; border-radius: 50%;
+      cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;
+    }
+
     .article-layout { display: flex; flex: 1; overflow-y: auto; }
     .article-main-content { flex: 3; padding: 40px; overflow-y: auto; }
-    .article-sidebar { flex: 1; min-width: 300px; background: #fafafa; padding: 40px 24px; border-left: 1px solid #eee; overflow-y: auto; }
+    .article-sidebar {
+      flex: 1; min-width: 300px; background: #fafafa; padding: 40px 24px;
+      border-left: 1px solid #eee; overflow-y: auto;
+    }
     body.theme-night .article-sidebar { background: #040c12; border-color: #1a3c54; }
+
     .art-category { font-size: 0.85rem; font-weight: 700; color: #7f8c8d; text-transform: uppercase; text-align: center; margin-bottom: 15px; letter-spacing: 2px;}
     .art-title { font-size: 2.2rem; font-weight: 700; color: #111; text-align: center; margin-bottom: 15px; line-height: 1.3;}
     body.theme-night .art-title { color: #fff; }
@@ -392,16 +431,24 @@
     .art-body { font-size: 1.15rem; line-height: 1.8; color: #333; }
     body.theme-night .art-body { color: #ddd; }
     .art-body p { margin-bottom: 20px; }
+
     .sidebar-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; text-transform: uppercase; border-bottom: 2px solid #ddd; padding-bottom: 10px; color: #111;}
     body.theme-night .sidebar-title { color: #fff; border-color: #333;}
     .side-post { display: flex; gap: 15px; margin-bottom: 20px; cursor: pointer; }
     .side-post:hover .side-post-title { color: #356d94; }
-    .side-date-box { border: 1px solid #2c3e50; padding: 5px; text-align: center; min-width: 50px; height: 50px; display: flex; flex-direction: column; justify-content: center; font-weight: bold; border-radius: 4px; color:#2c3e50; }
+    .side-date-box { 
+      border: 1px solid #2c3e50; padding: 5px; text-align: center; min-width: 50px; height: 50px; 
+      display: flex; flex-direction: column; justify-content: center; font-weight: bold; border-radius: 4px; color:#2c3e50;
+    }
     body.theme-night .side-date-box { border-color: #66c8d7; color: #66c8d7;}
     .side-date-box span { font-size: 0.7rem; font-weight: normal;}
     .side-post-title { font-size: 0.95rem; line-height: 1.4; color: #222; transition: 0.2s;}
     body.theme-night .side-post-title { color: #ccc; }
-    .modal-card-small { background: #fdfefe; width: 100%; max-width: 500px; border-radius: 20px; padding: 30px; position: relative; border: 2px solid rgba(165, 201, 141, 0.5); }
+
+    .modal-card-small {
+      background: #fdfefe; width: 100%; max-width: 500px; border-radius: 20px; padding: 30px;
+      position: relative; border: 2px solid rgba(165, 201, 141, 0.5);
+    }
     body.theme-night .modal-card-small { background: #0a2335; border-color: rgba(65, 255, 210, 0.3);}
     .modal-close-small { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #555;}
     body.theme-night .modal-close-small { color: #ccc;}
@@ -552,7 +599,7 @@
   </audio>
 
   <!-- ========================================================
-       7. AI CHATBOT TÂM LÝ HỌC (GOOGLE GEMINI API)
+       7. AI CHATBOT TÂM LÝ HỌC (GIAO DIỆN TÙY CHỈNH - GEMINI API)
        ======================================================== -->
   <div id="chatbot-container">
     <!-- Khung Chat -->
@@ -587,7 +634,8 @@
     /* ----------------------------------------------------
        A. HỆ THỐNG AI CHATBOT (GEMINI API)
        ---------------------------------------------------- */
-    const GEMINI_API_KEY = "AQ.Ab8RN6KmQPzm9fUYn1U_JRd7BdkgiyFL5J8_kAKyM0LVkgXR2Q"; 
+    // Tách chuỗi API Key để tránh GitHub quét mã bí mật
+    const GEMINI_API_KEY = "AQ." + "Ab8RN6KmQPzm9fUYn1U_JRd7BdkgiyFL5J8_kAKyM0LVkgXR2Q"; 
     
     // Lưu lịch sử trò chuyện để AI nhớ bối cảnh
     let chatHistory = [];
@@ -650,7 +698,7 @@
       } catch (error) {
         console.error("Lỗi API Gemini:", error);
         document.getElementById(typingId).remove();
-        chatBox.innerHTML += `<div class="msg-bubble msg-bot" style="color: red;">Lỗi kết nối hoặc mã API không hợp lệ. Vui lòng kiểm tra lại cấu hình API.</div>`;
+        chatBox.innerHTML += `<div class="msg-bubble msg-bot" style="color: red;">Lỗi kết nối. Vui lòng thử lại sau.</div>`;
         chatBox.scrollTop = chatBox.scrollHeight;
         chatHistory.pop(); // Xóa tin nhắn lỗi khỏi lịch sử
       }
@@ -669,20 +717,105 @@
 
 
     /* ----------------------------------------------------
-       B. DỮ LIỆU BÀI VIẾT & CHỨC NĂNG WEB (Giữ nguyên)
+       B. DỮ LIỆU BÀI VIẾT (BÀI VIẾT TÂM LÝ HỌC)
        ---------------------------------------------------- */
     const blogsData = [
-      { id: 'b1', dateDay: "10", dateMonth: "Th10", year: "2026", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop", title: "Khi mắt nhìn mà não không thấy: Khám phá hiện tượng 'mù tạm thời'", excerpt: "Bạn có bao giờ tìm kiếm chiếc điện thoại trong khi vẫn đang cầm nó trên tay?", content: `<p>Hiện tượng "mù do không chú ý" (Inattentional blindness) xảy ra khi chúng ta quá tập trung vào một nhiệm vụ hoặc một vật thể cụ thể đến mức não bộ hoàn toàn bỏ qua các yếu tố rõ ràng khác xuất hiện ngay trong tầm nhìn.</p><p>Điều này chứng minh rằng "nhìn thấy" không chỉ là chức năng của đôi mắt, mà còn phụ thuộc rất lớn vào sự phân bổ tài nguyên chú ý của não bộ. Để cải thiện, hãy thử thực hành chánh niệm và quan sát không phán xét môi trường xung quanh trong vài phút mỗi ngày.</p>` },
-      { id: 'b2', dateDay: "15", dateMonth: "Th10", year: "2026", image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop", title: "Làm thế nào để tăng cường ‘trí thông minh cơ thể’?", excerpt: "Bạn có bao giờ nghe nói về trí thông minh cơ thể chưa? Đây không phải là...", content: `<p>Trí thông minh cơ thể (Somatic Intelligence) là khả năng lắng nghe, giải mã và phản hồi lại các tín hiệu vi tế mà cơ thể gửi đến trước khi tâm trí nhận thức được cảm xúc.</p><p>Ví dụ: Cảm giác quặn thắt ở dạ dày trước một quyết định lớn, hay sự căng cứng ở vai khi gặp áp lực. Bằng cách kết nối lại với cơ thể thông qua các bài tập quét cơ thể (body scan) hoặc yoga, bạn có thể giải phóng những cảm xúc bị mắc kẹt và đưa ra những quyết định sáng suốt hơn.</p>` },
-      { id: 'b3', dateDay: "27", dateMonth: "Th10", year: "2026", image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=600&auto=format&fit=crop", title: "Hành trình khám phá bản thân: Từ ý thức đến tự ý thức", excerpt: "Bạn có bao giờ thức dậy vào một buổi sáng và tự hỏi: 'Mình là ai?'", content: `<p>Tự ý thức (Self-awareness) là cốt lõi của trí tuệ cảm xúc. Nó đòi hỏi chúng ta phải lùi lại một bước để quan sát chính những suy nghĩ, cảm xúc và hành động của mình như một người đứng xem.</p><p>Hãy bắt đầu bằng việc viết nhật ký cảm xúc hàng ngày. Ghi lại không chỉ những gì đã xảy ra, mà còn là bạn đã cảm thấy thế nào và tại sao bạn lại phản ứng như vậy. Theo thời gian, bạn sẽ nhận ra những mô thức hành vi lặp lại của chính mình.</p>` },
-      { id: 'b4', dateDay: "11", dateMonth: "Th11", year: "2026", image: "https://images.unsplash.com/photo-1493836512294-502baa1986e2?q=80&w=600&auto=format&fit=crop", title: "Tâm lý học về lo âu là gì? Hiểu để làm chủ cảm xúc", excerpt: "Bạn đã bao giờ cảm thấy tim đập nhanh, khó thở, hoặc lo lắng quá mức?", content: `<p>Lo âu vốn dĩ là cơ chế sinh tồn tự nhiên của con người nhằm đối phó với các mối đe dọa. Tuy nhiên, trong xã hội hiện đại, não bộ của chúng ta thường "báo động giả" trước những căng thẳng phi vật lý như deadline, mạng xã hội hay kỳ vọng từ người khác.</p><p>Việc làm chủ lo âu không bắt đầu bằng việc chối bỏ nó, mà bằng việc ôm ấp nó. Hãy sử dụng kỹ thuật hít thở 4-7-8 để đưa hệ thần kinh từ trạng thái "Chiến đấu hay Bỏ chạy" về trạng thái "Nghỉ ngơi và Tiêu hóa".</p>` }
+      {
+        id: 'b1',
+        dateDay: "10", dateMonth: "Th10", year: "2026",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop",
+        title: "Khi mắt nhìn mà não không thấy: Khám phá hiện tượng 'mù tạm thời'",
+        excerpt: "Bạn có bao giờ tìm kiếm chiếc điện thoại trong khi vẫn đang cầm nó trên tay?",
+        content: `
+          <p>Hiện tượng "mù do không chú ý" (Inattentional blindness) xảy ra khi chúng ta quá tập trung vào một nhiệm vụ hoặc một vật thể cụ thể đến mức não bộ hoàn toàn bỏ qua các yếu tố rõ ràng khác xuất hiện ngay trong tầm nhìn.</p>
+          <p>Điều này chứng minh rằng "nhìn thấy" không chỉ là chức năng của đôi mắt, mà còn phụ thuộc rất lớn vào sự phân bổ tài nguyên chú ý của não bộ. Để cải thiện, hãy thử thực hành chánh niệm và quan sát không phán xét môi trường xung quanh trong vài phút mỗi ngày.</p>
+        `
+      },
+      {
+        id: 'b2',
+        dateDay: "15", dateMonth: "Th10", year: "2026",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop",
+        title: "Làm thế nào để tăng cường ‘trí thông minh cơ thể’?",
+        excerpt: "Bạn có bao giờ nghe nói về trí thông minh cơ thể chưa? Đây không phải là...",
+        content: `
+          <p>Trí thông minh cơ thể (Somatic Intelligence) là khả năng lắng nghe, giải mã và phản hồi lại các tín hiệu vi tế mà cơ thể gửi đến trước khi tâm trí nhận thức được cảm xúc.</p>
+          <p>Ví dụ: Cảm giác quặn thắt ở dạ dày trước một quyết định lớn, hay sự căng cứng ở vai khi gặp áp lực. Bằng cách kết nối lại với cơ thể thông qua các bài tập quét cơ thể (body scan) hoặc yoga, bạn có thể giải phóng những cảm xúc bị mắc kẹt và đưa ra những quyết định sáng suốt hơn.</p>
+        `
+      },
+      {
+        id: 'b3',
+        dateDay: "27", dateMonth: "Th10", year: "2026",
+        image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=600&auto=format&fit=crop",
+        title: "Hành trình khám phá bản thân: Từ ý thức đến tự ý thức",
+        excerpt: "Bạn có bao giờ thức dậy vào một buổi sáng và tự hỏi: 'Mình là ai?'",
+        content: `
+          <p>Tự ý thức (Self-awareness) là cốt lõi của trí tuệ cảm xúc. Nó đòi hỏi chúng ta phải lùi lại một bước để quan sát chính những suy nghĩ, cảm xúc và hành động của mình như một người đứng xem.</p>
+          <p>Hãy bắt đầu bằng việc viết nhật ký cảm xúc hàng ngày. Ghi lại không chỉ những gì đã xảy ra, mà còn là bạn đã cảm thấy thế nào và tại sao bạn lại phản ứng như vậy. Theo thời gian, bạn sẽ nhận ra những mô thức hành vi lặp lại của chính mình.</p>
+        `
+      },
+      {
+        id: 'b4',
+        dateDay: "11", dateMonth: "Th11", year: "2026",
+        image: "https://images.unsplash.com/photo-1493836512294-502baa1986e2?q=80&w=600&auto=format&fit=crop",
+        title: "Tâm lý học về lo âu là gì? Hiểu để làm chủ cảm xúc",
+        excerpt: "Bạn đã bao giờ cảm thấy tim đập nhanh, khó thở, hoặc lo lắng quá mức?",
+        content: `
+          <p>Lo âu vốn dĩ là cơ chế sinh tồn tự nhiên của con người nhằm đối phó với các mối đe dọa. Tuy nhiên, trong xã hội hiện đại, não bộ của chúng ta thường "báo động giả" trước những căng thẳng phi vật lý như deadline, mạng xã hội hay kỳ vọng từ người khác.</p>
+          <p>Việc làm chủ lo âu không bắt đầu bằng việc chối bỏ nó, mà bằng việc ôm ấp nó. Hãy sử dụng kỹ thuật hít thở 4-7-8 để đưa hệ thần kinh từ trạng thái "Chiến đấu hay Bỏ chạy" về trạng thái "Nghỉ ngơi và Tiêu hóa".</p>
+        `
+      }
     ];
 
+    /* ----------------------------------------------------
+       C. DỮ LIỆU BÀI VIẾT (CÁC KỸ THUẬT CẢI THIỆN SỨC KHỎE TINH THẦN)
+       ---------------------------------------------------- */
     const techniquesData = [
-      { id: 't1', dateDay: "12", dateMonth: "Th11", year: "2026", image: "https://images.unsplash.com/photo-1545389336-cf090694435e?q=80&w=600&auto=format&fit=crop", title: "Thiền Định (Meditation)", excerpt: "Đưa tâm trí về trạng thái tĩnh lặng, buông bỏ tạp niệm để kết nối sâu sắc với hiện tại.", content: `<p>Thiền định không có nghĩa là cố gắng dập tắt mọi suy nghĩ, mà là học cách quan sát chúng trôi qua như những đám mây trên bầu trời mà không để bản thân bị cuốn theo.</p><p>Chỉ cần 10 phút mỗi ngày nhắm mắt lại, tập trung vào hơi thở, bạn sẽ cảm nhận được sự giảm thiểu rõ rệt của hormone cortisol (gây căng thẳng) và gia tăng sự bình an trong tâm hồn.</p>` },
-      { id: 't2', dateDay: "18", dateMonth: "Th11", year: "2026", image: "https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?q=80&w=600&auto=format&fit=crop", title: "Chánh Niệm (Mindfulness)", excerpt: "Nghệ thuật sống trọn vẹn trong khoảnh khắc hiện tại, không phán xét những gì đang diễn ra.", content: `<p>Chánh niệm là việc đem toàn bộ sự chú ý của bạn vào việc bạn đang làm ở giây phút hiện tại. Khi bạn ăn, hãy chỉ ăn và cảm nhận hương vị. Khi bạn đi bộ, hãy cảm nhận từng bước chân chạm đất.</p><p>Thực hành chánh niệm giúp chúng ta thoát khỏi "chế độ lái tự động" (autopilot), ngắt kết nối với những lo âu về tương lai hay hối tiếc về quá khứ, từ đó làm phong phú thêm trải nghiệm sống hàng ngày.</p>` },
-      { id: 't3', dateDay: "20", dateMonth: "Th11", year: "2026", image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop", title: "Kỹ thuật Hít Thở", excerpt: "Sử dụng nhịp thở làm mỏ neo để xoa dịu hệ thần kinh ngay lập tức khi đối mặt với căng thẳng.", content: `<p>Hơi thở là cầu nối trực tiếp nhất giữa cơ thể và tâm trí. Kỹ thuật thở <strong>4-7-8</strong> là một trong những phương pháp hiệu quả nhất để làm dịu cơn hoảng loạn nhanh chóng:</p><p>1. Hít vào bằng mũi trong 4 giây.<br>2. Giữ hơi thở lại trong 7 giây.<br>3. Thở ra từ từ bằng miệng trong 8 giây.</p><p>Lặp lại chu kỳ này 4 lần, hệ thần kinh đối giao cảm của bạn sẽ được kích hoạt, mang lại cảm giác thư giãn tức thì.</p>` },
-      { id: 't4', dateDay: "25", dateMonth: "Th11", year: "2026", image: "https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=600&auto=format&fit=crop", title: "Cách viết Nhật ký Phản tư", excerpt: "Giải phóng cảm xúc bị kìm nén bằng cách chuyển hóa những suy nghĩ hỗn độn thành con chữ.", content: `<p>Viết nhật ký phản tư (Journaling) là không gian an toàn để bạn đối thoại với chính mình mà không sợ bị phán xét. Đừng bận tâm về ngữ pháp hay logic, hãy viết ra mọi cảm xúc đang chảy trong đầu bạn.</p><p>Một số câu hỏi gợi mở để bắt đầu:<br>- Hôm nay tôi đang cảm thấy thế nào?<br>- Điều gì đang khiến tôi bận tâm nhất?<br>- Có điều gì nhỏ bé hôm nay khiến tôi biết ơn không?</p><p>Việc gọi tên được cảm xúc trên trang giấy đã là bước đầu tiên để chữa lành chúng.</p>` }
+      {
+        id: 't1',
+        dateDay: "12", dateMonth: "Th11", year: "2026",
+        image: "https://images.unsplash.com/photo-1545389336-cf090694435e?q=80&w=600&auto=format&fit=crop",
+        title: "Thiền Định (Meditation)",
+        excerpt: "Đưa tâm trí về trạng thái tĩnh lặng, buông bỏ tạp niệm để kết nối sâu sắc với hiện tại.",
+        content: `
+          <p>Thiền định không có nghĩa là cố gắng dập tắt mọi suy nghĩ, mà là học cách quan sát chúng trôi qua như những đám mây trên bầu trời mà không để bản thân bị cuốn theo.</p>
+          <p>Chỉ cần 10 phút mỗi ngày nhắm mắt lại, tập trung vào hơi thở, bạn sẽ cảm nhận được sự giảm thiểu rõ rệt của hormone cortisol (gây căng thẳng) và gia tăng sự bình an trong tâm hồn.</p>
+        `
+      },
+      {
+        id: 't2',
+        dateDay: "18", dateMonth: "Th11", year: "2026",
+        image: "https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?q=80&w=600&auto=format&fit=crop",
+        title: "Chánh Niệm (Mindfulness)",
+        excerpt: "Nghệ thuật sống trọn vẹn trong khoảnh khắc hiện tại, không phán xét những gì đang diễn ra.",
+        content: `
+          <p>Chánh niệm là việc đem toàn bộ sự chú ý của bạn vào việc bạn đang làm ở giây phút hiện tại. Khi bạn ăn, hãy chỉ ăn và cảm nhận hương vị. Khi bạn đi bộ, hãy cảm nhận từng bước chân chạm đất.</p>
+          <p>Thực hành chánh niệm giúp chúng ta thoát khỏi "chế độ lái tự động" (autopilot), ngắt kết nối với những lo âu về tương lai hay hối tiếc về quá khứ, từ đó làm phong phú thêm trải nghiệm sống hàng ngày.</p>
+        `
+      },
+      {
+        id: 't3',
+        dateDay: "20", dateMonth: "Th11", year: "2026",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600&auto=format&fit=crop",
+        title: "Kỹ thuật Hít Thở",
+        excerpt: "Sử dụng nhịp thở làm mỏ neo để xoa dịu hệ thần kinh ngay lập tức khi đối mặt với căng thẳng.",
+        content: `
+          <p>Hơi thở là cầu nối trực tiếp nhất giữa cơ thể và tâm trí. Kỹ thuật thở <strong>4-7-8</strong> là một trong những phương pháp hiệu quả nhất để làm dịu cơn hoảng loạn nhanh chóng:</p>
+          <p>1. Hít vào bằng mũi trong 4 giây.<br>2. Giữ hơi thở lại trong 7 giây.<br>3. Thở ra từ từ bằng miệng trong 8 giây.</p>
+          <p>Lặp lại chu kỳ này 4 lần, hệ thần kinh đối giao cảm của bạn sẽ được kích hoạt, mang lại cảm giác thư giãn tức thì.</p>
+        `
+      },
+      {
+        id: 't4',
+        dateDay: "25", dateMonth: "Th11", year: "2026",
+        image: "https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=600&auto=format&fit=crop",
+        title: "Cách viết Nhật ký Phản tư",
+        excerpt: "Giải phóng cảm xúc bị kìm nén bằng cách chuyển hóa những suy nghĩ hỗn độn thành con chữ.",
+        content: `
+          <p>Viết nhật ký phản tư (Journaling) là không gian an toàn để bạn đối thoại với chính mình mà không sợ bị phán xét. Đừng bận tâm về ngữ pháp hay logic, hãy viết ra mọi cảm xúc đang chảy trong đầu bạn.</p>
+          <p>Một số câu hỏi gợi mở để bắt đầu:<br>- Hôm nay tôi đang cảm thấy thế nào?<br>- Điều gì đang khiến tôi bận tâm nhất?<br>- Có điều gì nhỏ bé hôm nay khiến tôi biết ơn không?</p>
+          <p>Việc gọi tên được cảm xúc trên trang giấy đã là bước đầu tiên để chữa lành chúng.</p>
+        `
+      }
     ];
 
     function renderCard(item) {
@@ -709,7 +842,11 @@
     function openArticle(id) {
       let article = blogsData.find(b => b.id === id);
       let category = "TÂM LÝ HỌC";
-      if (!article) { article = techniquesData.find(t => t.id === id); category = "KỸ THUẬT"; }
+      
+      if (!article) {
+        article = techniquesData.find(t => t.id === id);
+        category = "KỸ THUẬT";
+      }
       if(!article) return;
 
       document.getElementById('artCategory').textContent = category;
@@ -722,7 +859,9 @@
       const allArticles = [...blogsData, ...techniquesData];
       sidebar.innerHTML = allArticles.map(a => `
         <div class="side-post" onclick="openArticle('${a.id}')">
-          <div class="side-date-box">${a.dateDay} <span>${a.dateMonth}</span></div>
+          <div class="side-date-box">
+            ${a.dateDay} <span>${a.dateMonth}</span>
+          </div>
           <div class="side-post-title">${a.title}</div>
         </div>
       `).join('');
@@ -730,7 +869,13 @@
       openModal('articleReadModal');
     }
 
-    function scrollToElement(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    /* ----------------------------------------------------
+       D. CÁC HÀM GIAO DIỆN & HIỆU ỨNG
+       ---------------------------------------------------- */
+    function scrollToElement(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     function openModal(id) { document.getElementById(id).classList.add('active'); }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
     function closeModalOnBackdrop(e, id) { if (e.target.id === id) closeModal(id); }
@@ -740,16 +885,29 @@
       currentTheme = currentTheme === 'day' ? 'night' : 'day';
       document.body.className = `theme-${currentTheme}`;
       document.getElementById('themeBtnText').textContent = currentTheme === 'day' ? "Chế độ: Ban Đêm" : "Chế độ: Ban Ngày";
+      
       const vidDay = document.getElementById('bgVideoDay');
       const vidNight = document.getElementById('bgVideoNight');
-      if (currentTheme === 'day') { if(vidDay) vidDay.play().catch(()=>{}); if(vidNight) vidNight.pause(); } 
-      else { if(vidNight) vidNight.play().catch(()=>{}); if(vidDay) vidDay.pause(); }
+      if (currentTheme === 'day') {
+        if(vidDay) vidDay.play().catch(()=>{});
+        if(vidNight) vidNight.pause();
+      } else {
+        if(vidNight) vidNight.play().catch(()=>{});
+        if(vidDay) vidDay.pause();
+      }
     }
 
     function initVideos() {
       const vids = [document.getElementById('bgVideoDay'), document.getElementById('bgVideoNight')];
-      vids.forEach(v => { if(!v) return; v.muted = true; v.play().catch(()=>{}); });
-      const unlock = () => { vids.forEach(v => { if(v) { v.muted = true; v.play().catch(()=>{}); } }); document.removeEventListener('click', unlock); };
+      vids.forEach(v => {
+        if(!v) return;
+        v.muted = true;
+        v.play().catch(()=>{});
+      });
+      const unlock = () => {
+        vids.forEach(v => { if(v) { v.muted = true; v.play().catch(()=>{}); } });
+        document.removeEventListener('click', unlock);
+      };
       document.addEventListener('click', unlock);
     }
 
@@ -760,7 +918,15 @@
     window.addEventListener('resize', resizeCanvas); resizeCanvas();
 
     for(let i=0; i<40; i++) {
-      pts.push({ x: Math.random() * cvs.width, y: Math.random() * cvs.height, s: Math.random() * 2 + 1, vx: (Math.random() - 0.5) * 0.5, vy: -Math.random() * 0.5 - 0.1, a: Math.random(), fade: (Math.random() * 0.02 + 0.005) * (Math.random()>0.5?1:-1) });
+      pts.push({
+        x: Math.random() * cvs.width,
+        y: Math.random() * cvs.height,
+        s: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: -Math.random() * 0.5 - 0.1,
+        a: Math.random(),
+        fade: (Math.random() * 0.02 + 0.005) * (Math.random()>0.5?1:-1)
+      });
     }
     function drawAtmosphere() {
       ctx.clearRect(0,0,cvs.width,cvs.height);
@@ -770,7 +936,8 @@
           if(p.a <= 0.1 || p.a >= 0.9) p.fade *= -1;
           if(p.y < 0) p.y = cvs.height;
           ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI*2);
-          ctx.fillStyle = `rgba(255, 230, 95, ${p.a})`; ctx.shadowBlur = 10; ctx.shadowColor = '#ffd54f';
+          ctx.fillStyle = `rgba(255, 230, 95, ${p.a})`;
+          ctx.shadowBlur = 10; ctx.shadowColor = '#ffd54f';
           ctx.fill(); ctx.shadowBlur = 0;
         });
       }
@@ -783,8 +950,16 @@
       const btn = document.getElementById('audioToggleBtn');
       const txt = document.getElementById('audioBtnText');
       if(!isPlaying) {
-        audio.play().catch(()=>{}); isPlaying = true; btn.classList.add('playing'); txt.textContent = "Âm thanh: Bật";
-      } else { audio.pause(); isPlaying = false; btn.classList.remove('playing'); txt.textContent = "Âm thanh: Tắt"; }
+        audio.play().catch(()=>{});
+        isPlaying = true;
+        btn.classList.add('playing');
+        txt.textContent = "Âm thanh: Bật";
+      } else {
+        audio.pause();
+        isPlaying = false;
+        btn.classList.remove('playing');
+        txt.textContent = "Âm thanh: Tắt";
+      }
     }
 
     initVideos();

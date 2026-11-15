@@ -15,7 +15,6 @@
        1. CẤU HÌNH HỆ THỐNG MÀU SẮC & ẢNH NỀN
        ======================================================== */
     :root {
-      /* [VỊ TRÍ ĐỔI ẢNH NỀN TRANG CHÍNH SÁNG/TỐI] */
       --bg-day-image: url('day.jpg');
       --bg-night-image: url('night.jpg');
 
@@ -145,7 +144,7 @@
     .theme-toggle-header-btn svg { width: 17px; height: 17px; fill: currentColor; }
 
     /* ========================================================
-       3. HERO SECTION
+       3. HERO SECTION (CHỈNH VỊ TRÍ CHỮ)
        ======================================================== */
     .hero-section {
       padding-top: calc(15vh - 25px); 
@@ -428,7 +427,6 @@
        2. HERO SECTION & NỀN TRANG CHÍNH
        ======================================================== -->
   <main class="hero-stage-container">
-    
     <div class="video-background-layer">
       <video class="main-bg-video video-day" id="bgVideoDay" autoplay loop muted playsinline><source src="day2-converted.mp4" type="video/mp4"></video>
       <video class="main-bg-video video-night" id="bgVideoNight" autoplay loop muted playsinline><source src="night2-converted.mp4" type="video/mp4"></video>
@@ -444,9 +442,7 @@
     <a href="trang-con-chong-chong.html" class="pinwheel-hotspot" title="Nhấp để khám phá Chong chóng cảm xúc">
       <div class="pinwheel-glow-aura"></div>
       <div class="pinwheel-pulse-ring"></div>
-      <div class="pinwheel-tooltip">
-        <span>🎡 chong chóng cảm xúc</span>
-      </div>
+      <div class="pinwheel-tooltip"><span>🎡 chong chóng cảm xúc</span></div>
     </a>
   </main>
 
@@ -467,37 +463,20 @@
   </section>
 
   <!-- ========================================================
-       4. KHU VỰC BÀI VIẾT (TÂM LÝ HỌC)
+       4. KHU VỰC BÀI VIẾT & KỸ THUẬT
        ======================================================== -->
   <section class="blog-section" id="blogSection">
-    <div class="blog-header">
-      <div class="blog-header-line"></div>
-      <h2>Bài viết Tâm lý học</h2>
-      <div class="blog-header-line"></div>
-    </div>
-
-    <div class="blog-grid" id="blogGrid">
-      <!-- Dữ liệu bài viết sẽ được JS render vào đây -->
-    </div>
+    <div class="blog-header"><div class="blog-header-line"></div><h2>Bài viết Tâm lý học</h2><div class="blog-header-line"></div></div>
+    <div class="blog-grid" id="blogGrid"></div>
   </section>
 
-  <!-- ========================================================
-       5. KHU VỰC CÁC KỸ THUẬT CẢI THIỆN SỨC KHỎE TINH THẦN
-       ======================================================== -->
   <section class="blog-section" id="techniquesSection" style="padding-top: 20px;">
-    <div class="blog-header">
-      <div class="blog-header-line"></div>
-      <h2>Các kỹ thuật cải thiện sức khỏe tinh thần</h2>
-      <div class="blog-header-line"></div>
-    </div>
-
-    <div class="blog-grid" id="techniquesGrid">
-      <!-- Dữ liệu kỹ thuật sẽ được JS render vào đây -->
-    </div>
+    <div class="blog-header"><div class="blog-header-line"></div><h2>Các kỹ thuật cải thiện sức khỏe tinh thần</h2><div class="blog-header-line"></div></div>
+    <div class="blog-grid" id="techniquesGrid"></div>
   </section>
 
   <!-- ========================================================
-       6. CHÂN TRANG
+       5. CHÂN TRANG
        ======================================================== -->
   <footer class="footer">
     <div class="copyright">© 2026 Khu Vườn Cảm Xúc • Nuôi dưỡng tâm hồn qua từng nhịp quay</div>
@@ -508,46 +487,30 @@
   </footer>
 
   <!-- ========================================================
-       7. MODALS BẬT LÊN
+       6. MODAL ĐỌC BÀI & LIÊN HỆ
        ======================================================== -->
-       
-  <!-- MODAL ĐỌC BÀI VIẾT FULL TOÀN MÀN HÌNH -->
   <div class="modal-overlay" id="articleReadModal">
     <div class="modal-card">
       <div class="article-modal-top">
-        <div class="article-modal-brand">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-          Khu vườn cảm xúc
-        </div>
+        <div class="article-modal-brand"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg> Khu vườn cảm xúc</div>
         <button class="btn-close-article" onclick="closeModal('articleReadModal')">X</button>
       </div>
-
       <div class="article-layout">
-        <!-- Khu vực đọc chữ bên trái -->
         <div class="article-main-content">
           <div class="art-category" id="artCategory">BLOG</div>
-          <h1 class="art-title" id="artTitle">Tiêu đề bài viết</h1>
+          <h1 class="art-title" id="artTitle">Tiêu đề</h1>
           <div class="art-meta">ĐĂNG VÀO NGÀY <span id="artDate">26/06/2026</span></div>
-          
           <img src="" alt="Cover" class="art-cover" id="artImage">
-          
-          <div class="art-body" id="artBody">
-            <!-- Nội dung chi tiết bài viết sẽ được chèn vào đây -->
-          </div>
+          <div class="art-body" id="artBody"></div>
         </div>
-
-        <!-- Sidebar bài viết bên phải -->
         <div class="article-sidebar">
           <div class="sidebar-title">BÀI VIẾT NỔI BẬT</div>
-          <div id="sidebarList">
-            <!-- Render danh sách sidebar -->
-          </div>
+          <div id="sidebarList"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MODAL LIÊN HỆ -->
   <div class="modal-overlay" id="contactModal" onclick="closeModalOnBackdrop(event, 'contactModal')">
     <div class="modal-card-small">
       <button class="modal-close-small" onclick="closeModal('contactModal')">✕</button>
@@ -565,11 +528,26 @@
   </audio>
 
   <!-- ========================================================
-       8. JAVASCRIPT
+       7. AI CHATBOT (COZE.COM)
+       ======================================================== -->
+  <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
+  <script>
+    new CozeWebSDK.WebChatClient({
+      config: {
+        bot_id: '7426176587600887815',
+      },
+      componentProps: {
+        title: 'Người Làm Vườn Tâm Hồn',
+      }
+    });
+  </script>
+
+  <!-- ========================================================
+       8. JAVASCRIPT ĐIỀU KHIỂN WEB
        ======================================================== -->
   <script>
     /* ----------------------------------------------------
-       DỮ LIỆU BÀI VIẾT (BÀI VIẾT TÂM LÝ HỌC)
+       A. DỮ LIỆU BÀI VIẾT (TÂM LÝ HỌC)
        ---------------------------------------------------- */
     const blogsData = [
       {
@@ -619,7 +597,7 @@
     ];
 
     /* ----------------------------------------------------
-       DỮ LIỆU BÀI VIẾT (CÁC KỸ THUẬT CẢI THIỆN SỨC KHỎE TINH THẦN)
+       B. DỮ LIỆU BÀI VIẾT (KỸ THUẬT SỨC KHỎE TINH THẦN)
        ---------------------------------------------------- */
     const techniquesData = [
       {
@@ -670,7 +648,6 @@
       }
     ];
 
-    // Hàm tạo thẻ Card dùng chung cho cả 2 mục
     function renderCard(item) {
       return `
         <div class="blog-card" onclick="openArticle('${item.id}')">
@@ -689,21 +666,10 @@
       `;
     }
 
-    // Render danh sách Bài viết
-    function renderBlogGrid() {
-      const grid = document.getElementById('blogGrid');
-      grid.innerHTML = blogsData.map(blog => renderCard(blog)).join('');
-    }
+    function renderBlogGrid() { document.getElementById('blogGrid').innerHTML = blogsData.map(renderCard).join(''); }
+    function renderTechniquesGrid() { document.getElementById('techniquesGrid').innerHTML = techniquesData.map(renderCard).join(''); }
 
-    // Render danh sách Kỹ thuật
-    function renderTechniquesGrid() {
-      const grid = document.getElementById('techniquesGrid');
-      grid.innerHTML = techniquesData.map(tech => renderCard(tech)).join('');
-    }
-
-    // Mở bài viết chi tiết bên trong Modal
     function openArticle(id) {
-      // Tìm xem bài viết thuộc mảng nào
       let article = blogsData.find(b => b.id === id);
       let category = "TÂM LÝ HỌC";
       
@@ -719,7 +685,6 @@
       document.getElementById('artImage').src = article.image;
       document.getElementById('artBody').innerHTML = article.content;
 
-      // Render Sidebar (Hiển thị tất cả bài viết của cả 2 mục)
       const sidebar = document.getElementById('sidebarList');
       const allArticles = [...blogsData, ...techniquesData];
       sidebar.innerHTML = allArticles.map(a => `
@@ -735,7 +700,7 @@
     }
 
     /* ----------------------------------------------------
-       CÁC HÀM TIỆN ÍCH CHUNG
+       C. CÁC HÀM GIAO DIỆN & HIỆU ỨNG
        ---------------------------------------------------- */
     function scrollToElement(id) {
       document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -762,7 +727,6 @@
       }
     }
 
-    /* Kích hoạt Video tự động */
     function initVideos() {
       const vids = [document.getElementById('bgVideoDay'), document.getElementById('bgVideoNight')];
       vids.forEach(v => {
@@ -770,7 +734,6 @@
         v.muted = true;
         v.play().catch(()=>{});
       });
-      // Unlock autoplay on first interaction
       const unlock = () => {
         vids.forEach(v => { if(v) { v.muted = true; v.play().catch(()=>{}); } });
         document.removeEventListener('click', unlock);
@@ -778,7 +741,6 @@
       document.addEventListener('click', unlock);
     }
 
-    /* Hạt đom đóm ban đêm */
     const cvs = document.getElementById('atmosphereCanvas');
     const ctx = cvs.getContext('2d');
     let pts = [];
@@ -812,7 +774,6 @@
       requestAnimationFrame(drawAtmosphere);
     }
 
-    /* Âm thanh */
     let isPlaying = false;
     function toggleAudio() {
       const audio = document.getElementById('bgNatureAudio');
@@ -831,7 +792,6 @@
       }
     }
 
-    // Chạy các hàm khởi tạo
     initVideos();
     renderBlogGrid();
     renderTechniquesGrid();
@@ -839,23 +799,3 @@
   </script>
 </body>
 </html>
-sửa lại code trên giúp tôi, chèn lệnh sau  
-<script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
-<script>
-  new CozeWebSDK.WebChatClient({
-    config: {
-      bot_id: '7426176587600887815',
-    },
-    componentProps: {
-      title: 'Coze',
-    },
-    auth: {
-      type: 'token',
-      token: 'pat_GZOPyR0C5g5VpW2u93nO5vBq3Y4f2N0UaX4pX00oF2n3g5hQ7Z6o0e4wQ0f1m1P6',
-      onRefreshToken: function () {
-        return 'pat_GZOPyR0C5g5VpW2u93nO5vBq3Y4f2N0UaX4pX00oF2n3g5hQ7Z6o0e4wQ0f1m1P6'
-      }
-    }
-  });
-</script>
-vào code trên, xóa mã coze cũ, gửi lại tôi file index.html sau khi sửa xong

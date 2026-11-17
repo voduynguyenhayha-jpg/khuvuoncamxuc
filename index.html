@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Khu vườn cảm xúc</title>
   <!-- Font hỗ trợ tiếng Việt mượt mà, thân thiện giống phong cách Dorset Mind -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,7 +11,7 @@
 
   <style>
     /* =========================================================
-       BẢNG MÀU TỪ ẢNH SỐ 2 CỦA BẠN
+       BẢNG MÀU TỪ ẢNH SỐ 3 CỦA BẠN
        ========================================================= */
     :root {
       --green-darkest: #007542;
@@ -21,6 +21,13 @@
       --green-light:   #78D23D;
       --green-lime:    #9BE931;
       --green-neon:    #C1FF1C;
+
+      /* Tông xanh sâu cho giao diện tương tác bánh xe cảm xúc */
+      --wheel-bg:      #042918;
+      --wheel-surface: #073922;
+      --wheel-card:    #0b492c;
+      --wheel-hover:   #115c38;
+      --wheel-border:  #1E8C45;
 
       --text-dark:     #123524;
       --text-body:     #1d4d35;
@@ -35,6 +42,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html {
@@ -66,7 +74,7 @@
     }
 
     /* =========================================================
-       THANH TIÊU ĐỀ (NAVBAR) - BẮT ĐẦU NGAY TRÊN CÙNG GIỐNG ẢNH 1
+       THANH TIÊU ĐỀ (NAVBAR)
        ========================================================= */
     .navbar {
       background-color: var(--green-darkest);
@@ -85,7 +93,6 @@
       gap: 16px;
     }
 
-    /* Logo + Tên "Khu vườn cảm xúc" */
     .brand-logo {
       display: inline-flex;
       align-items: center;
@@ -126,7 +133,6 @@
       flex-shrink: 0;
     }
 
-    /* Menu điều hướng chính */
     .nav-menu {
       display: flex;
       align-items: center;
@@ -166,7 +172,6 @@
       transform: rotate(180deg);
     }
 
-    /* Dropdown menu */
     .dropdown-menu {
       position: absolute;
       top: 100%;
@@ -206,7 +211,6 @@
       padding-left: 24px;
     }
 
-    /* Nút Liên hệ nổi bật nhẹ */
     .nav-contact-btn {
       background-color: var(--green-medium);
       color: #ffffff;
@@ -222,7 +226,6 @@
       border-color: var(--green-neon);
     }
 
-    /* Nút menu trên điện thoại */
     .mobile-toggle {
       display: none;
       background: none;
@@ -235,7 +238,7 @@
     }
 
     /* =========================================================
-       HERO SECTION - CẤU TRÚC GIỐNG TRANG GET INVOLVED
+       HERO SECTION
        ========================================================= */
     .hero-section {
       position: relative;
@@ -244,7 +247,6 @@
       overflow: hidden;
     }
 
-    /* Nét cọ cong trang trí phía sau khung tròn giống nét hồng ở ảnh 1 */
     .hero-brush-bg {
       position: absolute;
       top: -20px;
@@ -265,7 +267,6 @@
       gap: 48px;
     }
 
-    /* Breadcrumb: Trang chủ » Khu vườn cảm xúc */
     .breadcrumb {
       font-size: 0.92rem;
       margin-bottom: 20px;
@@ -291,7 +292,6 @@
       font-weight: 700;
     }
 
-    /* Nhãn nhỏ có gạch chân dưới giống ảnh 1 */
     .eyebrow-title {
       display: inline-block;
       font-size: 1.05rem;
@@ -302,7 +302,6 @@
       margin-bottom: 24px;
     }
 
-    /* Tiêu đề chính H1 */
     .hero-title {
       font-size: clamp(2.4rem, 4.5vw, 3.6rem);
       font-weight: 800;
@@ -369,7 +368,6 @@
       transform: translateY(-2px);
     }
 
-    /* Khung ảnh HÌNH TRÒN bên phải khớp với ảnh số 3 */
     .hero-image-wrapper {
       display: flex;
       justify-content: center;
@@ -402,11 +400,10 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      object-fit: contain; /* Giữ trọn vẹn vòng tròn cảm xúc ở ảnh số 3 */
+      object-fit: contain;
       display: block;
     }
 
-    /* Fallback hiển thị nếu người dùng chưa chép ảnh số 3 vào cùng thư mục */
     .wheel-fallback {
       width: 100%;
       height: 100%;
@@ -455,7 +452,7 @@
     }
 
     /* =========================================================
-       CÁC SECTION NỘI DUNG BÊN DƯỚI (GIỐNG CẤU TRÚC DORSET MIND)
+       CÁC SECTION NỘI DUNG CHUNG
        ========================================================= */
     .section {
       padding: 76px 0;
@@ -496,7 +493,590 @@
       font-size: 1.03rem;
     }
 
-    /* Lưới thẻ (Cards) */
+    /* =========================================================
+       MỤC MỚI: VÒNG TRÒN CẢM XÚC (NẰM TRÊN MỤC KỸ THUẬT)
+       ========================================================= */
+    .emotion-section {
+      background: linear-gradient(180deg, #ffffff 0%, #effae9 100%);
+      border-top: 1px solid rgba(58, 163, 70, 0.15);
+      border-bottom: 1px solid rgba(58, 163, 70, 0.15);
+    }
+
+    .emotion-intro-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .emotion-intro-grid.collapsed {
+      grid-template-columns: 1fr;
+    }
+
+    .emotion-intro-grid.collapsed .emotion-trigger-col {
+      display: none;
+    }
+
+    .emotion-article {
+      background-color: #ffffff;
+      border-radius: 24px;
+      padding: 34px 32px;
+      border-left: 6px solid var(--green-medium);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .emotion-article p {
+      font-size: 1.01rem;
+      color: var(--text-body);
+      margin-bottom: 16px;
+    }
+
+    .emotion-article p:last-child {
+      margin-bottom: 0;
+    }
+
+    .emotion-note {
+      background-color: #f3fcef;
+      border: 1px solid #bce8ad;
+      border-left: 4px solid var(--green-fresh);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 18px 0;
+      color: var(--green-darkest);
+    }
+
+    .emotion-note strong {
+      color: var(--green-darkest);
+    }
+
+    .emotion-root-highlight {
+      font-weight: 700;
+      color: var(--green-darkest);
+      background: linear-gradient(90deg, rgba(193, 255, 28, 0.26), rgba(155, 233, 49, 0.12));
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1px dashed var(--green-medium);
+    }
+
+    /* Cột ảnh vòng tròn có thể nhấn để mở ứng dụng tương tác */
+    .emotion-trigger-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .emotion-wheel-btn {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      border: 6px solid var(--green-medium);
+      background: var(--wheel-bg);
+      padding: 10px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 0 10px rgba(120, 210, 61, 0.25), var(--shadow-md);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .emotion-wheel-btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 0 12px rgba(193, 255, 28, 0.45), 0 18px 40px rgba(0, 117, 66, 0.25);
+    }
+
+    .emotion-wheel-btn img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .emotion-click-badge {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--green-darkest);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.96rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 2px solid var(--green-neon);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+
+    .emotion-click-badge:hover {
+      background-color: var(--green-neon);
+      color: var(--green-darkest);
+      transform: translateY(-2px);
+    }
+
+    /* Giao diện dự phòng khi chưa thêm ảnh vòng tròn số 2 vào thư mục */
+    .wheel-img-fallback {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(
+        #2e86c1 0deg 60deg,
+        #3d5afe 60deg 120deg,
+        #8e24aa 120deg 180deg,
+        #d81b60 180deg 240deg,
+        #b23b23 240deg 300deg,
+        #c67d0a 300deg 360deg
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .wheel-img-fallback-hub {
+      width: 34%;
+      height: 34%;
+      border-radius: 50%;
+      background: #1d8cf8;
+      border: 3px solid #ffffff;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 22px rgba(29, 140, 248, 0.75);
+      padding: 8px;
+    }
+
+    .wheel-img-fallback-hub strong {
+      font-size: 1.1rem;
+      line-height: 1.1;
+    }
+
+    .wheel-img-fallback-hub span {
+      font-size: 0.72rem;
+      opacity: 0.92;
+    }
+
+    /* =========================================================
+       KHU VỰC BÁNH XE CẢM XÚC TƯƠNG TÁC NGAY TRÊN TRANG CHÍNH
+       (CHỈNH TÔNG MÀU THEO ẢNH SỐ 3 & CẤU TRÚC TỪ CODE SỐ 2)
+       ========================================================= */
+    #wheel-app-workspace {
+      display: none;
+      margin-top: 34px;
+      background-color: var(--wheel-bg);
+      color: #f1f5f9;
+      border-radius: 28px;
+      border: 2px solid var(--green-medium);
+      box-shadow: 0 22px 54px rgba(0, 117, 66, 0.25);
+      padding: 20px 24px 32px;
+      animation: fadeSlideUp 0.35s ease;
+    }
+
+    #wheel-app-workspace.open {
+      display: block;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    #wheel-app-workspace .top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 6px 0 20px;
+      border-bottom: 1px solid rgba(155, 233, 49, 0.16);
+      margin-bottom: 22px;
+    }
+
+    #wheel-app-workspace .top-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    #wheel-app-workspace .btn-header {
+      background: var(--wheel-card);
+      border: 1px solid var(--green-medium);
+      color: #e6ffda;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all .2s;
+      flex-shrink: 0;
+      font-family: inherit;
+    }
+
+    #wheel-app-workspace .btn-header:hover {
+      background: var(--green-deep);
+      border-color: var(--green-neon);
+      color: #ffffff;
+    }
+
+    #wheel-app-workspace .btn-collapse-wheel {
+      background: rgba(193, 255, 28, 0.14);
+      border-color: var(--green-neon);
+      color: var(--green-neon);
+    }
+
+    #wheel-app-workspace .btn-collapse-wheel:hover {
+      background: var(--green-neon);
+      color: var(--green-darkest);
+    }
+
+    #wheel-app-workspace .search-box {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    #wheel-app-workspace .search-input {
+      width: 100%;
+      padding: 10px 18px 10px 40px;
+      border-radius: 999px;
+      border: 1px solid var(--green-deep);
+      background: var(--wheel-surface);
+      color: #ffffff;
+      font-size: 14px;
+      outline: none;
+      font-family: inherit;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    #wheel-app-workspace .search-input::placeholder {
+      color: #9ed1ab;
+    }
+
+    #wheel-app-workspace .search-input:focus {
+      border-color: var(--green-neon);
+      box-shadow: 0 0 0 3px rgba(193, 255, 28, 0.28);
+    }
+
+    #wheel-app-workspace .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--green-lime);
+      pointer-events: none;
+    }
+
+    #wheel-app-workspace .app-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    @media (min-width: 960px) {
+      #wheel-app-workspace .app-container {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        align-items: start;
+        gap: 32px;
+      }
+    }
+
+    #wheel-app-workspace .wheel-wrapper {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 580px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      background: radial-gradient(circle at center, #0e4f30 0%, #032214 72%);
+      border: 1px solid var(--green-deep);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    #wheel-app-workspace #w {
+      width: 100%;
+      height: 100%;
+      display: block;
+      user-select: none;
+    }
+
+    #wheel-app-workspace #wheel-stage {
+      transform-origin: 250px 250px;
+      transition: transform 0.65s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    #wheel-app-workspace #center-hub {
+      cursor: pointer;
+      transform-origin: 250px 250px;
+      transition: transform 0.65s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    #wheel-app-workspace .hub-pulse {
+      animation: greenPulse 2.2s infinite ease-in-out;
+    }
+
+    @keyframes greenPulse {
+      0%   { filter: drop-shadow(0 0 6px rgba(193, 255, 28, 0.45)); }
+      50%  { filter: drop-shadow(0 0 18px rgba(193, 255, 28, 0.9)); }
+      100% { filter: drop-shadow(0 0 6px rgba(193, 255, 28, 0.45)); }
+    }
+
+    #wheel-app-workspace .slice {
+      cursor: pointer;
+      transition: opacity .35s ease;
+    }
+
+    #wheel-app-workspace .slice path {
+      stroke: var(--wheel-bg);
+      stroke-width: 1.25;
+    }
+
+    #wheel-app-workspace .slice text {
+      fill: #ffffff;
+      stroke: rgba(0, 0, 0, 0.58);
+      stroke-width: 1.6px;
+      paint-order: stroke;
+      text-anchor: middle;
+      dominant-baseline: central;
+      pointer-events: none;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    #wheel-app-workspace .side-panel {
+      background: var(--wheel-surface);
+      border: 1px solid var(--wheel-border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #wheel-app-workspace .panel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    #wheel-app-workspace .btn-back {
+      border-radius: 999px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--green-medium);
+      background: var(--wheel-card);
+      color: #e2ffe0;
+      padding: 7px 18px;
+      font-family: inherit;
+    }
+
+    #wheel-app-workspace .btn-back:hover:not(:disabled) {
+      background: var(--green-medium);
+      color: #ffffff;
+    }
+
+    #wheel-app-workspace .btn-back:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    #wheel-app-workspace .step-breadcrumbs {
+      display: flex;
+      gap: 6px;
+    }
+
+    #wheel-app-workspace .step-item {
+      border-radius: 999px;
+      font-size: 12.5px;
+      padding: 6px 14px;
+      border: 1px solid var(--green-deep);
+      background: var(--wheel-card);
+      color: #a7d9b5;
+      font-weight: 600;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    #wheel-app-workspace .step-item.active {
+      background: var(--green-neon);
+      color: var(--green-darkest);
+      border-color: var(--green-neon);
+      font-weight: 800;
+    }
+
+    #wheel-app-workspace .panel-main-title {
+      text-align: center;
+      font-size: 1.38rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 4px 0 6px 0;
+    }
+
+    #wheel-app-workspace .panel-subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #bce6c6;
+      line-height: 1.5;
+      margin: 0 auto 20px auto;
+    }
+
+    #wheel-app-workspace .section-prompt {
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--green-neon);
+      margin: 10px 0 16px 0;
+    }
+
+    #wheel-app-workspace .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+    }
+
+    #wheel-app-workspace .option-card {
+      background: var(--wheel-card);
+      border: 1px solid var(--green-deep);
+      border-radius: 16px;
+      padding: 15px 18px;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .15s;
+    }
+
+    #wheel-app-workspace .option-card:hover {
+      background: var(--wheel-hover);
+      border-color: var(--green-light);
+      transform: translateY(-1px);
+    }
+
+    #wheel-app-workspace .option-card:active {
+      transform: scale(0.99);
+    }
+
+    #wheel-app-workspace .option-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    #wheel-app-workspace .option-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    #wheel-app-workspace .option-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    #wheel-app-workspace .option-desc {
+      margin: 6px 0 0 24px;
+      font-size: 0.9rem;
+      color: #cbead3;
+      line-height: 1.45;
+    }
+
+    #wheel-app-workspace .btn-reset-link {
+      display: block;
+      margin: 18px auto 0 auto;
+      background: none;
+      border: none;
+      color: var(--green-lime);
+      font-size: 0.92rem;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 6px 12px;
+      font-family: inherit;
+    }
+
+    #wheel-app-workspace .btn-reset-link:hover {
+      color: var(--green-neon);
+    }
+
+    #wheel-app-workspace .detail-block {
+      margin-bottom: 20px;
+    }
+
+    #wheel-app-workspace .detail-heading {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--green-lime);
+      margin: 0 0 6px 0;
+    }
+
+    #wheel-app-workspace .detail-body {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #effdf2;
+      margin: 0;
+    }
+
+    #wheel-app-workspace .sibling-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    #wheel-app-workspace .sibling-btn {
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      padding: 8px 16px;
+      color: #ffffff;
+      font-size: 13.5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all .2s;
+      font-family: inherit;
+    }
+
+    #wheel-app-workspace .sibling-btn.active {
+      background: var(--green-neon) !important;
+      color: var(--green-darkest) !important;
+      border-color: var(--green-neon);
+      font-weight: 800;
+    }
+
+    #wheel-app-workspace .footer-info {
+      margin-top: 18px;
+      padding: 14px 18px;
+      background: rgba(11, 73, 44, 0.72);
+      border: 1px solid var(--green-deep);
+      border-radius: 16px;
+      font-size: 0.86rem;
+      color: #cdecd5;
+      line-height: 1.5;
+    }
+
+    /* =========================================================
+       CÁC SECTION CÒN LẠI: KỸ THUẬT, BÀI VIẾT, VỀ DỰ ÁN
+       ========================================================= */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -562,7 +1142,6 @@
       gap: 10px;
     }
 
-    /* Section Về dự án (2 cột) */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -607,7 +1186,6 @@
       margin-top: 2px;
     }
 
-    /* Banner CTA cuối trang giống Dorset Mind */
     .cta-banner {
       background: linear-gradient(120deg, var(--green-darkest) 0%, var(--green-deep) 60%, var(--green-medium) 100%);
       color: #ffffff;
@@ -693,7 +1271,7 @@
     }
 
     /* =========================================================
-       MODAL LIÊN HỆ (HIỆN TRANG PAGE FACEBOOK & ZALO KHI NHẤN)
+       MODAL LIÊN HỆ (FACEBOOK & ZALO)
        ========================================================= */
     .modal-overlay {
       position: fixed;
@@ -837,10 +1415,11 @@
     }
 
     /* =========================================================
-       RESPONSIVE TRÊN MÁY TÍNH BẢNG & ĐIỆN THOẠI
+       RESPONSIVE
        ========================================================= */
     @media (max-width: 960px) {
       .hero-grid,
+      .emotion-intro-grid,
       .about-grid,
       .cards-grid,
       .footer-grid {
@@ -851,8 +1430,17 @@
         order: -1;
       }
 
-      .circle-frame {
+      .circle-frame,
+      .emotion-wheel-btn {
         max-width: 320px;
+      }
+
+      .emotion-article {
+        padding: 24px 20px;
+      }
+
+      #wheel-app-workspace {
+        padding: 16px 14px 24px;
       }
 
       .nav-menu {
@@ -920,8 +1508,7 @@
 
       <!-- =======================================================
            CHÚ THÍCH LOGO:
-           Bạn chỉ cần dán link ảnh logo vào thuộc tính src="..." bên dưới
-           (Ví dụ: src="https://link-anh-cua-ban.com/logo.png" hoặc src="logo.png")
+           Thay đường dẫn logo của bạn vào src="..." bên dưới
            ======================================================= -->
       <a href="#top" class="brand-logo">
         <img
@@ -930,18 +1517,14 @@
           class="nav-logo-img"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
-        <!-- Biểu tượng dự phòng tự động hiện nếu bạn chưa gắn link logo -->
         <span class="nav-logo-fallback" style="display: none;">🌱</span>
         <span>Khu vườn cảm xúc</span>
       </a>
 
-      <!-- Nút mở menu trên điện thoại -->
       <button class="mobile-toggle" id="mobileToggle" aria-label="Mở menu">☰</button>
 
-      <!-- Các mục menu theo yêu cầu -->
       <nav aria-label="Điều hướng chính">
         <ul class="nav-menu" id="navMenu">
-          <!-- Give support -> Bài viết -->
           <li class="nav-item">
             <a href="#bai-viet" class="nav-link">
               Bài viết <span class="nav-arrow">▾</span>
@@ -953,7 +1536,6 @@
             </div>
           </li>
 
-          <!-- Work with us -> Các kỹ thuật -->
           <li class="nav-item">
             <a href="#cac-ky-thuat" class="nav-link">
               Các kỹ thuật <span class="nav-arrow">▾</span>
@@ -965,19 +1547,17 @@
             </div>
           </li>
 
-          <!-- About Dorset Mind -> Về dự án -->
           <li class="nav-item">
             <a href="#ve-du-an" class="nav-link">
               Về dự án <span class="nav-arrow">▾</span>
             </a>
             <div class="dropdown-menu">
+              <a href="#vong-tron-cam-xuc">Vòng tròn cảm xúc</a>
               <a href="#ve-du-an">Sứ mệnh &amp; Tầm nhìn</a>
-              <a href="#ve-du-an">Bánh xe cảm xúc</a>
               <a href="#ve-du-an">Đội ngũ thực hiện</a>
             </div>
           </li>
 
-          <!-- Contact -> Liên hệ (Nhấn để mở trang Page Facebook và Zalo) -->
           <li class="nav-item">
             <button type="button" class="nav-link nav-contact-btn" id="openContactModal">
               Liên hệ
@@ -989,17 +1569,15 @@
   </header>
 
   <!-- =========================================================
-       PHẦN MỞ ĐẦU (HERO SECTION) - GIỐNG BỐ CỤC GET INVOLVED
+       PHẦN MỞ ĐẦU (HERO SECTION)
        ========================================================= -->
   <section class="hero-section">
-    <!-- Nét cọ cong nền màu xanh lá nhạt -->
     <svg class="hero-brush-bg" viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M90 10C30 140 20 330 150 450" stroke="#9BE931" stroke-width="26" stroke-linecap="round"/>
       <path d="M540 30C440 120 350 170 210 140" stroke="#C1FF1C" stroke-width="18" stroke-linecap="round"/>
     </svg>
 
     <div class="container hero-grid">
-      <!-- Cột trái: Breadcrumb + Tiêu đề + Nội dung giới thiệu -->
       <div>
         <div class="breadcrumb">
           <a href="#top">Trang chủ</a>
@@ -1026,31 +1604,154 @@
         </p>
 
         <div class="hero-actions">
-          <a href="#cac-ky-thuat" class="btn btn-primary">Khám phá các kỹ thuật</a>
-          <a href="#bai-viet" class="btn btn-outline">Đọc bài viết</a>
+          <a href="#vong-tron-cam-xuc" class="btn btn-primary">Khám phá Vòng tròn cảm xúc</a>
+          <a href="#cac-ky-thuat" class="btn btn-outline">Các kỹ thuật</a>
         </div>
       </div>
 
-      <!-- Cột phải: Khung ảnh HÌNH TRÒN khớp với ảnh số 3 -->
       <div class="hero-image-wrapper">
         <div class="circle-frame">
-          <!-- =======================================================
-               CHÚ THÍCH ẢNH SỐ 3 (BÁNH XE CẢM XÚC):
-               1. Lưu ảnh số 3 bạn đã gửi cùng thư mục với file index.html
-                  và đặt tên là "anh-cam-xuc.png"
-               2. Hoặc dán trực tiếp link ảnh số 3 vào src="..." bên dưới.
-               ======================================================= -->
+          <!-- CHÚ THÍCH ẢNH HERO: Lưu ảnh minh họa vào cùng thư mục với tên anh-cam-xuc.png -->
           <img
             src="anh-cam-xuc.png"
-            alt="Bánh xe cảm xúc - Khu vườn cảm xúc"
+            alt="Khu vườn cảm xúc"
             onerror="this.style.display='none'; document.getElementById('wheelFallback').style.display='flex';"
           />
 
-          <!-- Giao diện dự phòng nếu chưa đặt file anh-cam-xuc.png cùng thư mục -->
           <div id="wheelFallback" class="wheel-fallback" style="display: none;">
             <div class="wheel-fallback-inner">
               <strong>Khu vườn cảm xúc</strong>
-              <span>Hãy đặt ảnh số 3 cùng thư mục với tên <b>anh-cam-xuc.png</b> để hiển thị tại đây.</span>
+              <span>Đặt ảnh với tên <b>anh-cam-xuc.png</b> cùng thư mục để hiển thị tại đây.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       MỤC MỚI: VÒNG TRÒN CẢM XÚC (NẰM NGAY TRÊN MỤC KỸ THUẬT)
+       ========================================================= -->
+  <section id="vong-tron-cam-xuc" class="section emotion-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Thấu hiểu cảm xúc</span>
+        <h2 class="section-title">Vòng tròn cảm xúc</h2>
+        <p class="section-desc">
+          Nhấn trực tiếp vào vòng tròn cảm xúc bên dưới để tương tác, gọi tên chính xác cảm xúc và khám phá cách chăm sóc bản thân ngay trên trang này.
+        </p>
+      </div>
+
+      <!-- Khối giới thiệu (Nội dung chuyển ngữ giữ nguyên ý + Ảnh vòng tròn số 2) -->
+      <div class="emotion-intro-grid" id="emotionIntroGrid">
+        <article class="emotion-article">
+          <p>
+            Việc thấu hiểu cách chúng ta cảm nhận là điều vô cùng quan trọng, bởi <strong>cảm xúc tác động đến trạng thái an lành bên trong cũng như hành vi bên ngoài</strong> của chúng ta; đồng thời hành vi của ta lại ảnh hưởng đến cách mọi người xung quanh tương tác với ta, và điều đó tiếp tục quay ngược lại tác động đến cảm xúc của chính mình. Nếu hiểu được mình đang cảm thấy thế nào và vì sao lại như vậy, ta có thể chủ động lựa chọn phản ứng và thay đổi cách đối diện với cảm xúc đó để tạo nên một trải nghiệm tích cực và lành mạnh hơn.
+          </p>
+
+          <p>
+            Bạn có thể hình dung cảm xúc của chúng ta giống như đang nằm trên một thang đo rộng lớn: một đầu là cảm xúc tiêu cực nhất, đầu kia là cảm xúc tích cực nhất, và ở giữa là tất cả những cung bậc đan xen. Mọi cảm xúc đều có mục đích, vị trí riêng trong cuộc sống và đảm nhận một chức năng nhất định, dù ta có nhận ra điều đó hay không. <strong>“Vòng tròn cảm xúc”</strong> này có thể giúp ta nhận diện được mình đang cảm thấy như thế nào ngay cả khi ta chưa tìm được từ ngữ để diễn tả.
+          </p>
+
+          <div class="emotion-note">
+            <p>
+              <strong>Lưu ý:</strong> Tất cả những cảm xúc này đều là một phần tự nhiên của bản chất con người và ai trong chúng ta cũng đều trải qua. Những cảm xúc tích cực thường dễ bộc lộ và dễ thấu hiểu hơn rất nhiều; ta hiếm khi cần đào sâu tìm hiểu chúng mà có thể an nhiên tận hưởng. Nhưng cảm xúc tiêu cực lại phức tạp hơn thế. Chúng ta thường không hiểu hoặc không thừa nhận những cảm xúc tiêu cực. Vì chúng mang lại cảm giác đau đớn và khó chịu, ta có xu hướng phớt lờ chúng hoặc phản ứng lại thông qua hành vi của mình. Tuy nhiên, nếu ta cứ tiếp tục chôn giấu những cảm xúc ấy, chúng sẽ chỉ trở nên tồi tệ hơn. Hành vi của chúng ta có thể mất kiểm soát khi ta loay hoay tìm cách đối phó với nỗi đau, và kết cục là ta dễ bị hiểu lầm, rơi vào cô lập cũng như mắc kẹt trong một vòng luẩn quẩn của sự tiêu cực.
+            </p>
+          </div>
+
+          <p class="emotion-root-highlight">
+            Thực sự đối diện với một cảm xúc chính là nỗ lực tìm ra nguyên nhân gốc rễ của nó. Hiểu được cảm xúc đó là gì và nó bắt nguồn từ đâu là một phần thiết yếu giúp ta học cách ứng xử với nó một cách tốt nhất.
+          </p>
+        </article>
+
+        <!-- Cột bên phải: Ảnh vòng tròn cảm xúc (nhấn vào để kích hoạt bánh xe tương tác) -->
+        <div class="emotion-trigger-col">
+          <button
+            type="button"
+            class="emotion-wheel-btn"
+            id="triggerWheelFromImg"
+            title="Nhấn để mở Vòng tròn cảm xúc tương tác"
+            aria-label="Nhấn vào vòng tròn cảm xúc để tương tác"
+          >
+            <!-- =======================================================
+                 CHÚ THÍCH ẢNH VÒNG TRÒN CẢM XÚC (ẢNH SỐ 2):
+                 1. Lưu ảnh vòng tròn cảm xúc bạn gửi kèm vào cùng thư mục với index.html
+                    và đặt tên là "vong-tron-cam-xuc.png"
+                 2. Hoặc thay src="vong-tron-cam-xuc.png" bằng đường dẫn ảnh của bạn.
+                 ======================================================= -->
+            <img
+              src="vong-tron-cam-xuc.png"
+              alt="Vòng tròn cảm xúc - Nhấn để bắt đầu"
+              onerror="this.style.display='none'; document.getElementById('wheelImgFallback').style.display='flex';"
+            />
+
+            <!-- Giao diện dự phòng giống ảnh số 2 nếu bạn chưa chép file ảnh vào thư mục -->
+            <div id="wheelImgFallback" class="wheel-img-fallback" style="display: none;">
+              <div class="wheel-img-fallback-hub">
+                <strong>Start</strong>
+                <span>tap to begin</span>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" class="emotion-click-badge" id="triggerWheelFromBtn">
+            👆 Nhấn vào vòng tròn để khám phá cảm xúc
+          </button>
+        </div>
+      </div>
+
+      <!-- =======================================================
+           KHUNG BÁNH XE CẢM XÚC TƯƠNG TÁC (CHẠY NGAY TRÊN TRANG CHÍNH)
+           ======================================================= -->
+      <div id="wheel-app-workspace" aria-live="polite">
+        <div class="top-header">
+          <div class="top-header-left">
+            <button type="button" class="btn-header" onclick="resetToInitial()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+              Colors
+            </button>
+            <div class="search-box">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input id="q" class="search-input" type="search" placeholder="Tìm kiếm cảm xúc... (ví dụ: lo lắng, biết ơn, giận)" autocomplete="off" />
+            </div>
+          </div>
+          <button type="button" class="btn-header btn-collapse-wheel" id="collapseWheelBtn">
+            ✕ Thu gọn về ảnh
+          </button>
+        </div>
+
+        <div class="app-container">
+          <!-- Cột trái: Bánh xe SVG xoay & thu phóng 72 cảm xúc -->
+          <div class="wheel-column">
+            <div class="wheel-wrapper">
+              <svg id="w" viewBox="0 0 500 500" role="img" aria-label="Bánh xe cảm xúc tương tác">
+                <defs>
+                  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+                    <feDropShadow dx="0" dy="0" stdDeviation="4.5" flood-color="#ffffff" flood-opacity="0.9"/>
+                  </filter>
+                  <filter id="hub-shadow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.6"/>
+                  </filter>
+                </defs>
+                <g id="wheel-stage">
+                  <g id="wheel-slices"></g>
+                  <path id="active-outline" d="" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linejoin="round" filter="url(#glow)" pointer-events="none" style="display:none;"></path>
+
+                  <g id="center-hub">
+                    <circle id="hub-circle" cx="250" cy="250" r="48" fill="#1E8C45" stroke="#ffffff" stroke-width="2.5" filter="url(#hub-shadow)"/>
+                    <text id="hub-title" x="250" y="242" fill="#ffffff" font-size="16" font-weight="800" text-anchor="middle" dominant-baseline="central">Start</text>
+                    <text id="hub-sub" x="250" y="261" fill="rgba(255,255,255,0.88)" font-size="10.5" font-weight="500" text-anchor="middle" dominant-baseline="central">tap to begin</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Cột phải: Bảng điều khiển thông tin cảm xúc -->
+          <div class="panel-column">
+            <div id="panel" class="side-panel"></div>
+            <div class="footer-info">
+              💡 <b>Mẹo:</b> Bắt đầu từ 6 cảm xúc gốc, sau đó đi sâu dần vào các tầng cụ thể hơn để thấu hiểu rõ cảm xúc và trạng thái cơ thể của bạn.
             </div>
           </div>
         </div>
@@ -1080,7 +1781,7 @@
               Hít vào bằng mũi trong 4 giây, giữ hơi trong 7 giây và thở ra chậm rãi trong 8 giây giúp làm dịu hệ thần kinh khi lo âu hoặc tức giận.
             </p>
           </div>
-          <a href="#ve-du-an" class="card-link">Tìm hiểu thêm →</a>
+          <a href="#vong-tron-cam-xuc" class="card-link">Kiểm tra cảm xúc →</a>
         </article>
 
         <article class="card">
@@ -1130,7 +1831,7 @@
               Không chỉ Niềm vui, ngay cả Buồn bã, Lo âu hay Sợ hãi cũng mang đến những thông điệp quan trọng giúp chúng ta trưởng thành và kết nối.
             </p>
           </div>
-          <a href="#top" class="card-link">Đọc bài viết →</a>
+          <a href="#vong-tron-cam-xuc" class="card-link">Khám phá thêm →</a>
         </article>
 
         <article class="card">
@@ -1141,7 +1842,7 @@
               Khi bạn đặt đúng tên cho cảm xúc đang trải qua, mức độ căng thẳng sẽ dịu xuống và bạn dễ dàng tìm ra cách ứng xử phù hợp hơn.
             </p>
           </div>
-          <a href="#top" class="card-link">Đọc bài viết →</a>
+          <a href="#vong-tron-cam-xuc" class="card-link">Thử gọi tên cảm xúc →</a>
         </article>
 
         <article class="card">
@@ -1152,7 +1853,7 @@
               Đôi khi điều một người cần nhất không phải là lời khuyên vội vàng, mà là một người sẵn sàng ngồi cạnh và lắng nghe trọn vẹn.
             </p>
           </div>
-          <a href="#top" class="card-link">Đọc bài viết →</a>
+          <a href="#ve-du-an" class="card-link">Đọc bài viết →</a>
         </article>
       </div>
     </div>
@@ -1183,7 +1884,7 @@
           </li>
           <li>
             <span class="check">✓</span>
-            <span>Cung cấp các bài viết và kỹ thuật tự chăm sóc tinh thần dễ áp dụng.</span>
+            <span>Cung cấp vòng tròn cảm xúc tương tác và các kỹ thuật tự chăm sóc tinh thần dễ áp dụng.</span>
           </li>
           <li>
             <span class="check">✓</span>
@@ -1228,8 +1929,9 @@
         <div>
           <h4>Danh mục</h4>
           <ul>
-            <li><a href="#bai-viet">Bài viết</a></li>
+            <li><a href="#vong-tron-cam-xuc">Vòng tròn cảm xúc</a></li>
             <li><a href="#cac-ky-thuat">Các kỹ thuật</a></li>
+            <li><a href="#bai-viet">Bài viết</a></li>
             <li><a href="#ve-du-an">Về dự án</a></li>
           </ul>
         </div>
@@ -1259,10 +1961,7 @@
       </p>
 
       <div class="social-cards">
-        <!-- =======================================================
-             CHÚ THÍCH LINK FACEBOOK:
-             Thay đường dẫn href="https://www.facebook.com/" bằng link Page Facebook của bạn
-             ======================================================= -->
+        <!-- CHÚ THÍCH LINK FACEBOOK: Thay link Page Facebook của bạn vào href="..." -->
         <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-card">
           <div class="social-info">
             <div class="social-icon icon-fb">f</div>
@@ -1274,11 +1973,7 @@
           <span class="social-go">Mở Page →</span>
         </a>
 
-        <!-- =======================================================
-             CHÚ THÍCH LINK ZALO:
-             Thay đường dẫn href="https://zalo.me/" bằng link Zalo OA / SĐT Zalo của bạn
-             (Ví dụ: https://zalo.me/0912345678)
-             ======================================================= -->
+        <!-- CHÚ THÍCH LINK ZALO: Thay link Zalo OA / SĐT Zalo của bạn vào href="..." -->
         <a href="https://zalo.me/" target="_blank" rel="noopener noreferrer" class="social-card">
           <div class="social-info">
             <div class="social-icon icon-zalo">Zalo</div>
@@ -1294,10 +1989,10 @@
   </div>
 
   <!-- =========================================================
-       JAVASCRIPT ĐIỀU KHIỂN MENU MOBILE & POPUP LIÊN HỆ
+       JAVASCRIPT: MENU + MODAL LIÊN HỆ + VÒNG TRÒN CẢM XÚC TƯƠNG TÁC
        ========================================================= -->
   <script>
-    // Mở / đóng menu trên điện thoại
+    /* 1. MENU MOBILE & MODAL LIÊN HỆ */
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('navMenu');
 
@@ -1305,14 +2000,12 @@
       navMenu.classList.toggle('active');
     });
 
-    // Đóng menu mobile khi bấm vào các mục link
     document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
       });
     });
 
-    // Mở / đóng modal Liên hệ (Facebook & Zalo)
     const contactModal = document.getElementById('contactModal');
     const openBtns = [
       document.getElementById('openContactModal'),
@@ -1339,7 +2032,6 @@
 
     closeBtn.addEventListener('click', closeModal);
 
-    // Nhấn ra ngoài khung modal hoặc phím ESC để đóng
     contactModal.addEventListener('click', (e) => {
       if (e.target === contactModal) closeModal();
     });
@@ -1349,6 +2041,558 @@
         closeModal();
       }
     });
+
+    /* 2. BÁNH XE CẢM XÚC TƯƠNG TÁC TRỰC TIẾP TRÊN TRANG CHÍNH */
+    const D = [
+      ['Buồn','#2e86c1','Phản ứng trước mất mát, tổn thương và xa cách. Nó làm bạn chậm lại và nhắc nhở cơ thể cần được an ủi, nâng đỡ.',[
+        ['Tổn thương',['Ngượng ngùng|Thấy mình bị phơi bày, bối rối và chỉ muốn biến mất ngay lập tức.|Nóng bừng mặt, né tránh ánh mắt, cười gượng gạo.|Thở ra chậm, tâm sự với người tin cậy, tự đối xử tử tế với mình.','Thất vọng|Điều kỳ vọng mong chờ không xảy ra, lòng chùng xuống.|Nặng ở bụng, hay thở dài, hai vai rũ xuống.|Gọi tên điều bạn kỳ vọng, cho phép mình buồn một chút rồi mới tìm cách gỡ.','Xấu hổ|Cảm thấy bản thân nhỏ bé, tự trách vì để lộ điều không hay.|Cúi đầu, nóng rát lồng ngực, thu mình im lặng.|Chia sẻ với một người bao dung; tự viết lời nhắc mình vẫn đang học hỏi.']],
+        ['Chán nản',['Trống rỗng|Phẳng lặng, vô cảm, mọi thứ từng quan trọng nay bỗng xa xôi.|Mệt mỏi dù ngủ đủ, khẩu vị thay đổi thất thường.|Giữ nếp sinh hoạt cơ bản, đi dạo dưới ánh nắng, trò chuyện với một người bạn.','Tự ti|Thấy mình luôn kém cỏi hơn người khác, càng so sánh càng buồn.|Dáng gù, giọng nhỏ, né tránh sự chú ý.|Hạn chế mạng xã hội; chỉ so sánh với phiên bản của chính mình ngày hôm qua.','Bất lực|Cảm giác như mọi cố gắng, nỗ lực đều vô ích.|Cơ thể nặng nề, hơi thở nông, phản xạ chậm chạp.|Phân loại việc kiểm soát được; làm một việc nhỏ nhất trước mắt, nhờ trợ giúp.']],
+        ['Tội lỗi',['Hối hận|Ước gì mình có thể làm lại, nhận thức rõ tác động đau lòng lên người khác.|Nhói ở ngực, thắt bụng, khó đi vào giấc ngủ.|Chân thành xin lỗi không kèm từ "nhưng"; hỏi họ cần gì để bù đắp.','Hổ thẹn|Không chỉ là "mình làm sai" mà cảm giác "mình thật tồi tệ".|Muốn trốn tránh, nóng mặt, tự trách dồn dập.|Tách biệt hành động lỗi lầm khỏi giá trị con người; sửa chữa điều có thể.','Gánh vác|Tự nhận mọi rắc rối là do mình, dù bản chất không hoàn toàn vậy.|Căng cứng cơ cổ vai, nghiến chặt hàm.|Ghi ra giấy phần thuộc trách nhiệm của mình và phần của người khác để trả lại.']],
+        ['Cô đơn',['Bị bỏ rơi|Người ta cần nhất đã rời đi, để lại khoảng trống khó lấp đầy.|Hụt hẫng trong lồng ngực, dễ rơi nước mắt.|Cho phép mình tiếc thương; chủ động kết nối lại với một người an toàn ngay hôm nay.','Bị tổn hại|Thấy mình bị đối xử bất công mà xung quanh không ai thấu hiểu.|Cảnh giác cao độ, dễ giật mình, kiệt sức.|Tâm sự với người tin cậy, bảo vệ sự an toàn cho bản thân trước tiên.','Mong manh|Cảm giác chỉ cần thêm một biến cố nhỏ là có thể vỡ òa.|Dễ rưng rưng, nhạy cảm với tiếng động lớn, run rẩy.|Giảm tải công việc, nghỉ ngơi trong không gian ấm áp, ngủ đủ giấc.']]
+      ]],
+
+      ['Giận','#3d5afe','Phản ứng khi mục tiêu bị cản trở, ranh giới bị xâm phạm hoặc thấy sự bất công. Giận là nguồn năng lượng thúc đẩy bảo vệ bản thân.',[
+        ['Căm ghét',['Hay chê bai|Chỉ chăm chăm nhìn vào lỗi sai của đối phương với giọng điệu cay nghiệt.|Nghiến hàm, mím chặt môi, giọng nói gắt gỏng.|Chuyển lời chỉ trích thành lời đề nghị; dừng lại 5 giây trước khi phát ngôn.','Coi thường|Lạnh lùng, xem đối phương không xứng đáng để bận tâm.|Đảo mắt, quay mặt đi, nụ cười mỉa mai.|Hỏi một câu thật lòng; tự hỏi mình đang dùng sự khinh miệt để che giấu nỗi đau nào.','Hoài nghi|Mất niềm tin, luôn đề phòng người khác lừa dối.|Nhướng mày, khoanh tay, giữ khoảng cách phòng thủ.|Dựa vào sự thật và bằng chứng cụ thể thay vì suy diễn tiêu cực.']],
+        ['Hung hăng',['Bị khiêu khích|Bị kích động trúng điểm nhạy cảm, muốn lập tức đáp trả tay đôi.|Nóng bừng mặt, tim đập thình thịch, siết chặt nắm tay.|Hít sâu và thở ra thật dài; rời khỏi khu vực đó 10 phút trước khi phản hồi.','Thù địch|Coi người khác là kẻ thù, sẵn sàng xung đột.|Cơ bắp căng cứng, mặt đỏ, đi lại bồn chồn.|Tạm dừng nhắn tin hay tranh luận; giải tỏa năng lượng bằng vận động mạnh.','Bực bội|Cố gắng mãi mà không thành, kiên nhẫn cạn kiệt dần.|Hay thở dài, đau nhức đầu, nghiến răng.|Tạm nghỉ giải lao; chia nhỏ chướng ngại vật thành bước nhỏ hơn.']],
+        ['Đối đầu',['Căm hận|Muốn người kia phải trả giá, suy nghĩ trả đũa lấp đầy tâm trí.|Nóng rát lồng ngực, khó ngủ, luôn căng thẳng.|Gọi tên tổn thương thực sự; giữ khoảng cách an toàn, tránh hành vi bột phát.','Tự cho là đúng|Khăng khăng mình luôn đúng còn người khác sai, muốn dạy dỗ họ.|Cằm hếch cao, lưng thẳng đơ, giọng điệu giảng giải.|Tự hỏi: "Có góc nhìn nào mình chưa thấy không?", lắng nghe trước khi nói.','Cáu gắt|Chỉ một cử chỉ nhỏ cũng làm nổi đóa, sức chịu đựng mỏng manh.|Cau mày, thở ngắn, trả lời cộc lốc.|Kiểm tra lại xem bạn có đang đói, thiếu ngủ hay làm việc quá sức không.']],
+        ['Thu mình',['Kháng cự|Ngấm ngầm chống đối, càng bị ép càng muốn lùi lại.|Khoanh tay trước ngực, trì hoãn công việc.|Nói rõ lời từ chối lịch sự bằng lời thay vì im lặng kéo dài thời gian.','Chê thầm|Lặng lẽ phán xét, âm thầm ghi sổ lỗi của người khác.|Mím môi, tránh nhìn thẳng, hay thở dài ngấm ngầm.|Chọn vấn đề cốt lõi nhất để chia sẻ thẳng thắn: "Mình cần..." thay vì "Bạn luôn...".','Gạt đi|Nói "kệ" hoặc "không sao" để né tránh vì thấy giải thích vô ích.|Nhún vai, giọng đều đều vô cảm, mắt nhìn điện thoại.|Tự trả lời câu hỏi: "Điều thật sự làm mình thấy phiền lòng là gì?".']]
+      ]],
+
+      ['Sợ','#8e24aa','Phản ứng trước mối đe dọa hoặc điều mơ hồ chưa chắc chắn đối với cơ thể, vị thế hoặc giá trị bản thân.',[
+        ['Bị từ chối',['Bị phản bội|Bàng hoàng vì người mình trao trọn niềm tin lại làm tổn thương mình.|Cảm giác như bị đấm vào bụng, buồn nôn, run rẩy.|Chưa vội ra quyết định hệ trọng; ở cạnh người thực sự an toàn.','Bị gạt bỏ|Lời nói của mình không được ai lắng nghe hay coi trọng.|Nghẹn họng, chùng bụng, nóng bừng tai.|Bình tĩnh nhắc lại: "Mình muốn chia sẻ hết ý"; chọn người biết lắng nghe.','Bị xa lánh|Cảm giác như người ngoài cuộc, không thuộc về nơi này.|Nặng trịch ở ngực, dè chừng, mệt mỏi vì phải gượng gạo.|Tìm kiếm cộng đồng chung sở thích; kết nối lại với người bạn thân cũ.']],
+        ['Yếu đuối',['Vô giá trị|Trống rỗng, thấy mình thừa thãi và không có chút sức nặng nào.|Cơ thể rã rời, lưng gù, thở nông.|Kể ra một việc có ích mình làm được hôm nay; đi dạo nhẹ nhàng.','Nhỏ bé|Bị lu mờ hoàn toàn trước đám đông, không ai để ý tới.|Căng hàm, bồn chồn, thu mình góc phòng.|Viết ra 3 giá trị độc nhất của bản thân; tham gia nhóm nhỏ ấm cúng.','Chưa đủ tốt|Luôn lo sợ mình chưa đủ giỏi, sắp sửa thất bại.|Suy nghĩ quay cuồng, mất ngủ, bấu chặt ngón tay.|Hỏi bản thân: "Mức này đã đủ tốt cho hôm nay chưa?", giảm bớt cầu toàn.']],
+        ['Bị đe dọa',['Phơi bày|Điểm yếu bí mật bị nhìn thấy một cách không mong muốn.|Tim đập dồn dập, mặt tái hoặc đỏ, muốn biến mất.|Tìm đến không gian an toàn; thiết lập ranh giới rõ ràng về quyền riêng tư.','Hồi hộp|Có sự kiện quan trọng sắp tới mà chưa chắc mình gánh vác nổi.|Bồn chồn, đổ mồ hôi tay, giọng run.|Hít thở 4 nhịp (hít 4s, giữ 4s, thở 6s); vận động nhẹ để xả bớt adrenaline.','Lo lắng|Đầu óc liên tục tua các kịch bản tồi tệ "nếu như...".|Căng cơ vai, quặn bụng, trằn trọc ban đêm.|Viết nỗi lo ra giấy; khoanh tròn những điều bạn thực tế xử lý được ngay.']],
+        ['Không chắc',['Phớt lờ|Làm ra vẻ bất cần để trốn tránh cảm giác hoang mang bên trong.|Cười trừ, đổi chủ đề, hít thở nông.|Tự thành thật: "Nếu mình thực sự quan tâm, điều mình sợ nhất là gì?".','Rối bời|Quá nhiều mớ bòng bong ập tới, không biết bắt đầu từ đâu.|Khó tập trung, đơ người, cảm giác choáng ngợp.|Ghi mọi thứ ra giấy; chọn duy nhất 1 việc cần ưu tiên trong 20 phút.','Mơ hồ|Lơ lửng giữa ngã ba đường, không biết tương lai sẽ ra sao.|Nôn nao ở bụng, liên tục muốn người khác trấn an.|Liệt kê những điều chắc chắn hiện tại; chọn một bước đi nhỏ có thể điều chỉnh.']]
+      ]],
+
+      ['Vui','#d81b60','Niềm hân hoan, sự sống động và cảm giác mãn nguyện khi một mình hoặc bên cạnh người thân thương.',[
+        ['Hào hứng',['Giác quan rộn ràng|Các giác quan bừng sáng, cảm nhận sâu sắc vẻ đẹp xung quanh.|Làn da ấm áp, thở êm dịu, râm ran dễ chịu.|Chậm lại để tận hưởng một bữa ăn ngon hoặc một bản nhạc yêu thích.','Tràn năng lượng|Phấn chấn, sẵn sàng bắt tay vào hành động ngay.|Bước chân thoăn thoắt, ánh mắt rạng rỡ, tim đập nhanh hứng khởi.|Bắt tay vào dự án bạn ấp ủ; vận động thể thao; giữ nếp ngủ đủ.','Háo hức|Có điều tốt đẹp sắp diễn ra, nóng lòng chờ đợi.|Rộn ràng trong bụng, hay cười mỉm, khó ngồi yên.|Chia sẻ niềm vui với người thân; chuẩn bị chu đáo để đón nhận.']],
+        ['Sáng tạo',['Cảm hứng|Ý tưởng tuôn trào dào dạt, thấy mọi thứ đều có thể kết nối.|Lồng ngực rộn ràng, mắt sáng, quên cả thời gian.|Ghi chép lại ngay ý tưởng; dành một khoảng thời gian riêng tư để sáng tác.','Mơ mộng|Hình dung về tương lai rực rỡ và tin tưởng mình làm được.|Ngực nhẹ nhõm, hơi thở thoải mái, ánh nhìn xa xăm.|Vẽ hoặc viết ra tầm nhìn chi tiết; bắt đầu làm bản nháp đầu tiên.','Tinh nghịch|Thảnh thơi, muốn đùa vui, chọc cười và thử nghiệm cái mới.|Cơ thể nhún nhảy, hay cười to, giọng nói ríu rít.|Tham gia một trò chơi; chơi cùng trẻ nhỏ hoặc thú cưng yêu quý.']],
+        ['Nhạy cảm',['Tỉnh thức|Chú ý sâu sắc đến từng chi tiết và nét đẹp bình dị quanh mình.|Tâm trí sáng tỏ, thở chậm, cảm giác rùng mình xúc động.|Dừng lại 3 phút, hít thở sâu và cảm nhận 5 điều bạn đang nghe, thấy, chạm.','Hân hoan|Niềm vui thuần khiết từ tận đáy lòng, không cần bất kỳ lý do nào.|Nụ cười tự nhiên trên môi, lồng ngực ấm áp, tinh thần nhẹ bẫng.|Giữ trọn khoảnh khắc này thêm vài nhịp thở; lan tỏa nụ cười tới người khác.','Biết ơn|Xúc động sâu sắc trước những điều tốt lành mình được trao tặng.|Ấm áp nơi ngực, ánh mắt dịu dàng, đôi khi rưng rưng.|Nhắn một lời cảm ơn chân thành; viết nhật ký biết ơn mỗi tối.']],
+        ['Gần gũi',['Được chấp nhận|Được là chính mình hoàn toàn mà không sợ bị phán xét.|Cơ thể thả lỏng, hít thở tự nhiên như được trở về nhà.|Dành nhiều thời gian hơn cho những người trân trọng con người thật của bạn.','Được trân trọng|Nhận thức rõ giá trị và ý nghĩa của mình trong mắt người khác.|Lưng thẳng hơn, ánh mắt kiên định và ấm áp.|Đón nhận lời khen ngợi một cách trọn vẹn; chia sẻ sự biết ơn với họ.','Bình yên bên nhau|Khoảnh khắc bên nhau tĩnh lặng, không cần nói nhiều vẫn hiểu.|Cơ bắp thư giãn, nhịp thở đồng điệu, sự tĩnh lặng dễ chịu.|Gác lại điện thoại; tận hưởng trọn vẹn sự hiện diện cùng người thương.']]
+      ]],
+
+      ['Mạnh mẽ','#b23b23','Cảm giác vững vàng, tự tin vào năng lực bản thân và làm chủ được cuộc sống.',[
+        ['Vững tin',['Vững vàng|Vững lòng tin vào con đường của mình và sự hỗ trợ xung quanh.|Dáng đứng thẳng, giọng nói trầm ấm và quả quyết.|Nhắc lại những thử thách bạn từng vượt qua; đưa ra quyết định can đảm.','Được ghi nhận|Sự trung thành và cống hiến của bạn được đền đáp xứng đáng.|Lồng ngực ấm, vai thả lỏng, nụ cười an tâm.|Mở lòng đón nhận sự công nhận; tiếp tục phát huy thế mạnh của mình.','Tin sẽ ổn|Niềm tin sắt đá rằng mọi bão giông rồi sẽ qua đi tốt đẹp.|Cảm giác thanh thản, ánh mắt hướng lên, hơi thở đều đặn.|Tập trung làm thật tốt phần việc của ngày hôm nay; duy trì sự lạc quan.']],
+        ['Hy vọng',['Mong đợi|Háo hức ngóng trông về thành quả phía trước.|Đầu óc tỉnh táo, phản ứng nhanh nhạy, tràn đầy hy vọng.|Lập kế hoạch hành động thực tế; giữ tâm thế cởi mở và linh hoạt.','Được truyền cảm hứng|Bừng sáng ý chí muốn thay đổi và tạo ra giá trị mới.|Căng tràn nhiệt huyết, cảm giác có dòng năng lượng dâng trào.|Chọn ngay một hành động cụ thể trong hôm nay để biến cảm hứng thành thực tế.','Có ý nghĩa|Thấy rõ sứ mệnh và vai trò quan trọng của mình trong tập thể.|Dáng đi dứt khoát, ánh nhìn kiên định có mục tiêu.|Tập trung vào phần việc tạo ra giá trị lớn nhất; giúp đỡ người đi sau.']],
+        ['Tự hào',['Tin cậy|Tin tưởng trọn vẹn vào năng lực phán đoán của chính mình.|Ngực mở rộng, bước đi thong dong, dứt khoát.|Giữ đúng lời hứa với bản thân; tự thưởng cho sự nỗ lực kiên trì.','Thành công|Chinh phục được mục tiêu lớn lao sau chuỗi ngày nỗ lực.|Nụ cười rạng rỡ, thở phào mãn nguyện, tinh thần phấn chấn.|Ăn mừng chiến thắng; tri ân những người đồng hành; nghỉ ngơi trước mục tiêu mới.','Tự tin|Hiểu rõ điểm mạnh của mình, không cần phô trương chứng tỏ.|Đầu ngẩng cao, giọng nói rành mạch, phong thái đĩnh đạc.|Đón nhận thử thách mới; duy trì thái độ khiêm nhường học hỏi.']],
+        ['Được tôn trọng',['Được coi trọng|Ý kiến và sự hiện diện của bạn có sức nặng với mọi người.|Vai buông lỏng tự nhiên, nụ cười tự tin, ấm áp.|Tiếp tục đóng góp ý kiến mang tính xây dựng; chọn môi trường lành mạnh.','Được cảm ơn|Những cống hiến thầm lặng được nhìn thấy và trân trọng.|Ánh mắt xúc động, bước chân nhẹ nhàng, lòng vui tươi.|Nói lời cảm ơn chân thành đáp lại; tiếp tục lan tỏa sự tận tâm.','Có tiếng nói|Được lắng nghe và là chỗ dựa đáng tin cậy cho người khác.|Tư thế đĩnh đạc, phát ngôn điềm đạm, ánh nhìn vững vàng.|Dùng tiếng nói để nâng đỡ người yếu thế; khiêm tốn thừa nhận thiếu sót.']]
+      ]],
+
+      ['Bình yên','#c67d0a','Trạng thái tĩnh lặng, an toàn, ổn định và kết nối sâu sắc từ bên trong.',[
+        ['Trầm tư',['Suy ngẫm|Lắng lòng nhìn lại hành trình đã qua để đúc kết bài học.|Thở sâu và chậm, ánh mắt nhìn xa, cơ thể thư thái.|Viết nhật ký chiêm nghiệm; đi dạo một mình không đeo tai nghe.','Muốn xin lỗi|Nhận ra sai sót và thật tâm muốn hàn gắn mối quan hệ.|Giọng nói nhỏ nhẹ, ngực chùng xuống, cơ mặt dịu lại.|Gặp mặt xin lỗi chân thành: thừa nhận việc làm, lắng nghe và sửa đổi.','Trân trọng quá khứ|Nhìn lại chặng đường cũ với lòng biết ơn vì đã cho mình trưởng thành.|Cảm giác ấm áp lan tỏa khắp người, mỉm cười thanh thản.|Gửi tin nhắn tri ân tới người từng giúp đỡ bạn trong lúc khó khăn.']],
+        ['Thân mật',['Trân quý|Biết ơn và hạnh phúc vì có người này kề cận trong đời.|Muốn trao một cái ôm ấm áp, ánh nhìn yêu thương dịu dàng.|Nói với họ bằng lời cụ thể: "Mình rất may mắn khi có bạn ở bên".','Tin tưởng|Cảm giác an toàn tuyệt đối, có thể dỡ bỏ mọi rào cản phòng thủ.|Cơ bắp mềm mại, hơi thở sâu, hoàn toàn thư giãn.|Mở lòng chia sẻ tâm tư thầm kín; gìn giữ lòng tin đôi bên.','Yêu thương|Tràn ngập tình yêu ấm áp, mong ước mọi điều tốt lành cho đối phương.|Lồng ngực mở rộng rộn ràng, giọng nói dịu dàng.|Chăm sóc họ bằng hành động nhỏ; đừng quên dành sự dịu dàng đó cho chính mình.']],
+        ['An tâm',['Dịu dàng|Đủ an toàn để sống thật với sự mỏng manh và xúc cảm sâu lắng.|Trái tim mềm mại, khóe mắt dễ rưng rưng vì điều đẹp đẽ.|Ở cạnh người biết nâng niu cảm xúc; nghỉ ngơi tĩnh dưỡng.','Yên lòng|Thấy nhẹ nhõm về tương lai, không còn nhu cầu kiểm soát mọi thứ.|Hai vai hạ lỏng, hít thở sâu, tâm trí bình an.|Buông bỏ một điều vượt tầm kiểm soát; tận hưởng bữa tối bình yên.','Gắn kết|Kết nối tinh thần sâu sắc, không cần vội vã hay chứng minh.|Cơ thể ấm áp, nhịp thở khoan thai, im lặng nhưng ấm cúng.|Dành thời gian chất lượng bên người thân, cùng uống trà trò chuyện.']],
+        ['Chăm sóc',['Chu đáo|Luôn nghĩ cho cảm xúc của người khác và sẵn sàng sẻ chia.|Tư thế hiện diện bình thản, hai tay cởi mở, giọng nhẹ nhàng.|Hỏi han người bên cạnh: "Hôm nay bạn thế nào?"; nhớ chăm lo cho chính mình.','Tử tế|Muốn xoa dịu nỗi đau của ai đó mà không màng đền đáp.|Cảm giác ấm ngực, nụ cười hiền hậu, cơ thể thư thái.|Làm một điều tử tế thầm lặng; dành lời khen chân thành cho ai đó.','Thân thiện|Cởi mở, hòa nhã và luôn chào đón mọi người xung quanh.|Nụ cười thường trực, ánh mắt thân tình, nét mặt tươi tắn.|Chủ động chào hỏi hàng xóm; kết nối bạn mới; gọi điện hỏi thăm bạn cũ.']]
+      ]]
+    ];
+
+    const M_DESC = {
+      'Tổn thương': 'Tổn thương, ngượng ngùng hoặc thất vọng khi kỳ vọng tan vỡ.',
+      'Chán nản': 'Trống rỗng, mất năng lượng, cảm giác tự ti và bất lực trước nghịch cảnh.',
+      'Tội lỗi': 'Day dứt, hổ thẹn và tự trách bản thân về điều đã xảy ra.',
+      'Cô đơn': 'Hụt hẫng, trống trải và cảm thấy thiếu vắng sự kết nối sẻ chia.',
+      'Căm ghét': 'Cơn giận lạnh lùng, chỉ trích, coi thường hoặc đầy sự ngờ vực.',
+      'Hung hăng': 'Cơn giận nóng bừng bộc lộ ra ngoài, muốn phản kháng hoặc tấn công.',
+      'Đối đầu': 'Căm phẫn, khăng khăng mình đúng và dễ nổi nóng gay gắt.',
+      'Thu mình': 'Dồn nén sự khó chịu vào trong, ngấm ngầm kháng cự hoặc phớt lờ.',
+      'Bị từ chối': 'Bất an về sự chia cắt, sợ bị phản bội hoặc bị đẩy ra rìa.',
+      'Yếu đuối': 'Cảm thấy mình nhỏ bé, vô giá trị hoặc luôn thấy mình chưa đủ tốt.',
+      'Bị đe dọa': 'Hồi hộp, lo âu dồn dập khi cảm thấy sự an toàn bị lung lay.',
+      'Không chắc': 'Tâm trí mơ hồ, rối bời, không biết tương lai sẽ ra sao.',
+      'Hào hứng': 'Tràn đầy sinh lực, các giác quan sống động và háo hức chờ đón điều mới.',
+      'Sáng tạo': 'Ý tưởng tuôn trào, ngập tràn cảm hứng, mơ mộng và tinh nghịch thử nghiệm.',
+      'Nhạy cảm': 'Tỉnh thức sâu sắc trong khoảnh khắc, hân hoan thuần khiết và lòng biết ơn.',
+      'Gần gũi': 'Cảm giác được đón nhận, được trân trọng và an yên bên người thân yêu.',
+      'Vững tin': 'Chắc chắn với bản thân, được ghi nhận và tin rằng mọi sự sẽ ổn thỏa.',
+      'Hy vọng': 'Mong đợi điều tốt đẹp, được truyền cảm hứng và thấy cuộc sống ý nghĩa.',
+      'Tự hào': 'Tin cậy vào năng lực của mình, tận hưởng thành công và tự tin vững bước.',
+      'Được tôn trọng': 'Cảm thấy mình có tiếng nói, có giá trị và được lắng nghe.',
+      'Trầm tư': 'Lắng đọng nhìn lại hành trình, suy ngẫm sâu sắc và trân trọng điều đã qua.',
+      'Thân mật': 'Sự gắn bó ấm áp, yêu thương và trọn vẹn niềm tin với người mình thương.',
+      'An tâm': 'Tâm trí yên bình, dịu dàng buông bỏ lo âu và gắn kết bền chặt.',
+      'Chăm sóc': 'Chu đáo, tử tế sẻ chia và mang đến nguồn năng lượng ấm áp.'
+    };
+
+    const CALL_TO_BE = [
+      'Lời nhắc dừng lại, cho phép bản thân được nghỉ ngơi, an ủi nỗi đau và tìm kiếm sự đồng cảm ấm áp.',
+      'Lời nhắc cần tìm lại an toàn và bình tĩnh trước tiên, rồi mới nhận diện tổn thương hoặc ranh giới đang bị xâm phạm.',
+      'Lời nhắc đưa tâm trí về hiện tại, phân biệt điều kiểm soát được và không, tìm điểm tựa an toàn để từng bước vượt qua.',
+      'Lời nhắc ở lại trọn vẹn với niềm vui này, ghi nhớ cảm giác hạnh phúc và lan tỏa sự ấm áp đến xung quanh.',
+      'Lời nhắc ghi nhận thực lực của chính mình, phát huy điểm mạnh và dùng năng lượng tích cực này để tiến lên.',
+      'Lời nhắc duy trì sự tĩnh lặng quý giá trong tâm hồn, giữ gìn những mối liên kết chân thành và nuôi dưỡng tâm an.'
+    ];
+
+    const wqs = s => document.querySelector('#wheel-app-workspace ' + s);
+    const wqsa = s => document.querySelectorAll('#wheel-app-workspace ' + s);
+    const rd = Math.PI / 180;
+    const P = (r, a) => (250 + r * Math.cos(a)).toFixed(1) + ' ' + (250 + r * Math.sin(a)).toFixed(1);
+    const arc = (r0, r1, a0, a1) => `M${P(r1,a0)}A${r1} ${r1} 0 0 1 ${P(r1,a1)}L${P(r0,a1)}A${r0} ${r0} 0 0 0 ${P(r0,a0)}Z`;
+
+    function buildSlice(r0, r1, d0, d1, t, fs, col, op, at, am) {
+      const rm = (r0 + r1) / 2;
+      const ra = am * rd;
+      const x = 250 + rm * Math.cos(ra);
+      const y = 250 + rm * Math.sin(ra);
+      const displayName = t.split(' (')[0];
+      return `<g class="slice" ${at} data-am="${am.toFixed(2)}"><path d="${arc(r0,r1,d0*rd,d1*rd)}" fill="${col}" fill-opacity="${op}"/><text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="${fs}" transform="rotate(${am.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})">${displayName}</text></g>`;
+    }
+
+    let slicesHtml = '';
+    D.forEach((C, c) => {
+      const cMid = -60 + c * 60;
+      slicesHtml += buildSlice(48, 100, -90 + c*60, -30 + c*60, C[0], 12, C[1], 1, `data-c="${c}"`, cMid);
+      C[3].forEach((M, m) => {
+        const i = c * 4 + m;
+        const mMid = -90 + (i + 0.5) * 15;
+        slicesHtml += buildSlice(100, 168, -90 + i*15, -75 + i*15, M[0], 9.5, C[1], 0.88, `data-c="${c}" data-m="${m}"`, mMid);
+        M[1].forEach((O, o) => {
+          const k = i * 3 + o;
+          const oMid = -90 + (k + 0.5) * 5;
+          const oName = O.split('|')[0];
+          slicesHtml += buildSlice(168, 250, -90 + k*5, -85 + k*5, oName, 7.8, C[1], 0.72, `data-c="${c}" data-m="${m}" data-o="${o}"`, oMid);
+        });
+      });
+    });
+    wqs('#wheel-slices').innerHTML = slicesHtml;
+
+    let isStarted = false;
+    let sel = { c: null, m: null, o: null };
+    let currentRotation = 0;
+
+    function updateTextOrientations(stageRot) {
+      wqsa('.slice').forEach(g => {
+        const am = parseFloat(g.dataset.am);
+        const text = g.querySelector('text');
+        if (!text) return;
+        let eff = (am + stageRot) % 360;
+        if (eff < 0) eff += 360;
+        const flip = (eff > 90 && eff < 270);
+        const textRot = flip ? am + 180 : am;
+        const x = text.getAttribute('x');
+        const y = text.getAttribute('y');
+        text.setAttribute('transform', `rotate(${textRot.toFixed(1)} ${x} ${y})`);
+      });
+    }
+
+    function selectEmotion(c, m = null, o = null) {
+      isStarted = true;
+      sel = {
+        c: c === null ? null : +c,
+        m: m === null ? null : +m,
+        o: o === null ? null : +o
+      };
+      render();
+    }
+
+    function goBack() {
+      if (sel.o !== null) {
+        sel.o = null;
+      } else if (sel.m !== null) {
+        sel.m = null;
+      } else if (sel.c !== null) {
+        sel.c = null;
+      } else {
+        isStarted = false;
+      }
+      render();
+    }
+
+    function resetToInitial() {
+      isStarted = false;
+      sel = { c: null, m: null, o: null };
+      const qInput = wqs('#q');
+      if (qInput) qInput.value = '';
+      render();
+    }
+
+    function render() {
+      const stage = wqs('#wheel-stage');
+      const hub = wqs('#center-hub');
+      const hubCircle = wqs('#hub-circle');
+      const hubTitle = wqs('#hub-title');
+      const hubSub = wqs('#hub-sub');
+      const outline = wqs('#active-outline');
+      const panel = wqs('#panel');
+
+      if (!isStarted) {
+        currentRotation = 0;
+        stage.style.transform = 'translate(0px, 0px) scale(1) rotate(0deg)';
+        hub.style.transform = 'rotate(0deg)';
+        hubCircle.setAttribute('fill', '#1E8C45');
+        hubCircle.setAttribute('stroke', '#C1FF1C');
+        hubCircle.setAttribute('stroke-width', '2.5');
+        hubCircle.classList.add('hub-pulse');
+        hubTitle.textContent = 'Start';
+        hubTitle.setAttribute('font-size', '16');
+        hubTitle.setAttribute('y', '242');
+        hubSub.textContent = 'tap to begin';
+        hubSub.style.display = 'block';
+        outline.style.display = 'none';
+
+        wqsa('.slice').forEach(g => {
+          g.style.opacity = '1';
+        });
+        updateTextOrientations(0);
+
+        panel.innerHTML = `
+          <div class="panel-nav">
+            <button class="btn-back" disabled>← Back</button>
+            <div class="step-breadcrumbs">
+              <span class="step-item active">1 Core</span>
+              <span class="step-item">2 Closer</span>
+              <span class="step-item">3 Exact</span>
+            </div>
+          </div>
+          <h2 class="panel-main-title">Bánh xe cảm xúc (The Feeling Wheel)</h2>
+          <p class="panel-subtitle">Công cụ hỗ trợ gọi tên cảm xúc dựa trên nghiên cứu tâm lý của Tiến sĩ Gloria Willcox.</p>
+          
+          <div style="text-align: center; margin: 30px auto; padding: 25px; background: rgba(193, 255, 28, 0.08); border: 1px dashed rgba(193, 255, 28, 0.45); border-radius: 20px;">
+            <div style="width: 60px; height: 60px; background: #3AA346; border: 2px solid #C1FF1C; border-radius: 50%; margin: 0 auto 16px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(193, 255, 28, 0.35);">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C1FF1C" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <h3 style="font-size: 1.25rem; margin: 0 0 8px 0; color: #ffffff;">Sẵn sàng khám phá cảm xúc?</h3>
+            <p style="color: #cdecd5; margin: 0 0 20px 0; font-size: 0.95rem;">Nhấp vào nút tròn <b>Start</b> ở tâm bánh xe hoặc chọn trực tiếp một múi cảm xúc để bắt đầu.</p>
+            <button type="button" class="btn-header" style="background: #C1FF1C; color: #007542; border: none; padding: 11px 26px; margin: 0 auto;" onclick="isStarted=true; render();">
+              Bắt đầu ngay
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      hubCircle.classList.remove('hub-pulse');
+
+      if (sel.c === null) {
+        currentRotation = 0;
+        stage.style.transform = 'translate(0px, 0px) scale(1) rotate(0deg)';
+        hub.style.transform = 'rotate(0deg)';
+        hubCircle.setAttribute('fill', '#1E8C45');
+        hubCircle.setAttribute('stroke', '#C1FF1C');
+        hubTitle.textContent = 'Close';
+        hubTitle.setAttribute('font-size', '16');
+        hubTitle.setAttribute('y', '250');
+        hubSub.style.display = 'none';
+        outline.style.display = 'none';
+
+        wqsa('.slice').forEach(g => {
+          g.style.opacity = '1';
+        });
+        updateTextOrientations(0);
+
+        panel.innerHTML = `
+          <div class="panel-nav">
+            <button class="btn-back" onclick="resetToInitial()">← Back</button>
+            <div class="step-breadcrumbs">
+              <span class="step-item active">1 Core</span>
+              <span class="step-item">2 Closer</span>
+              <span class="step-item">3 Exact</span>
+            </div>
+          </div>
+          <h3 class="section-prompt" style="margin-top: 5px;">Cảm xúc nào gần nhất với trạng thái của bạn lúc này?</h3>
+          <p class="panel-subtitle" style="margin-bottom: 16px;">Chọn một nhóm cảm xúc bên dưới hoặc nhấn trực tiếp vào từng múi trên bánh xe.</p>
+          <div class="option-list">
+            ${D.map((C, c) => `
+              <div class="option-card" onclick="selectEmotion(${c})">
+                <div class="option-head">
+                  <span class="option-dot" style="background: ${C[1]}"></span>
+                  <span class="option-name">${C[0]}</span>
+                </div>
+                <p class="option-desc">${C[2]}</p>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        return;
+      }
+
+      const C = D[sel.c];
+
+      let targetAngle = 0;
+      if (sel.o !== null) {
+        const i = sel.c * 4 + sel.m;
+        const k = i * 3 + sel.o;
+        targetAngle = -90 + (k + 0.5) * 5;
+      } else if (sel.m !== null) {
+        const i = sel.c * 4 + sel.m;
+        targetAngle = -90 + (i + 0.5) * 15;
+      } else {
+        targetAngle = -60 + sel.c * 60;
+      }
+
+      const rawRot = -targetAngle;
+      let delta = (rawRot - currentRotation) % 360;
+      if (delta > 180) delta -= 360;
+      if (delta < -180) delta += 360;
+      currentRotation += delta;
+
+      const tx = -125;
+      const scale = 1.48;
+
+      stage.style.transform = `translate(${tx}px, 0px) scale(${scale}) rotate(${currentRotation}deg)`;
+      hub.style.transform = `rotate(${-currentRotation}deg)`;
+      hubCircle.setAttribute('fill', C[1]);
+      hubCircle.setAttribute('stroke', 'rgba(255, 255, 255, 0.7)');
+
+      updateTextOrientations(currentRotation);
+
+      let targetSelector = '';
+      if (sel.o !== null) {
+        targetSelector = `.slice[data-c="${sel.c}"][data-m="${sel.m}"][data-o="${sel.o}"]`;
+      } else if (sel.m !== null) {
+        targetSelector = `.slice[data-c="${sel.c}"][data-m="${sel.m}"]:not([data-o])`;
+      } else {
+        targetSelector = `.slice[data-c="${sel.c}"]:not([data-m])`;
+      }
+
+      const targetEl = wqs(targetSelector);
+      if (targetEl) {
+        const p = targetEl.querySelector('path');
+        outline.setAttribute('d', p.getAttribute('d'));
+        outline.style.display = 'block';
+      } else {
+        outline.style.display = 'none';
+      }
+
+      wqsa('.slice').forEach(g => {
+        const gc = g.dataset.c;
+        const gm = g.dataset.m;
+        const go = g.dataset.o;
+
+        if (gc != sel.c) {
+          g.style.opacity = '0.12';
+        } else if (sel.o !== null) {
+          if (go != null) {
+            g.style.opacity = (gm == sel.m && go == sel.o) ? '1' : (gm == sel.m ? '0.45' : '0.12');
+          } else if (gm != null) {
+            g.style.opacity = (gm == sel.m) ? '0.85' : '0.22';
+          } else {
+            g.style.opacity = '0.65';
+          }
+        } else if (sel.m !== null) {
+          if (go != null) {
+            g.style.opacity = (gm == sel.m) ? '1' : '0.18';
+          } else if (gm != null) {
+            g.style.opacity = (gm == sel.m) ? '1' : '0.35';
+          } else {
+            g.style.opacity = '0.85';
+          }
+        } else {
+          if (go != null) g.style.opacity = '0.6';
+          else if (gm != null) g.style.opacity = '0.85';
+          else g.style.opacity = '1';
+        }
+      });
+
+      let activeName = '';
+      if (sel.o !== null) {
+        activeName = C[3][sel.m][1][sel.o].split('|')[0].split(' (')[0];
+      } else if (sel.m !== null) {
+        activeName = C[3][sel.m][0].split(' (')[0];
+      } else {
+        activeName = C[0].split(' (')[0];
+      }
+      hubTitle.textContent = activeName;
+      hubTitle.setAttribute('font-size', activeName.length > 8 ? '13' : '15');
+      hubTitle.setAttribute('y', '241');
+      hubSub.textContent = '← back';
+      hubSub.style.display = 'block';
+
+      if (sel.m === null) {
+        panel.innerHTML = `
+          <div class="panel-nav">
+            <button class="btn-back" onclick="goBack()">← Back</button>
+            <div class="step-breadcrumbs">
+              <span class="step-item" onclick="selectEmotion(${sel.c})">1 Core</span>
+              <span class="step-item active">2 Closer</span>
+              <span class="step-item">3 Exact</span>
+            </div>
+          </div>
+          <h2 class="panel-main-title">${C[0]}</h2>
+          <p class="panel-subtitle">${C[2]}</p>
+          <h3 class="section-prompt">Thuộc nhóm cụ thể nào?</h3>
+          <div class="option-list">
+            ${C[3].map((M, m) => `
+              <div class="option-card" onclick="selectEmotion(${sel.c}, ${m})">
+                <div class="option-head">
+                  <span class="option-dot" style="background: ${C[1]}"></span>
+                  <span class="option-name">${M[0]}</span>
+                </div>
+                <p class="option-desc">${M_DESC[M[0]] || 'Khám phá các biểu hiện chi tiết hơn.'}</p>
+              </div>
+            `).join('')}
+          </div>
+          <button class="btn-reset-link" onclick="selectEmotion(null)">Xóa lựa chọn</button>
+        `;
+      } else if (sel.o === null) {
+        const M = C[3][sel.m];
+        panel.innerHTML = `
+          <div class="panel-nav">
+            <button class="btn-back" onclick="goBack()">← Back</button>
+            <div class="step-breadcrumbs">
+              <span class="step-item" onclick="selectEmotion(${sel.c})">1 Core</span>
+              <span class="step-item" onclick="selectEmotion(${sel.c}, ${sel.m})">2 Closer</span>
+              <span class="step-item active">3 Exact</span>
+            </div>
+          </div>
+          <h2 class="panel-main-title">${C[0]} › ${M[0]}</h2>
+          <p class="panel-subtitle">${M_DESC[M[0]] || 'Khám phá sắc thái cảm xúc cụ thể hơn.'}</p>
+          <h3 class="section-prompt">Cảm xúc nào khớp nhất với bạn?</h3>
+          <div class="option-list">
+            ${M[1].map((O_str, o) => {
+              const parts = O_str.split('|');
+              return `
+                <div class="option-card" onclick="selectEmotion(${sel.c}, ${sel.m}, ${o})">
+                  <div class="option-head">
+                    <span class="option-dot" style="background: ${C[1]}"></span>
+                    <span class="option-name">${parts[0]}</span>
+                  </div>
+                  <p class="option-desc">${parts[1]}</p>
+                </div>
+              `;
+            }).join('')}
+          </div>
+          <button class="btn-reset-link" onclick="selectEmotion(null)">Xóa lựa chọn</button>
+        `;
+      } else {
+        const M = C[3][sel.m];
+        const O = M[1][sel.o].split('|');
+        const callText = CALL_TO_BE[sel.c] || 'Lời nhắc chậm lại và thấu cảm với chính mình.';
+        panel.innerHTML = `
+          <div class="panel-nav">
+            <button class="btn-back" onclick="goBack()">← Back</button>
+            <div class="step-breadcrumbs">
+              <span class="step-item" onclick="selectEmotion(${sel.c})">1 Core</span>
+              <span class="step-item" onclick="selectEmotion(${sel.c}, ${sel.m})">2 Closer</span>
+              <span class="step-item active">3 Exact</span>
+            </div>
+          </div>
+          <h2 class="panel-main-title">${C[0]} › ${M[0]} › ${O[0]}</h2>
+          <button class="btn-reset-link" style="margin-bottom: 22px;" onclick="selectEmotion(null)">Chọn lại từ đầu</button>
+          
+          <div class="detail-block">
+            <div class="detail-heading">BẠN CÓ THỂ ĐANG CẢM THẤY</div>
+            <p class="detail-body">${O[1]}</p>
+          </div>
+
+          <div class="detail-block">
+            <div class="detail-heading">DẤU HIỆU CƠ THỂ</div>
+            <p class="detail-body">${O[2]}</p>
+          </div>
+
+          <div class="detail-block">
+            <div class="detail-heading">ĐIỀU CẢM XÚC NÀY ĐANG NHẮC NHỞ</div>
+            <p class="detail-body">${callText}</p>
+          </div>
+
+          <div class="detail-block">
+            <div class="detail-heading">GỢI Ý CHĂM SÓC BẢN THÂN</div>
+            <p class="detail-body">${O[3]}</p>
+          </div>
+
+          <div class="detail-block">
+            <div class="detail-heading">CÁC CẢM XÚC CÙNG NHÓM (${M[0]})</div>
+            <div class="sibling-chips">
+              ${M[1].map((x, j) => {
+                const name = x.split('|')[0];
+                const isCur = j === sel.o;
+                return `<button class="sibling-btn ${isCur ? 'active' : ''}" style="background:${isCur ? '#C1FF1C' : C[1]}" onclick="selectEmotion(${sel.c}, ${sel.m}, ${j})">${name}</button>`;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    wqs('#center-hub').onclick = e => {
+      e.stopPropagation();
+      if (!isStarted) {
+        isStarted = true;
+        render();
+      } else if (sel.c === null) {
+        resetToInitial();
+      } else {
+        goBack();
+      }
+    };
+
+    wqs('#wheel-slices').onclick = e => {
+      const g = e.target.closest('.slice');
+      if (!g) return;
+      const { c, m, o } = g.dataset;
+      selectEmotion(c, m ?? null, o ?? null);
+    };
+
+    const nm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').toLowerCase();
+    wqs('#q').oninput = e => {
+      const q = nm(e.target.value.trim());
+      if (!q) { render(); return; }
+      isStarted = true;
+      let results = [];
+      D.forEach((C, c) => {
+        if (nm(C[0]).includes(q)) results.push({ c, m: null, o: null, title: C[0], type: 'Core', col: C[1] });
+        C[3].forEach((M, m) => {
+          if (nm(M[0]).includes(q)) results.push({ c, m, o: null, title: `${C[0]} › ${M[0]}`, type: 'Closer', col: C[1] });
+          M[1].forEach((O_str, o) => {
+            const parts = O_str.split('|');
+            if (nm(parts[0]).includes(q) || nm(parts[1]).includes(q)) {
+              results.push({ c, m, o, title: `${parts[0]} (${M[0]})`, sub: parts[1], type: 'Exact', col: C[1] });
+            }
+          });
+        });
+      });
+
+      const panel = wqs('#panel');
+      if (!results.length) {
+        panel.innerHTML = `<h2 class="panel-main-title">Không tìm thấy kết quả</h2><p class="panel-subtitle">Không có cảm xúc nào khớp với "${e.target.value}". Bạn hãy thử từ khóa gần nghĩa nhé.</p>`;
+        return;
+      }
+      panel.innerHTML = `
+        <h2 class="panel-main-title">Kết quả tìm kiếm (${results.length})</h2>
+        <div class="option-list" style="margin-top: 15px;">
+          ${results.slice(0, 8).map(r => `
+            <div class="option-card" onclick="document.querySelector('#wheel-app-workspace #q').value=''; selectEmotion(${r.c}, ${r.m}, ${r.o})">
+              <div class="option-head">
+                <span class="option-dot" style="background: ${r.col}"></span>
+                <span class="option-name">${r.title}</span>
+              </div>
+              ${r.sub ? `<p class="option-desc">${r.sub}</p>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      `;
+    };
+
+    /* 3. KÍCH HOẠT / THU GỌN VÒNG TRÒN CẢM XÚC KHI NHẤN VÀO ẢNH */
+    const emotionIntroGrid = document.getElementById('emotionIntroGrid');
+    const wheelWorkspace = document.getElementById('wheel-app-workspace');
+    const triggerWheelFromImg = document.getElementById('triggerWheelFromImg');
+    const triggerWheelFromBtn = document.getElementById('triggerWheelFromBtn');
+    const collapseWheelBtn = document.getElementById('collapseWheelBtn');
+
+    function openWheelWorkspace() {
+      emotionIntroGrid.classList.add('collapsed');
+      wheelWorkspace.classList.add('open');
+      isStarted = true;
+      sel = { c: null, m: null, o: null };
+      render();
+      setTimeout(() => {
+        wheelWorkspace.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }
+
+    function closeWheelWorkspace() {
+      wheelWorkspace.classList.remove('open');
+      emotionIntroGrid.classList.remove('collapsed');
+      resetToInitial();
+      document.getElementById('vong-tron-cam-xuc').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    triggerWheelFromImg.addEventListener('click', openWheelWorkspace);
+    triggerWheelFromBtn.addEventListener('click', openWheelWorkspace);
+    collapseWheelBtn.addEventListener('click', closeWheelWorkspace);
+
+    render();
   </script>
 </body>
 </html>

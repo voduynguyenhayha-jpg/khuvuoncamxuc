@@ -1,17 +1,17 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Khu vườn cảm xúc</title>
-  <!-- Font hỗ trợ tiếng Việt mượt mà, thân thiện giống phong cách Dorset Mind -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     /* =========================================================
-       BẢNG MÀU TỪ ẢNH SỐ 3 CỦA BẠN
+       BẢNG MÀU XANH LÁ CHỦ ĐẠO
        ========================================================= */
     :root {
       --green-darkest: #007542;
@@ -74,7 +74,7 @@
     }
 
     /* =========================================================
-       THANH TIÊU ĐỀ (NAVBAR)
+       THANH TIÊU ĐỀ (NAVBAR): TĂNG TO x1.5, CHỮ x2, LOGO x3
        ========================================================= */
     .navbar {
       background-color: var(--green-darkest);
@@ -82,27 +82,31 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
     }
 
     .nav-container {
+      max-width: 1420px;
+      min-height: 112px; /* 74px x 1.5 = 111px */
+      padding: 8px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 74px;
-      gap: 16px;
+      gap: 20px;
     }
 
+    /* Logo x3 (40px -> 120px) + Tên thương hiệu x2 */
     .brand-logo {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
       font-weight: 800;
-      font-size: 1.08rem;
+      font-size: clamp(1.45rem, 1.8vw, 2.15rem); /* x2 kích thước chữ cũ */
       color: #ffffff;
-      padding: 6px 0;
+      padding: 4px 0;
       flex-shrink: 0;
-      transition: opacity 0.2s ease;
+      white-space: nowrap;
+      transition: color 0.2s ease;
     }
 
     .brand-logo:hover {
@@ -110,18 +114,18 @@
     }
 
     .nav-logo-img {
-      width: 40px;
-      height: 40px;
+      width: 120px;  /* 40px x 3 */
+      height: 120px; /* 40px x 3 */
       border-radius: 50%;
       object-fit: cover;
       background-color: #ffffff;
-      border: 2px solid var(--green-neon);
+      border: 3px solid var(--green-neon);
       flex-shrink: 0;
     }
 
     .nav-logo-fallback {
-      width: 40px;
-      height: 40px;
+      width: 120px;  /* 40px x 3 */
+      height: 120px; /* 40px x 3 */
       border-radius: 50%;
       background-color: var(--green-neon);
       color: var(--green-darkest);
@@ -129,14 +133,14 @@
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 1.15rem;
+      font-size: 3rem;
       flex-shrink: 0;
     }
 
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: clamp(16px, 1.8vw, 30px);
     }
 
     .nav-item {
@@ -146,15 +150,16 @@
     .nav-link {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: clamp(1.3rem, 1.65vw, 2rem); /* x2 kích thước chữ cũ */
       color: #ffffff;
-      padding: 24px 4px;
+      padding: 20px 6px;
       cursor: pointer;
       background: none;
       border: none;
       font-family: inherit;
+      white-space: nowrap;
       transition: color 0.2s ease;
     }
 
@@ -164,7 +169,7 @@
     }
 
     .nav-arrow {
-      font-size: 0.72rem;
+      font-size: 0.68em;
       transition: transform 0.2s ease;
     }
 
@@ -176,12 +181,12 @@
       position: absolute;
       top: 100%;
       left: 0;
-      min-width: 225px;
+      min-width: 310px;
       background-color: #ffffff;
-      border-radius: 0 0 12px 12px;
+      border-radius: 0 0 14px 14px;
       box-shadow: var(--shadow-md);
-      border-top: 3px solid var(--green-neon);
-      padding: 8px 0;
+      border-top: 4px solid var(--green-neon);
+      padding: 10px 0;
       opacity: 0;
       visibility: hidden;
       transform: translateY(8px);
@@ -198,23 +203,23 @@
 
     .dropdown-menu a {
       display: block;
-      padding: 10px 18px;
+      padding: 12px 22px;
       color: var(--green-darkest);
-      font-weight: 600;
-      font-size: 0.94rem;
+      font-weight: 700;
+      font-size: 1.35rem;
       transition: background-color 0.2s ease, padding-left 0.2s ease;
     }
 
     .dropdown-menu a:hover {
       background-color: #eefae8;
       color: var(--green-deep);
-      padding-left: 24px;
+      padding-left: 28px;
     }
 
     .nav-contact-btn {
       background-color: var(--green-medium);
       color: #ffffff;
-      padding: 10px 20px !important;
+      padding: 12px 26px !important;
       border-radius: 999px;
       border: 2px solid var(--green-light);
       transition: all 0.2s ease;
@@ -229,20 +234,20 @@
     .mobile-toggle {
       display: none;
       background: none;
-      border: 2px solid rgba(255, 255, 255, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.5);
       color: #ffffff;
-      border-radius: 8px;
-      padding: 6px 12px;
-      font-size: 1.3rem;
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-size: 1.8rem;
       cursor: pointer;
     }
 
     /* =========================================================
-       HERO SECTION
+       HERO SECTION (ĐÃ XÓA BREADCRUMB, TĂNG ẢNH CHẠM VIỀN XANH LÁ)
        ========================================================= */
     .hero-section {
       position: relative;
-      padding: 44px 0 80px;
+      padding: 52px 0 82px;
       background-color: var(--bg-white);
       overflow: hidden;
     }
@@ -251,8 +256,8 @@
       position: absolute;
       top: -20px;
       right: -40px;
-      width: 620px;
-      height: 540px;
+      width: 650px;
+      height: 560px;
       pointer-events: none;
       z-index: 0;
       opacity: 0.35;
@@ -262,34 +267,9 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
+      grid-template-columns: 1.04fr 0.96fr;
       align-items: center;
-      gap: 48px;
-    }
-
-    .breadcrumb {
-      font-size: 0.92rem;
-      margin-bottom: 20px;
-      color: var(--green-medium);
-    }
-
-    .breadcrumb a {
-      color: var(--green-light);
-      font-weight: 500;
-    }
-
-    .breadcrumb a:hover {
-      text-decoration: underline;
-    }
-
-    .breadcrumb span {
-      margin: 0 6px;
-      color: var(--green-fresh);
-    }
-
-    .breadcrumb strong {
-      color: var(--green-darkest);
-      font-weight: 700;
+      gap: 44px;
     }
 
     .eyebrow-title {
@@ -299,7 +279,7 @@
       color: var(--green-darkest);
       border-bottom: 3px solid var(--green-fresh);
       padding-bottom: 4px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .hero-title {
@@ -307,15 +287,15 @@
       font-weight: 800;
       color: var(--green-darkest);
       line-height: 1.15;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
       letter-spacing: -0.02em;
     }
 
     .hero-text {
-      font-size: 1.12rem;
+      font-size: 1.14rem;
       color: var(--green-deep);
       margin-bottom: 18px;
-      max-width: 580px;
+      max-width: 590px;
     }
 
     .hero-text strong {
@@ -375,14 +355,15 @@
       position: relative;
     }
 
+    /* Khung tròn to hơn, bỏ padding để ảnh chạm sát viền xanh lá */
     .circle-frame {
       width: 100%;
-      max-width: 410px;
+      max-width: 490px;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       background-color: #ffffff;
-      padding: 10px;
-      border: 6px solid var(--green-fresh);
+      padding: 0; /* Bỏ đệm để ảnh chạm trực tiếp vào viền xanh lá */
+      border: 7px solid var(--green-fresh);
       box-shadow: 0 0 0 10px rgba(155, 233, 49, 0.28), var(--shadow-md);
       display: flex;
       align-items: center;
@@ -400,7 +381,9 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      object-fit: contain;
+      object-fit: cover;
+      /* Phóng nhẹ để vòng tròn cảm xúc ở ảnh tràn sát viền xanh lá */
+      transform: scale(1.12);
       display: block;
     }
 
@@ -442,17 +425,17 @@
 
     .wheel-fallback-inner strong {
       color: var(--green-darkest);
-      font-size: 1rem;
+      font-size: 1.05rem;
       margin-bottom: 6px;
     }
 
     .wheel-fallback-inner span {
-      font-size: 0.8rem;
+      font-size: 0.84rem;
       color: var(--green-deep);
     }
 
     /* =========================================================
-       CÁC SECTION NỘI DUNG CHUNG
+       CÁC SECTION CHUNG
        ========================================================= */
     .section {
       padding: 76px 0;
@@ -464,7 +447,7 @@
 
     .section-header {
       text-align: center;
-      max-width: 700px;
+      max-width: 720px;
       margin: 0 auto 48px;
     }
 
@@ -494,7 +477,7 @@
     }
 
     /* =========================================================
-       MỤC MỚI: VÒNG TRÒN CẢM XÚC (NẰM TRÊN MỤC KỸ THUẬT)
+       MỤC VÒNG TRÒN CẢM XÚC
        ========================================================= */
     .emotion-section {
       background: linear-gradient(180deg, #ffffff 0%, #effae9 100%);
@@ -558,7 +541,6 @@
       border: 1px dashed var(--green-medium);
     }
 
-    /* Cột ảnh vòng tròn có thể nhấn để mở ứng dụng tương tác */
     .emotion-trigger-col {
       display: flex;
       flex-direction: column;
@@ -617,7 +599,6 @@
       transform: translateY(-2px);
     }
 
-    /* Giao diện dự phòng khi chưa thêm ảnh vòng tròn số 2 vào thư mục */
     .wheel-img-fallback {
       width: 100%;
       height: 100%;
@@ -663,7 +644,6 @@
 
     /* =========================================================
        KHU VỰC BÁNH XE CẢM XÚC TƯƠNG TÁC NGAY TRÊN TRANG CHÍNH
-       (CHỈNH TÔNG MÀU THEO ẢNH SỐ 3 & CẤU TRÚC TỪ CODE SỐ 2)
        ========================================================= */
     #wheel-app-workspace {
       display: none;
@@ -1075,7 +1055,7 @@
     }
 
     /* =========================================================
-       CÁC SECTION CÒN LẠI: KỸ THUẬT, BÀI VIẾT, VỀ DỰ ÁN
+       MỤC KỸ THUẬT MỚI (3 THẺ HÌNH ẢNH + NỘI DUNG + POPUP CHI TIẾT)
        ========================================================= */
     .cards-grid {
       display: grid;
@@ -1086,19 +1066,205 @@
     .card {
       background-color: #ffffff;
       border-radius: var(--radius-lg);
-      padding: 30px 26px;
+      padding: 26px 24px;
       box-shadow: var(--shadow-sm);
       border-top: 5px solid var(--green-fresh);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
     .card:hover {
       transform: translateY(-6px);
       box-shadow: var(--shadow-md);
       border-top-color: var(--green-darkest);
+    }
+
+    .tech-card {
+      cursor: pointer;
+      padding: 0;
+      overflow: hidden;
+      border: 2px solid #e1f4da;
+      border-top: 6px solid var(--green-medium);
+    }
+
+    .tech-card:hover {
+      border-color: var(--green-fresh);
+      border-top-color: var(--green-darkest);
+    }
+
+    .tech-thumb {
+      width: 100%;
+      height: 230px;
+      background-color: #f6f3dc;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 2px solid #e3f2de;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tech-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .tech-card:hover .tech-thumb img {
+      transform: scale(1.04);
+    }
+
+    /* Thiết kế minh họa dự phòng trực quan khớp với từng ảnh khi chưa có file ảnh */
+    .tech-thumb-fallback {
+      width: 100%;
+      height: 100%;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    .fallback-mindful {
+      background: linear-gradient(135deg, #fbf3cf 0%, #c8e9df 100%);
+      color: var(--green-darkest);
+    }
+
+    .fallback-rain {
+      background: linear-gradient(135deg, #e7f4f9 0%, #e4f3dc 100%);
+      color: var(--green-darkest);
+    }
+
+    .fallback-gross {
+      background: linear-gradient(135deg, #f3f7eb 0%, #d4ebcc 100%);
+      color: var(--green-darkest);
+    }
+
+    .mini-rain-drops {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rain-drop {
+      width: 42px;
+      height: 42px;
+      border-radius: 50% 50% 50% 6px;
+      transform: rotate(135deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .rain-drop span {
+      transform: rotate(-135deg);
+    }
+
+    .mini-gross-steps {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .gross-pill {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--green-darkest);
+      color: var(--green-neon);
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.92rem;
+    }
+
+    .tech-body {
+      padding: 22px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+
+    .tech-tag {
+      display: inline-block;
+      align-self: flex-start;
+      background-color: #ebf9e4;
+      color: var(--green-darkest);
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid #bfe6b1;
+      margin-bottom: 10px;
+    }
+
+    .tech-body h3 {
+      font-size: 1.26rem;
+      font-weight: 800;
+      color: var(--green-darkest);
+      margin-bottom: 10px;
+    }
+
+    .tech-body p {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      margin-bottom: 16px;
+    }
+
+    .tech-steps-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .tech-step-chip {
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: #f5fbf3;
+      color: var(--green-deep);
+      border: 1px solid #d4eec9;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .tech-open-btn {
+      width: 100%;
+      background-color: var(--green-darkest);
+      color: #ffffff;
+      border: none;
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-weight: 700;
+      font-size: 0.94rem;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .tech-card:hover .tech-open-btn {
+      background-color: var(--green-medium);
+      color: #ffffff;
     }
 
     .card-icon {
@@ -1142,6 +1308,9 @@
       gap: 10px;
     }
 
+    /* =========================================================
+       VỀ DỰ ÁN & BANNER & FOOTER
+       ========================================================= */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1227,9 +1396,6 @@
       box-shadow: 0 8px 20px rgba(193, 255, 28, 0.35);
     }
 
-    /* =========================================================
-       FOOTER
-       ========================================================= */
     .footer {
       background-color: var(--green-darkest);
       color: #ffffff;
@@ -1271,13 +1437,13 @@
     }
 
     /* =========================================================
-       MODAL LIÊN HỆ (FACEBOOK & ZALO)
+       MODAL CHUNG (MODAL LIÊN HỆ & MODAL CHI TIẾT KỸ THUẬT)
        ========================================================= */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 48, 26, 0.65);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 48, 26, 0.68);
+      backdrop-filter: blur(5px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -1302,16 +1468,23 @@
       width: 100%;
       padding: 34px 30px;
       position: relative;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
       border-top: 6px solid var(--green-fresh);
     }
 
+    .tech-modal-box {
+      max-width: 920px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px 30px;
+    }
+
     .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 18px;
-      width: 36px;
-      height: 36px;
+      position: sticky;
+      float: right;
+      top: 0;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       border: none;
       background-color: #eef8ea;
@@ -1319,6 +1492,7 @@
       font-size: 1.2rem;
       font-weight: 800;
       cursor: pointer;
+      z-index: 5;
     }
 
     .modal-close:hover {
@@ -1330,12 +1504,13 @@
       font-weight: 800;
       color: var(--green-darkest);
       margin-bottom: 8px;
+      padding-right: 44px;
     }
 
     .modal-subtitle {
       font-size: 0.96rem;
       color: var(--green-deep);
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .social-cards {
@@ -1380,13 +1555,8 @@
       flex-shrink: 0;
     }
 
-    .icon-fb {
-      background-color: #1877f2;
-    }
-
-    .icon-zalo {
-      background-color: #0068ff;
-    }
+    .icon-fb { background-color: #1877f2; }
+    .icon-zalo { background-color: #0068ff; }
 
     .social-name {
       font-weight: 800;
@@ -1414,47 +1584,158 @@
       color: var(--green-darkest);
     }
 
+    /* Giao diện bên trong Popup chi tiết kỹ thuật */
+    .tech-modal-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tech-tab-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1.5px solid var(--green-medium);
+      background: #ffffff;
+      color: var(--green-darkest);
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .tech-tab-btn.active {
+      background: var(--green-darkest);
+      color: var(--green-neon);
+      border-color: var(--green-darkest);
+    }
+
+    .tech-modal-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .tech-modal-img-wrap {
+      background: #f5fbf3;
+      border: 2px solid #d2ecc8;
+      border-radius: 18px;
+      overflow: hidden;
+      padding: 8px;
+    }
+
+    .tech-modal-img-wrap img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .tech-detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tech-detail-item {
+      background: #f8fdf6;
+      border: 1px solid #d5efc9;
+      border-left: 5px solid var(--green-medium);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .tech-detail-item h4 {
+      color: var(--green-darkest);
+      font-size: 1.03rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .tech-detail-item .en-sub {
+      font-size: 0.85rem;
+      color: var(--green-medium);
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .tech-detail-item p {
+      font-size: 0.94rem;
+      color: var(--text-body);
+      margin-top: 4px;
+    }
+
+    .tech-example {
+      margin-top: 8px;
+      background: #ffffff;
+      border-left: 3px solid var(--green-light);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.89rem;
+      color: var(--green-deep);
+    }
+
+    .tech-highlight-box {
+      margin-top: 12px;
+      background: linear-gradient(90deg, rgba(193, 255, 28, 0.25), rgba(155, 233, 49, 0.14));
+      border: 1.5px dashed var(--green-medium);
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: var(--green-darkest);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .mindful-timer-box {
+      margin-top: 14px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: var(--green-darkest);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .timer-display {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--green-neon);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-btn {
+      background: var(--green-neon);
+      color: var(--green-darkest);
+      border: none;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
     /* =========================================================
        RESPONSIVE
        ========================================================= */
-    @media (max-width: 960px) {
-      .hero-grid,
-      .emotion-intro-grid,
-      .about-grid,
-      .cards-grid,
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-image-wrapper {
-        order: -1;
-      }
-
-      .circle-frame,
-      .emotion-wheel-btn {
-        max-width: 320px;
-      }
-
-      .emotion-article {
-        padding: 24px 20px;
-      }
-
-      #wheel-app-workspace {
-        padding: 16px 14px 24px;
-      }
-
+    @media (max-width: 1120px) {
       .nav-menu {
         display: none;
         flex-direction: column;
         align-items: flex-start;
         gap: 6px;
         position: absolute;
-        top: 74px;
+        top: 100%;
         left: 0;
         right: 0;
         background-color: var(--green-darkest);
-        padding: 16px 24px 24px;
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 16px 24px 26px;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
       }
 
       .nav-menu.active {
@@ -1466,9 +1747,10 @@
       }
 
       .nav-link {
-        padding: 10px 0;
+        padding: 12px 0;
         width: 100%;
         justify-content: space-between;
+        font-size: 1.45rem;
       }
 
       .dropdown-menu {
@@ -1485,6 +1767,7 @@
 
       .dropdown-menu a {
         color: #ffffff;
+        font-size: 1.1rem;
       }
 
       .dropdown-menu a:hover {
@@ -1494,6 +1777,56 @@
 
       .mobile-toggle {
         display: block;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .emotion-intro-grid,
+      .about-grid,
+      .cards-grid,
+      .footer-grid,
+      .tech-modal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image-wrapper {
+        order: -1;
+      }
+
+      .circle-frame {
+        max-width: 360px;
+      }
+
+      .emotion-wheel-btn {
+        max-width: 320px;
+      }
+
+      .emotion-article {
+        padding: 24px 20px;
+      }
+
+      #wheel-app-workspace {
+        padding: 16px 14px 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-container {
+        min-height: 92px;
+        padding: 8px 16px;
+      }
+
+      .nav-logo-img,
+      .nav-logo-fallback {
+        width: 78px;
+        height: 78px;
+        font-size: 2rem;
+      }
+
+      .brand-logo {
+        font-size: 1.25rem;
+        gap: 10px;
       }
     }
   </style>
@@ -1507,7 +1840,7 @@
     <div class="container nav-container">
 
       <!-- =======================================================
-           CHÚ THÍCH LOGO:
+           CHÚ THÍCH LOGO (KÍCH THƯỚC x3):
            Thay đường dẫn logo của bạn vào src="..." bên dưới
            ======================================================= -->
       <a href="#top" class="brand-logo">
@@ -1541,9 +1874,9 @@
               Các kỹ thuật <span class="nav-arrow">▾</span>
             </a>
             <div class="dropdown-menu">
-              <a href="#cac-ky-thuat">Kỹ thuật hít thở 4-7-8</a>
-              <a href="#cac-ky-thuat">Viết nhật ký cảm xúc</a>
-              <a href="#cac-ky-thuat">Thư giãn chánh niệm 5-4-3-2-1</a>
+              <a href="#cac-ky-thuat" onclick="openTechModal(0)">Chánh niệm 1 phút</a>
+              <a href="#cac-ky-thuat" onclick="openTechModal(1)">Mô hình RAIN</a>
+              <a href="#cac-ky-thuat" onclick="openTechModal(2)">Mô hình 5 bước của Gross</a>
             </div>
           </li>
 
@@ -1579,28 +1912,16 @@
 
     <div class="container hero-grid">
       <div>
-        <div class="breadcrumb">
-          <a href="#top">Trang chủ</a>
-          <span>»</span>
-          <strong>Khu vườn cảm xúc</strong>
-        </div>
-
         <div class="eyebrow-title">Khu vườn cảm xúc</div>
 
         <h1 class="hero-title">Khu vườn cảm xúc</h1>
 
         <p class="hero-text">
-          Là một dự án cộng đồng, chúng tôi luôn tâm huyết xây dựng một không gian an toàn,
-          <strong>nơi việc lắng nghe và chia sẻ về cảm xúc trở nên tự nhiên</strong>
-          và được trân trọng đối với tất cả mọi người.
-        </p>
-
-        <p class="hero-text">
-          Chúng tôi không thể làm điều này nếu thiếu sự đồng hành của chính bạn.
-          Tất cả cùng chung tay để <strong>kết nối con người</strong>,
-          <strong>tạo nên những thay đổi tích cực</strong>, và
-          <strong>lan tỏa các kỹ thuật chăm sóc sức khỏe tinh thần</strong>
-          giúp mỗi người tự nuôi dưỡng khu vườn nội tâm của mình.
+          <strong>Khu Vườn Cảm Xúc</strong> là một dự án tâm lý được thực hiện bởi
+          <strong>nhóm sinh viên ngành Tâm lý học, Trường Đại học Sài Gòn</strong>.
+          Thông qua các kiến thức tâm lý và những hoạt động thực hành gần gũi,
+          dự án hướng đến việc giúp học sinh
+          <strong>nhận diện, thấu hiểu và điều chỉnh cảm xúc phù hợp</strong>.
         </p>
 
         <div class="hero-actions">
@@ -1630,7 +1951,7 @@
   </section>
 
   <!-- =========================================================
-       MỤC MỚI: VÒNG TRÒN CẢM XÚC (NẰM NGAY TRÊN MỤC KỸ THUẬT)
+       MỤC: VÒNG TRÒN CẢM XÚC (NẰM NGAY TRÊN MỤC KỸ THUẬT)
        ========================================================= -->
   <section id="vong-tron-cam-xuc" class="section emotion-section">
     <div class="container">
@@ -1642,7 +1963,6 @@
         </p>
       </div>
 
-      <!-- Khối giới thiệu (Nội dung chuyển ngữ giữ nguyên ý + Ảnh vòng tròn số 2) -->
       <div class="emotion-intro-grid" id="emotionIntroGrid">
         <article class="emotion-article">
           <p>
@@ -1664,7 +1984,6 @@
           </p>
         </article>
 
-        <!-- Cột bên phải: Ảnh vòng tròn cảm xúc (nhấn vào để kích hoạt bánh xe tương tác) -->
         <div class="emotion-trigger-col">
           <button
             type="button"
@@ -1673,19 +1992,13 @@
             title="Nhấn để mở Vòng tròn cảm xúc tương tác"
             aria-label="Nhấn vào vòng tròn cảm xúc để tương tác"
           >
-            <!-- =======================================================
-                 CHÚ THÍCH ẢNH VÒNG TRÒN CẢM XÚC (ẢNH SỐ 2):
-                 1. Lưu ảnh vòng tròn cảm xúc bạn gửi kèm vào cùng thư mục với index.html
-                    và đặt tên là "vong-tron-cam-xuc.png"
-                 2. Hoặc thay src="vong-tron-cam-xuc.png" bằng đường dẫn ảnh của bạn.
-                 ======================================================= -->
+            <!-- CHÚ THÍCH ẢNH VÒNG TRÒN CẢM XÚC: Lưu ảnh vào cùng thư mục với tên vong-tron-cam-xuc.png -->
             <img
               src="vong-tron-cam-xuc.png"
               alt="Vòng tròn cảm xúc - Nhấn để bắt đầu"
               onerror="this.style.display='none'; document.getElementById('wheelImgFallback').style.display='flex';"
             />
 
-            <!-- Giao diện dự phòng giống ảnh số 2 nếu bạn chưa chép file ảnh vào thư mục -->
             <div id="wheelImgFallback" class="wheel-img-fallback" style="display: none;">
               <div class="wheel-img-fallback-hub">
                 <strong>Start</strong>
@@ -1700,9 +2013,7 @@
         </div>
       </div>
 
-      <!-- =======================================================
-           KHUNG BÁNH XE CẢM XÚC TƯƠNG TÁC (CHẠY NGAY TRÊN TRANG CHÍNH)
-           ======================================================= -->
+      <!-- KHUNG BÁNH XE CẢM XÚC TƯƠNG TÁC TRÊN TRANG CHÍNH -->
       <div id="wheel-app-workspace" aria-live="polite">
         <div class="top-header">
           <div class="top-header-left">
@@ -1721,7 +2032,6 @@
         </div>
 
         <div class="app-container">
-          <!-- Cột trái: Bánh xe SVG xoay & thu phóng 72 cảm xúc -->
           <div class="wheel-column">
             <div class="wheel-wrapper">
               <svg id="w" viewBox="0 0 500 500" role="img" aria-label="Bánh xe cảm xúc tương tác">
@@ -1747,7 +2057,6 @@
             </div>
           </div>
 
-          <!-- Cột phải: Bảng điều khiển thông tin cảm xúc -->
           <div class="panel-column">
             <div id="panel" class="side-panel"></div>
             <div class="footer-info">
@@ -1760,50 +2069,134 @@
   </section>
 
   <!-- =========================================================
-       SECTION: CÁC KỸ THUẬT
+       SECTION: CÁC KỸ THUẬT (3 KỸ THUẬT MỚI TỪ 3 ẢNH GỬI KÈM)
        ========================================================= -->
   <section id="cac-ky-thuat" class="section section-soft">
     <div class="container">
       <div class="section-header">
         <span class="section-badge">Thực hành mỗi ngày</span>
-        <h2 class="section-title">Các kỹ thuật cân bằng cảm xúc</h2>
+        <h2 class="section-title">Các kỹ thuật điều chỉnh cảm xúc</h2>
         <p class="section-desc">
-          Những phương pháp đơn giản, khoa học giúp bạn gọi tên cảm xúc, giảm căng thẳng và tìm lại sự bình yên.
+          Nhấn vào từng thẻ kỹ thuật bên dưới để xem hình ảnh minh họa chi tiết và hướng dẫn thực hành từng bước.
         </p>
       </div>
 
       <div class="cards-grid">
-        <article class="card">
-          <div>
-            <div class="card-icon">🌬️</div>
-            <h3>Kỹ thuật hít thở 4-7-8</h3>
-            <p>
-              Hít vào bằng mũi trong 4 giây, giữ hơi trong 7 giây và thở ra chậm rãi trong 8 giây giúp làm dịu hệ thần kinh khi lo âu hoặc tức giận.
-            </p>
+        <!-- KỸ THUẬT 1: CHÁNH NIỆM BÀI TẬP NHỎ 1 PHÚT -->
+        <article class="card tech-card" onclick="openTechModal(0)" tabindex="0" role="button" aria-label="Xem chi tiết Chánh niệm bài tập nhỏ 1 phút">
+          <div class="tech-thumb">
+            <!-- CHÚ THÍCH ẢNH KỸ THUẬT 1: Lưu ảnh Chánh niệm 1 phút với tên ky-thuat-1.png cùng thư mục -->
+            <img
+              src="ky-thuat-1.png"
+              alt="Chánh niệm - Bài tập nhỏ 1 phút"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="tech-thumb-fallback fallback-mindful" style="display: none;">
+              <div style="font-size: 2.4rem;">⏱️</div>
+              <strong style="font-size: 1.15rem;">CHÁNH NIỆM – BÀI TẬP NHỎ 1 PHÚT!</strong>
+              <span style="font-size: 0.88rem; color: #1E8C45; font-weight: 700;">Thả lỏng cơ hàm • Thẳng lưng • 3 hơi thở sâu</span>
+            </div>
           </div>
-          <a href="#vong-tron-cam-xuc" class="card-link">Kiểm tra cảm xúc →</a>
+
+          <div class="tech-body">
+            <div>
+              <span class="tech-tag">Kỹ thuật 1 • Thở chánh niệm</span>
+              <h3>Chánh niệm – Bài tập nhỏ 1 phút!</h3>
+              <p>
+                Thả lỏng cơ hàm, ngồi thẳng lưng, thực hiện 3 hơi thở sâu và nhẹ nhàng đưa sự chú ý quay lại hơi thở khi tâm trí xao nhãng.
+              </p>
+              <div class="tech-steps-preview">
+                <span class="tech-step-chip">Thả lỏng vai &amp; hàm</span>
+                <span class="tech-step-chip">3 hơi thở sâu</span>
+                <span class="tech-step-chip">1 phút tập trung</span>
+              </div>
+            </div>
+            <button type="button" class="tech-open-btn">
+              Xem chi tiết &amp; Thực hành →
+            </button>
+          </div>
         </article>
 
-        <article class="card">
-          <div>
-            <div class="card-icon">📓</div>
-            <h3>Viết nhật ký cảm xúc</h3>
-            <p>
-              Ghi lại những điều bạn đang cảm nhận mỗi ngày mà không phán xét, giúp nhận diện gốc rễ của nỗi buồn, sự lo lắng hay niềm vui.
-            </p>
+        <!-- KỸ THUẬT 2: MÔ HÌNH RAIN -->
+        <article class="card tech-card" onclick="openTechModal(1)" tabindex="0" role="button" aria-label="Xem chi tiết Mô hình RAIN">
+          <div class="tech-thumb">
+            <!-- CHÚ THÍCH ẢNH KỸ THUẬT 2: Lưu ảnh Mô hình RAIN với tên ky-thuat-2.png cùng thư mục -->
+            <img
+              src="ky-thuat-2.png"
+              alt="Kỹ thuật 2 - Mô hình RAIN"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="tech-thumb-fallback fallback-rain" style="display: none;">
+              <div class="mini-rain-drops">
+                <div class="rain-drop" style="background: #5ca4c4;"><span>R</span></div>
+                <div class="rain-drop" style="background: #e58374;"><span>A</span></div>
+                <div class="rain-drop" style="background: #52a49a;"><span>I</span></div>
+                <div class="rain-drop" style="background: #6dab5b;"><span>N</span></div>
+              </div>
+              <strong style="font-size: 1.15rem;">MÔ HÌNH RAIN</strong>
+              <span style="font-size: 0.88rem; color: #1E8C45; font-weight: 700;">Lắng nghe - Chấp nhận - Khám phá - Nuôi dưỡng</span>
+            </div>
           </div>
-          <a href="#bai-viet" class="card-link">Xem hướng dẫn →</a>
+
+          <div class="tech-body">
+            <div>
+              <span class="tech-tag">Kỹ thuật 2 • Lắng nghe &amp; Chấp nhận</span>
+              <h3>Mô hình RAIN</h3>
+              <p>
+                Tiếp cận cảm xúc theo 4 bước: Nhận diện (Recognize), Cho phép (Allow), Tìm hiểu (Investigate) và Nuôi dưỡng (Nurture).
+              </p>
+              <div class="tech-steps-preview">
+                <span class="tech-step-chip">R - Nhận diện</span>
+                <span class="tech-step-chip">A - Cho phép</span>
+                <span class="tech-step-chip">I - Tìm hiểu</span>
+                <span class="tech-step-chip">N - Nuôi dưỡng</span>
+              </div>
+            </div>
+            <button type="button" class="tech-open-btn">
+              Xem chi tiết &amp; Hướng dẫn →
+            </button>
+          </div>
         </article>
 
-        <article class="card">
-          <div>
-            <div class="card-icon">🌿</div>
-            <h3>Quy tắc 5-4-3-2-1</h3>
-            <p>
-              Quan sát 5 thứ bạn thấy, chạm 4 thứ, nghe 3 âm thanh, ngửi 2 mùi hương và cảm nhận 1 vị để đưa tâm trí trở về hiện tại.
-            </p>
+        <!-- KỸ THUẬT 3: MÔ HÌNH 5 BƯỚC CỦA GROSS -->
+        <article class="card tech-card" onclick="openTechModal(2)" tabindex="0" role="button" aria-label="Xem chi tiết Mô hình 5 bước của Gross">
+          <div class="tech-thumb">
+            <!-- CHÚ THÍCH ẢNH KỸ THUẬT 3: Lưu ảnh Mô hình 5 bước của Gross với tên ky-thuat-3.png cùng thư mục -->
+            <img
+              src="ky-thuat-3.png"
+              alt="Mô hình 5 bước của Gross"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="tech-thumb-fallback fallback-gross" style="display: none;">
+              <div class="mini-gross-steps">
+                <span class="gross-pill">1</span>
+                <span class="gross-pill">2</span>
+                <span class="gross-pill">3</span>
+                <span class="gross-pill">4</span>
+                <span class="gross-pill">5</span>
+              </div>
+              <strong style="font-size: 1.15rem;">MÔ HÌNH 5 BƯỚC CỦA GROSS</strong>
+              <span style="font-size: 0.88rem; color: #1E8C45; font-weight: 700;">Chọn tình huống → Đánh giá lại → Điều chỉnh phản ứng</span>
+            </div>
           </div>
-          <a href="#ve-du-an" class="card-link">Thực hành ngay →</a>
+
+          <div class="tech-body">
+            <div>
+              <span class="tech-tag">Kỹ thuật 3 • Điều chỉnh cảm xúc</span>
+              <h3>Mô hình 5 bước của Gross</h3>
+              <p>
+                Hệ thống 5 bước giúp chủ động điều chỉnh cảm xúc trước khi bộc lộ mạnh (bước 1–4) và khi cảm xúc bùng phát (bước 5).
+              </p>
+              <div class="tech-steps-preview">
+                <span class="tech-step-chip">1. Chọn tình huống</span>
+                <span class="tech-step-chip">4. Đánh giá lại</span>
+                <span class="tech-step-chip">5. Phản ứng</span>
+              </div>
+            </div>
+            <button type="button" class="tech-open-btn">
+              Xem chi tiết &amp; Ví dụ →
+            </button>
+          </div>
         </article>
       </div>
     </div>
@@ -1871,7 +2264,7 @@
           Mỗi con người đều sở hữu một khu vườn nội tâm riêng, nơi có nắng ấm của niềm vui, cơn mưa của nỗi buồn và những mầm xanh của hy vọng.
         </p>
         <p class="hero-text">
-          Dự án hướng tới việc đồng hành cùng bạn trẻ và cộng đồng hiểu đúng về sức khỏe tinh thần, xóa bỏ rào cản e ngại khi chia sẻ cảm xúc.
+          Dự án hướng tới việc đồng hành cùng học sinh và cộng đồng hiểu đúng về sức khỏe tinh thần, xóa bỏ rào cản e ngại khi chia sẻ cảm xúc.
         </p>
       </div>
 
@@ -1923,7 +2316,7 @@
         <div>
           <h4>Khu vườn cảm xúc</h4>
           <p>
-            Không gian lắng nghe, thấu hiểu và nuôi dưỡng sức khỏe tinh thần cho cộng đồng.
+            Dự án tâm lý của nhóm sinh viên ngành Tâm lý học, Trường Đại học Sài Gòn.
           </p>
         </div>
         <div>
@@ -1944,10 +2337,30 @@
         </div>
       </div>
       <div class="footer-bottom">
-        © 2026 Khu vườn cảm xúc. Thiết kế giao diện sẵn sàng cho GitHub Pages.
+        © 2026 Khu vườn cảm xúc — Nhóm sinh viên Tâm lý học, Trường Đại học Sài Gòn.
       </div>
     </div>
   </footer>
+
+  <!-- =========================================================
+       MODAL CHI TIẾT KỸ THUẬT (HIỆN KHI NHẤN VÀO 3 Ô KỸ THUẬT)
+       ========================================================= -->
+  <div class="modal-overlay" id="techModal" aria-hidden="true">
+    <div class="modal-box tech-modal-box" role="dialog" aria-modal="true" aria-labelledby="techModalTitle">
+      <button type="button" class="modal-close" id="closeTechModal" aria-label="Đóng">✕</button>
+
+      <div class="tech-modal-tabs" id="techModalTabs">
+        <button type="button" class="tech-tab-btn" onclick="openTechModal(0)">1. Chánh niệm 1 phút</button>
+        <button type="button" class="tech-tab-btn" onclick="openTechModal(1)">2. Mô hình RAIN</button>
+        <button type="button" class="tech-tab-btn" onclick="openTechModal(2)">3. Mô hình Gross (5 bước)</button>
+      </div>
+
+      <h2 class="modal-title" id="techModalTitle"></h2>
+      <p class="modal-subtitle" id="techModalSubtitle"></p>
+
+      <div id="techModalBody"></div>
+    </div>
+  </div>
 
   <!-- =========================================================
        MODAL LIÊN HỆ: HIỆN TRANG PAGE FACEBOOK VÀ ZALO KHI NHẤN
@@ -1989,7 +2402,7 @@
   </div>
 
   <!-- =========================================================
-       JAVASCRIPT: MENU + MODAL LIÊN HỆ + VÒNG TRÒN CẢM XÚC TƯƠNG TÁC
+       JAVASCRIPT: MENU + MODAL LIÊN HỆ + MODAL KỸ THUẬT + BÁNH XE CẢM XÚC
        ========================================================= -->
   <script>
     /* 1. MENU MOBILE & MODAL LIÊN HỆ */
@@ -2036,13 +2449,249 @@
       if (e.target === contactModal) closeModal();
     });
 
+    /* 2. MODAL CHI TIẾT 3 KỸ THUẬT (NỘI DUNG & ẢNH TỪ 3 ẢNH GỬI KÈM) */
+    const techModal = document.getElementById('techModal');
+    const closeTechModalBtn = document.getElementById('closeTechModal');
+    let mindfulInterval = null;
+    let mindfulSeconds = 60;
+
+    const TECHNIQUES = [
+      {
+        title: 'Chánh niệm – Bài tập nhỏ 1 phút!',
+        subtitle: 'Bài tập hít thở nhanh giúp lắng dịu tâm trí và kết nối lại với hiện tại.',
+        img: 'ky-thuat-1.png',
+        imgAlt: 'Infographic Chánh niệm bài tập nhỏ 1 phút',
+        fallbackHtml: `
+          <div class="tech-thumb-fallback fallback-mindful" style="min-height: 280px; border-radius: 12px;">
+            <div style="font-size: 2.8rem;">⏱️</div>
+            <strong style="font-size: 1.2rem;">CHÁNH NIỆM – BÀI TẬP NHỎ 1 PHÚT!</strong>
+            <span>Thả lỏng cơ hàm • Ngồi thẳng lưng • 3 hơi thở sâu</span>
+          </div>`,
+        contentHtml: `
+          <div class="tech-detail-list">
+            <div class="tech-detail-item">
+              <h4>1. Tư thế chuẩn bị</h4>
+              <p>• <strong>Thả lỏng cơ hàm</strong> (không nghiến răng).</p>
+              <p>• <strong>Ngồi thẳng lưng, thả lỏng đôi vai</strong> để lồng ngực được mở rộng thoải mái.</p>
+            </div>
+
+            <div class="tech-detail-item">
+              <h4>2. Thực hiện 3 hơi thở sâu &amp; duy trì trong 1 phút</h4>
+              <p>• <strong>Hít vào → Thở ra</strong> chậm rãi (lặp lại 3 lần liên tiếp).</p>
+              <p>• Sau đó tiếp tục quan sát hơi thở tự nhiên trong <strong>1 phút</strong>.</p>
+
+              <div class="mindful-timer-box">
+                <div>
+                  <div style="font-size: 0.85rem; opacity: 0.9;">Đồng hồ thực hành tại chỗ:</div>
+                  <div class="timer-display" id="mindfulTimerDisplay">01:00</div>
+                </div>
+                <button type="button" class="timer-btn" id="mindfulTimerBtn" onclick="toggleMindfulTimer()">▶ Bắt đầu 1 phút</button>
+              </div>
+            </div>
+
+            <div class="tech-detail-item">
+              <h4>3. Khi tâm trí bạn xao nhãng...</h4>
+              <p>Khi các suy nghĩ như <em>việc cần làm, đồ ăn, hay cảm xúc khó chịu</em> xuất hiện, hãy nhẹ nhàng <strong>đưa sự chú ý trở lại hơi thở</strong> (thở ra).</p>
+            </div>
+
+            <div class="tech-highlight-box">
+              Dù bạn thấy mình phải đưa sự chú ý trở lại hơi thở <strong>5 lần hay 500 lần...</strong> điều đó không quan trọng! Điều quan trọng là <strong>bạn nhận ra và nhẹ nhàng đưa sự chú ý trở lại hơi thở</strong>.
+            </div>
+          </div>
+        `
+      },
+      {
+        title: 'Kỹ thuật 2: Mô hình RAIN',
+        subtitle: 'Lắng nghe – Chấp nhận – Khám phá – Nuôi dưỡng',
+        img: 'ky-thuat-2.png',
+        imgAlt: 'Infographic Kỹ thuật 2 Mô hình RAIN',
+        fallbackHtml: `
+          <div class="tech-thumb-fallback fallback-rain" style="min-height: 280px; border-radius: 12px;">
+            <div class="mini-rain-drops">
+              <div class="rain-drop" style="background: #5ca4c4;"><span>R</span></div>
+              <div class="rain-drop" style="background: #e58374;"><span>A</span></div>
+              <div class="rain-drop" style="background: #52a49a;"><span>I</span></div>
+              <div class="rain-drop" style="background: #6dab5b;"><span>N</span></div>
+            </div>
+            <strong style="font-size: 1.2rem;">MÔ HÌNH RAIN</strong>
+            <span>Lắng nghe - Chấp nhận - Khám phá - Nuôi dưỡng</span>
+          </div>`,
+        contentHtml: `
+          <div class="tech-detail-list">
+            <div class="tech-detail-item" style="border-left-color: #5ca4c4;">
+              <h4>R – Recognize <span class="en-sub">(Nhận diện)</span></h4>
+              <p>Nhận ra những gì mình đang cảm thấy, không phán xét, không cố gắng thay đổi.</p>
+            </div>
+
+            <div class="tech-detail-item" style="border-left-color: #e58374;">
+              <h4>A – Allow <span class="en-sub">(Cho phép)</span></h4>
+              <p>Cho phép cảm xúc hiện diện, không né tránh, không kìm nén.</p>
+            </div>
+
+            <div class="tech-detail-item" style="border-left-color: #52a49a;">
+              <h4>I – Investigate <span class="en-sub">(Tìm hiểu)</span></h4>
+              <p>Khám phá nguyên nhân, nhu cầu và ý nghĩa đằng sau cảm xúc.</p>
+            </div>
+
+            <div class="tech-detail-item" style="border-left-color: #6dab5b;">
+              <h4>N – Nurture <span class="en-sub">(Nuôi dưỡng)</span></h4>
+              <p>Cảm xúc và suy nghĩ không định nghĩa bạn. Hãy đón nhận chúng mà không phán xét bản thân.</p>
+            </div>
+          </div>
+        `
+      },
+      {
+        title: 'Mô hình 5 bước của Gross',
+        subtitle: 'Quy trình điều chỉnh cảm xúc trước khi bộc lộ mạnh (bước 1–4) và khi cảm xúc bùng phát (bước 5).',
+        img: 'ky-thuat-3.png',
+        imgAlt: 'Infographic Mô hình 5 bước của Gross',
+        fallbackHtml: `
+          <div class="tech-thumb-fallback fallback-gross" style="min-height: 280px; border-radius: 12px;">
+            <div class="mini-gross-steps">
+              <span class="gross-pill">1</span>
+              <span class="gross-pill">2</span>
+              <span class="gross-pill">3</span>
+              <span class="gross-pill">4</span>
+              <span class="gross-pill">5</span>
+            </div>
+            <strong style="font-size: 1.2rem;">MÔ HÌNH 5 BƯỚC CỦA GROSS</strong>
+            <span>Trước khi bộc lộ mạnh (1–4) • Khi bùng phát (5)</span>
+          </div>`,
+        contentHtml: `
+          <div class="tech-detail-list">
+            <div class="tech-detail-item">
+              <h4>1. Lựa chọn tình huống <span class="en-sub">(Situation Selection)</span></h4>
+              <p>Chủ động chọn tham gia hoặc tránh một tình huống dựa trên dự đoán về cảm xúc mà mình sẽ trải nghiệm.</p>
+              <div class="tech-example"><strong>Ví dụ:</strong> Không tham gia chung nhóm với bạn hay có xung đột để tránh căng thẳng.</div>
+            </div>
+
+            <div class="tech-detail-item">
+              <h4>2. Thay đổi tình huống <span class="en-sub">(Situation Modification)</span></h4>
+              <p>Khi tình huống đã/đang diễn ra, ta có thể thay đổi một số yếu tố để làm giảm cảm xúc khó chịu.</p>
+              <div class="tech-example"><strong>Ví dụ:</strong> Trao đổi để cùng tìm cách giải quyết vấn đề; Tạm dừng tranh luận khi căng thẳng.</div>
+            </div>
+
+            <div class="tech-detail-item">
+              <h4>3. Chuyển hướng chú ý <span class="en-sub">(Attentional Deployment)</span></h4>
+              <p>Chủ động lựa chọn mình sẽ chú ý đến điều gì khi đang có cảm xúc.</p>
+              <div class="tech-example"><strong>Ví dụ:</strong> Chuyển hướng sang việc khác (nghe nhạc, trò chuyện với bạn bè,...).</div>
+            </div>
+
+            <div class="tech-detail-item">
+              <h4>4. Đánh giá lại tình huống <span class="en-sub">(Cognitive Change)</span></h4>
+              <p>Nhìn sự việc từ một góc nhìn khác, hợp lý và khách quan hơn, tránh để cảm xúc chi phối.</p>
+              <div class="tech-example"><strong>Ví dụ:</strong> Tự hỏi góc nhìn tích cực hoặc bài học từ tình huống hiện tại.</div>
+            </div>
+
+            <div class="tech-detail-item" style="border-left-color: var(--green-darkest); background: #eefae8;">
+              <h4>5. Điều chỉnh phản ứng <span class="en-sub">(Response Modulation – Khi cảm xúc bùng phát)</span></h4>
+              <p>Điều chỉnh cách thể hiện cảm xúc và hành vi sao cho phù hợp.</p>
+              <div class="tech-example"><strong>Ví dụ:</strong> Hít thở sâu, nói chuyện nhẹ nhàng, chọn hành động tích cực.</div>
+            </div>
+          </div>
+        `
+      }
+    ];
+
+    function stopMindfulTimer() {
+      if (mindfulInterval) {
+        clearInterval(mindfulInterval);
+        mindfulInterval = null;
+      }
+      mindfulSeconds = 60;
+    }
+
+    function toggleMindfulTimer() {
+      const display = document.getElementById('mindfulTimerDisplay');
+      const btn = document.getElementById('mindfulTimerBtn');
+      if (!display || !btn) return;
+
+      if (mindfulInterval) {
+        stopMindfulTimer();
+        display.textContent = '01:00';
+        btn.textContent = '▶ Bắt đầu 1 phút';
+        return;
+      }
+
+      mindfulSeconds = 60;
+      btn.textContent = '↺ Đặt lại';
+      mindfulInterval = setInterval(() => {
+        mindfulSeconds--;
+        const mins = String(Math.floor(mindfulSeconds / 60)).padStart(2, '0');
+        const secs = String(mindfulSeconds % 60).padStart(2, '0');
+        display.textContent = `${mins}:${secs}`;
+
+        if (mindfulSeconds <= 0) {
+          clearInterval(mindfulInterval);
+          mindfulInterval = null;
+          display.textContent = 'Hoàn thành ✓';
+          btn.textContent = '▶ Thực hành lại';
+        }
+      }, 1000);
+    }
+
+    function openTechModal(index) {
+      stopMindfulTimer();
+      const item = TECHNIQUES[index];
+      if (!item) return;
+
+      document.getElementById('techModalTitle').textContent = item.title;
+      document.getElementById('techModalSubtitle').textContent = item.subtitle;
+
+      document.querySelectorAll('#techModalTabs .tech-tab-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+
+      document.getElementById('techModalBody').innerHTML = `
+        <div class="tech-modal-grid">
+          <div class="tech-modal-img-wrap">
+            <img
+              src="${item.img}"
+              alt="${item.imgAlt}"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div style="display: none;">${item.fallbackHtml}</div>
+          </div>
+          <div>
+            ${item.contentHtml}
+          </div>
+        </div>
+      `;
+
+      techModal.classList.add('open');
+      techModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeTechModal() {
+      stopMindfulTimer();
+      techModal.classList.remove('open');
+      techModal.setAttribute('aria-hidden', 'true');
+    }
+
+    closeTechModalBtn.addEventListener('click', closeTechModal);
+
+    techModal.addEventListener('click', (e) => {
+      if (e.target === techModal) closeTechModal();
+    });
+
+    // Hỗ trợ nhấn Enter trên thẻ kỹ thuật
+    document.querySelectorAll('.tech-card').forEach((card, idx) => {
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openTechModal(idx);
+        }
+      });
+    });
+
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && contactModal.classList.contains('open')) {
-        closeModal();
+      if (e.key === 'Escape') {
+        if (contactModal.classList.contains('open')) closeModal();
+        if (techModal.classList.contains('open')) closeTechModal();
       }
     });
 
-    /* 2. BÁNH XE CẢM XÚC TƯƠNG TÁC TRỰC TIẾP TRÊN TRANG CHÍNH */
+    /* 3. BÁNH XE CẢM XÚC TƯƠNG TÁC TRỰC TIẾP TRÊN TRANG CHÍNH */
     const D = [
       ['Buồn','#2e86c1','Phản ứng trước mất mát, tổn thương và xa cách. Nó làm bạn chậm lại và nhắc nhở cơ thể cần được an ủi, nâng đỡ.',[
         ['Tổn thương',['Ngượng ngùng|Thấy mình bị phơi bày, bối rối và chỉ muốn biến mất ngay lập tức.|Nóng bừng mặt, né tránh ánh mắt, cười gượng gạo.|Thở ra chậm, tâm sự với người tin cậy, tự đối xử tử tế với mình.','Thất vọng|Điều kỳ vọng mong chờ không xảy ra, lòng chùng xuống.|Nặng ở bụng, hay thở dài, hai vai rũ xuống.|Gọi tên điều bạn kỳ vọng, cho phép mình buồn một chút rồi mới tìm cách gỡ.','Xấu hổ|Cảm thấy bản thân nhỏ bé, tự trách vì để lộ điều không hay.|Cúi đầu, nóng rát lồng ngực, thu mình im lặng.|Chia sẻ với một người bao dung; tự viết lời nhắc mình vẫn đang học hỏi.']],
@@ -2563,7 +3212,7 @@
       `;
     };
 
-    /* 3. KÍCH HOẠT / THU GỌN VÒNG TRÒN CẢM XÚC KHI NHẤN VÀO ẢNH */
+    /* 4. KÍCH HOẠT / THU GỌN VÒNG TRÒN CẢM XÚC KHI NHẤN VÀO ẢNH */
     const emotionIntroGrid = document.getElementById('emotionIntroGrid');
     const wheelWorkspace = document.getElementById('wheel-app-workspace');
     const triggerWheelFromImg = document.getElementById('triggerWheelFromImg');
@@ -2596,3 +3245,12 @@
   </script>
 </body>
 </html>
+```
+
+### Lưu ý tên các file ảnh đặt cùng thư mục với `index.html`:
+- **`anh-cam-xuc.png`**: Ảnh tròn bên phải ở phần đầu trang.
+- **`vong-tron-cam-xuc.png`**: Ảnh vòng tròn Start ở mục Vòng tròn cảm xúc.
+- **`ky-thuat-1.png`**: Ảnh *Chánh niệm – Bài tập nhỏ 1 phút!*.
+- **`ky-thuat-2.png`**: Ảnh *Kỹ thuật 2 – Mô hình RAIN*.
+- **`ky-thuat-3.png`**: Ảnh *Mô hình 5 bước của Gross*.
+- Logo thanh menu: thay trực tiếp vào `src="LINK_ANH_LOGO_CUA_BAN.png"`.
